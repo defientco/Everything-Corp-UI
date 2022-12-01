@@ -10,36 +10,18 @@ const Home: NextPage = () => {
       <SeoHead title="CRE8ORS" description="CRE8ORS coming soon" image="" />
 
       <main className={styles.main}>
-        <ConnectButton />
 
         <h1 className={styles.title}>
-          <a rel="noreferrer" target="_blank" href="https://github.com/SweetmanTech/rainbowkit-tailwind">
-            NextJS + Rainbowkit + Tailwind
-          </a>
+            CRE8ORS
         </h1>
-
-        
-        <p className={styles.description}>
-        Tezos and Solana plugins get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code> 
-        </p>
 
         <div className="flex flex-col gap-4">
 
             
-            <a href="#" className="py-10 px-3 border rounded-lg border-black">
-              <div className="text-2xl">Solana</div>
-              <p>Starting with the <code className={styles.code}>components/SolanaCard</code> to get started</p>
-            </a>
-
-            <a href="#" className="py-10 px-3 border rounded-lg border-black">
-              <div className="text-2xl">Tezos</div>
-              <p>Starting with the <code className={styles.code}>components/SolanaCard</code> to get started</p>
-            </a>
-
-            <a href="#" className="py-10 px-3 border rounded-lg border-black">
-              <div className="text-2xl">Ethereum</div>
-              <p>Starting with the <code className={styles.code}>components/SolanaCard</code> to get started</p>
+            <a href="#" className="py-10 px-3 border rounded-lg border-black w-[500px]">
+              <div className="text-2xl">Minting</div>
+              <p>Coming soon</p>
+              <ConnectButton />
             </a>
         </div>
       </main>
