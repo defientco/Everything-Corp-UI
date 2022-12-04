@@ -2,8 +2,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 import Image from "next/image"
 import { useState } from "react"
 import { useSigner } from "wagmi"
-import purchase from "../../lib/purchase"
 import Confetti from 'react-confetti'
+import purchase from "../../lib/purchase"
 import useWindowSize from "../../lib/useWindowSize"
 
 const MintButton = () => {
@@ -22,27 +22,20 @@ const MintButton = () => {
         setLoading(false)
     }
 
-    const className = `${loading ? "bg-blue-500/50" : "bg-blue-500"} ${!loading && "hover:bg-blue-700"} text-white font-bold py-2 px-4 rounded`
-    // return 
+    const className = `${loading ? "bg-blue-500/50" : "bg-blue-500"} ${!loading && "hover:bg-blue-700"} text-white font-bold py-2 px-4 rounded` 
     return <ConnectButton.Custom>
-            {({
+        {({
             account,
             chain,
-            openAccountModal,
             openChainModal,
             openConnectModal,
-            authenticationStatus,
             mounted,
             }) => {
-            // Note: If your app doesn't use authentication, you
-            // can remove all 'authenticationStatus' checks
-            const ready = mounted && authenticationStatus !== 'loading';
+            const ready = mounted;
             const connected =
                 ready &&
                 account &&
-                chain &&
-                (!authenticationStatus ||
-                authenticationStatus === 'authenticated');
+                chain
 
             return (
                 <div
@@ -82,8 +75,8 @@ const MintButton = () => {
                 />}
                 </div>
             );
-            }}
-        </ConnectButton.Custom>
+        }}
+    </ConnectButton.Custom>
 }
 
 export default MintButton
