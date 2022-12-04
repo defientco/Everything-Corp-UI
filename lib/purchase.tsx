@@ -10,7 +10,7 @@ const purchase = async (signer: Signer) => {
         return receipt
     } catch (err) {
         handleTxError(err)
-        return err
+        return {error: err}
     }
 }
 
