@@ -3,22 +3,16 @@ import Image from 'next/image';
 import { FC, useState } from 'react';
 import { useSigner } from 'wagmi';
 import Confetti from 'react-confetti';
-
+import purchase from '../../lib/purchase';
 import useWindowSize from '../../lib/useWindowSize';
 import { ContractInterface, Signer } from 'ethers/lib/ethers';
 
 interface MintButtonProps {
   contractAddress: string;
-  purchase: (
-    contractAddress: string,
-    signer: Signer,
-    abi: ContractInterface,
-    formResponse?: string
-  ) => Promise<any>;
   abi: ContractInterface;
   formResponse?: string;
 }
-const MintButton: FC<MintButtonProps> = ({ contractAddress, purchase, abi, formResponse }) => {
+const MintButton: FC<MintButtonProps> = ({ contractAddress, abi, formResponse }) => {
   const [loading, setLoading] = useState(false);
   const [isMinted, setIsMinted] = useState(false);
   const { data: signer } = useSigner();

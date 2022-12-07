@@ -7,7 +7,6 @@ import TextArea from '../components/TextArea';
 import styles from '../styles/Home.module.css';
 import abi from '../lib/abi-allow-list.json';
 import MintButton from '../components/MintButton';
-import purchase from '../lib/purchase';
 const LABEL = 'Why do you want to join Crea8tors?';
 const Home: NextPage = () => {
   const [value, setValue] = useState('');
@@ -24,12 +23,7 @@ const Home: NextPage = () => {
             <div className="justify-content align-items-center">
               <TextArea value={value} label={LABEL} setValue={setValue} />
               {value.length > 0 && (
-                <MintButton
-                  contractAddress={contractAddress}
-                  abi={abi}
-                  purchase={purchase}
-                  formResponse={value}
-                />
+                <MintButton contractAddress={contractAddress} abi={abi} formResponse={value} />
               )}
             </div>
           </a>
