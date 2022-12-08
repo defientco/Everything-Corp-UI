@@ -21,7 +21,12 @@ const Home: NextPage = () => {
         <div className="justify-content align-items-center">
           <TextArea value={value} label={LABEL} setValue={setValue} />
           {value.length > 0 && (
-            <MintButton contractAddress={contractAddress} abi={abi} formResponse={value} />
+            <MintButton
+              contractAddress={contractAddress}
+              abi={abi}
+              formResponse={value}
+              resetFormResponse={setValue}
+            />
           )}
         </div>
       </main>

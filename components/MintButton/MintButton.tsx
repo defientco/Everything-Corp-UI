@@ -11,8 +11,14 @@ interface MintButtonProps {
   contractAddress: string;
   abi: ContractInterface;
   formResponse?: string;
+  resetFormResponse?: (value: string) => void;
 }
-const MintButton: FC<MintButtonProps> = ({ contractAddress, abi, formResponse }) => {
+const MintButton: FC<MintButtonProps> = ({
+  contractAddress,
+  abi,
+  formResponse,
+  resetFormResponse
+}) => {
   const [loading, setLoading] = useState(false);
   const [isMinted, setIsMinted] = useState(false);
   const [startConfetti, setStartConfetti] = useState(false);
@@ -27,6 +33,7 @@ const MintButton: FC<MintButtonProps> = ({ contractAddress, abi, formResponse })
       : await purchase(contractAddress, signer, abi);
     if (!receipt.error) {
       setIsMinted(true);
+      resetFormResponse && resetFormResponse('');
       setStartConfetti(true);
       setTimeout(() => {
         setStartConfetti(false);
