@@ -20,7 +20,6 @@ const MintButton: FC<MintButtonProps> = ({
   resetFormResponse
 }) => {
   const [loading, setLoading] = useState(false);
-  const [isMinted, setIsMinted] = useState(false);
   const [startConfetti, setStartConfetti] = useState(false);
   const { data: signer } = useSigner();
   const { width, height } = useWindowSize();
@@ -32,12 +31,11 @@ const MintButton: FC<MintButtonProps> = ({
       ? await purchase(contractAddress, signer, abi, formResponse)
       : await purchase(contractAddress, signer, abi);
     if (!receipt.error) {
-      setIsMinted(true);
-      resetFormResponse && resetFormResponse('');
       setStartConfetti(true);
       setTimeout(() => {
         setStartConfetti(false);
-      }, 10000);
+        resetFormResponse && resetFormResponse('');
+      }, 5000);
     }
     setLoading(false);
   };
@@ -93,7 +91,7 @@ const MintButton: FC<MintButtonProps> = ({
                 </button>
               );
             })()}
-            {isMinted && startConfetti && <Confetti width={width} height={height} />}
+            {startConfetti && <Confetti width={width} height={height} />}
           </div>
         );
       }}
