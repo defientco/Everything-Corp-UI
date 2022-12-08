@@ -18,15 +18,11 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>CRE8ORS</h1>
 
-        <div className="flex flex-col gap-4">
-          <a href="#" className="py-10  border rounded-lg border-black w-[500px]">
-            <div className="justify-content align-items-center">
-              <TextArea value={value} label={LABEL} setValue={setValue} />
-              {value.length > 0 && (
-                <MintButton contractAddress={contractAddress} abi={abi} formResponse={value} />
-              )}
-            </div>
-          </a>
+        <div className="justify-content align-items-center">
+          <TextArea value={value} label={LABEL} setValue={setValue} />
+          {value.length > 0 && (
+            <MintButton contractAddress={contractAddress} abi={abi} formResponse={value} />
+          )}
         </div>
       </main>
     </div>

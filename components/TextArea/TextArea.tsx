@@ -10,7 +10,7 @@ const TextArea: FC<TextAreaProps> = ({ value, label, setValue }) => {
     setValue(e.target.value);
   };
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center text-center">
       <div className="justify-center w-full h-full px-4 mb-3">
         <label
           htmlFor="exampleFormControlTextarea1"

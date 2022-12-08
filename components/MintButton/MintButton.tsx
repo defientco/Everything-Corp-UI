@@ -5,7 +5,7 @@ import { useSigner } from 'wagmi';
 import Confetti from 'react-confetti';
 import purchase from '../../lib/purchase';
 import useWindowSize from '../../lib/useWindowSize';
-import { ContractInterface, Signer } from 'ethers/lib/ethers';
+import { ContractInterface } from 'ethers/lib/ethers';
 
 interface MintButtonProps {
   contractAddress: string;
@@ -15,6 +15,7 @@ interface MintButtonProps {
 const MintButton: FC<MintButtonProps> = ({ contractAddress, abi, formResponse }) => {
   const [loading, setLoading] = useState(false);
   const [isMinted, setIsMinted] = useState(false);
+  const [startConfetti, setStartConfetti] = useState(false);
   const { data: signer } = useSigner();
   const { width, height } = useWindowSize();
 
@@ -26,6 +27,10 @@ const MintButton: FC<MintButtonProps> = ({ contractAddress, abi, formResponse })
       : await purchase(contractAddress, signer, abi);
     if (!receipt.error) {
       setIsMinted(true);
+      setStartConfetti(true);
+      setTimeout(() => {
+        setStartConfetti(false);
+      }, 10000);
     }
     setLoading(false);
   };
@@ -77,7 +82,7 @@ const MintButton: FC<MintButtonProps> = ({ contractAddress, abi, formResponse })
                 </button>
               );
             })()}
-            {isMinted && <Confetti width={width} height={height} />}
+            {isMinted && startConfetti && <Confetti width={width} height={height} />}
           </div>
         );
       }}
