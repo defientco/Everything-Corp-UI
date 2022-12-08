@@ -71,7 +71,11 @@ const MintButton: FC<MintButtonProps> = ({
                 );
               }
 
-              if (chain.unsupported) {
+              if (
+                formResponse
+                  ? chain.id !== Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID)
+                  : chain.id !== Number(process.env.NEXT_PUBLIC_CHAIN_ID)
+              ) {
                 return (
                   <button onClick={openChainModal} type="button" className={className}>
                     Wrong network

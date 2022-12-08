@@ -8,24 +8,24 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [
-    allChains.find((c) => c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID)) || chain.goerli,
-  ],
-  [
-    publicProvider(),
-  ]
+  allChains.filter(
+    (c) =>
+      c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
+      c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID)
+  ),
+  [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
   appName: 'RainbowKit App',
-  chains,
+  chains
 });
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
   provider,
-  webSocketProvider,
+  webSocketProvider
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
