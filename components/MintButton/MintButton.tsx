@@ -27,14 +27,11 @@ const MintButton: FC<MintButtonProps> = ({
   const handleClick = async () => {
     if (!signer) return;
     setLoading(true);
-    const receipt = formResponse
-      ? await purchase(contractAddress, signer, abi, formResponse)
-      : await purchase(contractAddress, signer, abi);
+    const receipt = await purchase(contractAddress, signer, abi);
     if (!receipt.error) {
       setStartConfetti(true);
       setTimeout(() => {
         setStartConfetti(false);
-        resetFormResponse && resetFormResponse('');
       }, 5000);
     }
     setLoading(false);
@@ -69,11 +66,7 @@ const MintButton: FC<MintButtonProps> = ({
                 );
               }
 
-              if (
-                formResponse
-                  ? chain.id !== Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID)
-                  : chain.id !== Number(process.env.NEXT_PUBLIC_CHAIN_ID)
-              ) {
+              if (chain.id !== Number(process.env.NEXT_PUBLIC_CHAIN_ID)) {
                 return (
                   <button onClick={openChainModal} type="button" className={className}>
                     Wrong network
