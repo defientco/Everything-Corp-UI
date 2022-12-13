@@ -2,8 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["./tsconfig.json"],
-    "excludes": ["node_modules", "next.config.js"]
+    "project": ["./tsconfig.json"]
   },
   "settings": {
     "import/resolver": {
