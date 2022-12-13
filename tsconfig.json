@@ -15,7 +15,7 @@
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["./src/@types", "./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": ["**/**.ts", "**/**.tsx", "**/**.js"],
   "exclude": ["/node_modules"],
