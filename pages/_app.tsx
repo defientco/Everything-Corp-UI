@@ -6,6 +6,7 @@ import { allChains, chain, configureChains, createClient, WagmiConfig } from 'wa
 import { publicProvider } from 'wagmi/providers/public';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThirdwebProvider, ChainId } from '@thirdweb-dev/react';
 
 const { chains, provider, webSocketProvider } = configureChains(
   allChains.filter(
@@ -32,7 +33,21 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider modalSize="compact" chains={chains}>
-        <Component {...pageProps} />
+        <ThirdwebProvider
+          sdkOptions={{
+            gasless: {
+              openzeppelin: {
+                relayerUrl: String(process.env.NEXT_PUBLIC_OPENZEPPELIN_URL),
+                relayerForwarderAddress: '0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81'
+              }
+            },
+            gasSettings: { speed: 'fastest', maxPriceInGwei: 1000 }
+          }}
+          desiredChainId={ChainId.Mumbai}
+          supportedChains={[ChainId.Mumbai, ChainId.Goerli]}
+        >
+          <Component {...pageProps} />
+        </ThirdwebProvider>
         <ToastContainer />
       </RainbowKitProvider>
     </WagmiConfig>
