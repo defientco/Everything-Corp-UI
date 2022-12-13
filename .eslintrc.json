@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["./tsconfig.json", "./cypress/tsconfig.json"]
+    "project": ["./tsconfig.json"]
   },
   "settings": {
     "import/resolver": {
@@ -45,9 +45,6 @@
         "depth": 3
       }
     ]
-  },
-  "env": {
-    "jest/globals": true
   },
   "plugins": ["@typescript-eslint", "prettier", "react", "jest"],
   "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/eslint-recommended"],
