@@ -1,14 +1,14 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 const errorMessages = [
   {
-    error: "gas required exceeds allowance",
-    solution: "Insufficient balance. Add more funds to your wallet.",
+    error: 'gas required exceeds allowance',
+    solution: 'Insufficient balance. Add more funds to your wallet.'
   },
   {
-    error: "err: insufficient funds for gas",
-    solution: "Insufficient balance. Add more funds to your wallet.",
-  },
+    error: 'err: insufficient funds for gas',
+    solution: 'Insufficient balance. Add more funds to your wallet.'
+  }
 ];
 
 const handleTxError = (error: any) => {
@@ -24,8 +24,7 @@ const handleTxError = (error: any) => {
     }
   }
 
-  const toastMessage =
-    customToastMessage || primaryError || nestedError || fallbackError;
+  const toastMessage = customToastMessage || primaryError || nestedError || fallbackError;
   toast.error(toastMessage);
 };
 

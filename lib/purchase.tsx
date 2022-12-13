@@ -1,17 +1,23 @@
-import { ethers, Signer } from "ethers"
-import abi from "./abi-cre8ors.json"
-import handleTxError from "./handleTxError"
+import { ContractInterface, ethers, Signer } from 'ethers';
 
-const purchase = async (signer: Signer) => {
-    const contract = new ethers.Contract(String(process.env.NEXT_PUBLIC_CRE8ORS_ADDRESS), abi, signer)
-    try {
-        const tx = await contract.purchase(1)
-        const receipt = await tx.wait()
-        return receipt
-    } catch (err) {
-        handleTxError(err)
-        return {error: err}
-    }
-}
+import handleTxError from './handleTxError';
 
-export default purchase
+const purchase = async (
+  contractAddress: string,
+  signer: Signer,
+  abi: ContractInterface,
+  formResponse?: string
+) => {
+  const contract = new ethers.Contract(contractAddress, abi, signer);
+  try {
+    const tx = formResponse ? await contract.purchase(1, formResponse) : await contract.purchase(1);
+    const receipt = await tx.wait();
+    console.log(receipt);
+    return receipt;
+  } catch (err) {
+    handleTxError(err);
+    return { error: err };
+  }
+};
+
+export default purchase;
