@@ -48,7 +48,7 @@ jobs:
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-dev-
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
