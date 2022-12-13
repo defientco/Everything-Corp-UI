@@ -47,6 +47,7 @@
     ]
   },
   "plugins": ["@typescript-eslint", "prettier", "react"],
+  "excludes": ["node_modules", "next.config.js"],
   "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/eslint-recommended"],
   "globals": {
     "Cypress": true,
