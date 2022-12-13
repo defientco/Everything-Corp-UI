@@ -50,7 +50,7 @@
     "jest/globals": true
   },
   "plugins": ["@typescript-eslint", "prettier", "react", "jest"],
-  "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/eslint-recommended"],
+  "extends": ["prettier", "plugin:@typescript-eslint/eslint-recommended"],
   "globals": {
     "Cypress": true,
     "JSX": true,
