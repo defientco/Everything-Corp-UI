@@ -50,8 +50,8 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Fix lint and Formatting
-        run: yarn run format
+      - name: Fix Formatting
+        run: yarn run prettier:fix
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
