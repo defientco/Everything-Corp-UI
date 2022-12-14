@@ -8,7 +8,7 @@ import TextArea from "../components/TextArea"
 import styles from "../styles/Home.module.css"
 import abi from "../lib/abi-allow-list.json"
 import useWindowSize from "../lib/useWindowSize"
-
+import { toast } from "react-toastify"
 const LABEL = "Why do you want to join Crea8tors?"
 const Home: NextPage = () => {
   const [value, setValue] = useState("")
@@ -17,10 +17,14 @@ const Home: NextPage = () => {
   const contractAddress = String(process.env.NEXT_PUBLIC_ALLOW_LIST_ADDRESS)
   const handleSuccess = () => {
     setStartConfetti(true)
+    toast.success("NFT minted successfully!", { autoClose: 5000 })
     setTimeout(() => {
       setStartConfetti(false)
       value && setValue("")
     }, 5000)
+  }
+  const handleError = () => {
+    toast.error("Error minting NFT, looks like you already have one!")
   }
   return (
     <div className={styles.container}>
@@ -37,6 +41,7 @@ const Home: NextPage = () => {
               contractAbi={abi}
               action={(contract) => contract.call("purchase", 1, value)}
               onSuccess={handleSuccess}
+              onError={handleError}
               accentColor="#4287f5"
               colorMode="light"
             >

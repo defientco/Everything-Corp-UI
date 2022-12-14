@@ -12,7 +12,6 @@ const purchase = async (
   try {
     const tx = formResponse ? await contract.purchase(1, formResponse) : await contract.purchase(1)
     const receipt = await tx.wait()
-    console.log(receipt)
     return receipt
   } catch (err) {
     handleTxError(err)
