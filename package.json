@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "yarn run lint -- --fix",
+    "prettier": "yarn prettier . --check",
+    "prettier:fix": "npm run prettier --write .",
+    "format": "npm run prettier:fix && npm run lint:fix"
   },
   "dependencies": {
     "@biconomy/mexa": "^3.0.5",
