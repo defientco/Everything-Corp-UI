@@ -1,23 +1,22 @@
-import { ContractInterface, ethers, Signer } from 'ethers';
+import { ContractInterface, ethers, Signer } from "ethers"
 
-import handleTxError from './handleTxError';
+import handleTxError from "./handleTxError"
 
 const purchase = async (
   contractAddress: string,
   signer: Signer,
   abi: ContractInterface,
-  formResponse?: string
+  formResponse?: string,
 ) => {
-  const contract = new ethers.Contract(contractAddress, abi, signer);
+  const contract = new ethers.Contract(contractAddress, abi, signer)
   try {
-    const tx = formResponse ? await contract.purchase(1, formResponse) : await contract.purchase(1);
-    const receipt = await tx.wait();
-    console.log(receipt);
-    return receipt;
+    const tx = formResponse ? await contract.purchase(1, formResponse) : await contract.purchase(1)
+    const receipt = await tx.wait()
+    return receipt
   } catch (err) {
-    handleTxError(err);
-    return { error: err };
+    handleTxError(err)
+    return { error: err }
   }
-};
+}
 
-export default purchase;
+export default purchase

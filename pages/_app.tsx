@@ -1,33 +1,33 @@
-import '../styles/globals.css';
-import '@rainbow-me/rainbowkit/styles.css';
-import type { AppProps } from 'next/app';
-import { RainbowKitProvider, getDefaultWallets } from '@rainbow-me/rainbowkit';
-import { allChains, chain, configureChains, createClient, WagmiConfig } from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { ThirdwebProvider, ChainId } from '@thirdweb-dev/react';
+import "../styles/globals.css"
+import "@rainbow-me/rainbowkit/styles.css"
+import type { AppProps } from "next/app"
+import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit"
+import { allChains, chain, configureChains, createClient, WagmiConfig } from "wagmi"
+import { publicProvider } from "wagmi/providers/public"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react"
 
 const { chains, provider, webSocketProvider } = configureChains(
   allChains.filter(
     (c) =>
       c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
-      c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID)
+      c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
   ),
-  [publicProvider()]
-);
+  [publicProvider()],
+)
 
 const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit App',
-  chains
-});
+  appName: "RainbowKit App",
+  chains,
+})
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
   provider,
-  webSocketProvider
-});
+  webSocketProvider,
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -38,10 +38,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             gasless: {
               openzeppelin: {
                 relayerUrl: String(process.env.NEXT_PUBLIC_OPENZEPPELIN_URL),
-                relayerForwarderAddress: '0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81'
-              }
+                relayerForwarderAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
+              },
             },
-            gasSettings: { speed: 'fastest', maxPriceInGwei: 1000 }
+            gasSettings: { speed: "fastest", maxPriceInGwei: 1000 },
           }}
           desiredChainId={ChainId.Mumbai}
           supportedChains={[ChainId.Mumbai, ChainId.Goerli]}
@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ToastContainer />
       </RainbowKitProvider>
     </WagmiConfig>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

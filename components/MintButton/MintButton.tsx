@@ -1,60 +1,60 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Image from 'next/image';
-import { FC, useState } from 'react';
-import { useSigner } from 'wagmi';
-import Confetti from 'react-confetti';
-import purchase from '../../lib/purchase';
-import useWindowSize from '../../lib/useWindowSize';
-import { ContractInterface } from 'ethers/lib/ethers';
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import Image from "next/image"
+import { FC, useState } from "react"
+import { useSigner } from "wagmi"
+import Confetti from "react-confetti"
+import { ContractInterface } from "ethers/lib/ethers"
+import purchase from "../../lib/purchase"
+import useWindowSize from "../../lib/useWindowSize"
 
 interface MintButtonProps {
-  contractAddress: string;
-  abi: ContractInterface;
-  formResponse?: string;
-  resetFormResponse?: (value: string) => void;
+  contractAddress: string
+  abi: ContractInterface
+  formResponse?: string
+  resetFormResponse?: (value: string) => void
 }
 const MintButton: FC<MintButtonProps> = ({
   contractAddress,
   abi,
   formResponse,
-  resetFormResponse
+  resetFormResponse,
 }) => {
-  const [loading, setLoading] = useState(false);
-  const [startConfetti, setStartConfetti] = useState(false);
-  const { data: signer } = useSigner();
-  const { width, height } = useWindowSize();
+  const [loading, setLoading] = useState(false)
+  const [startConfetti, setStartConfetti] = useState(false)
+  const { data: signer } = useSigner()
+  const { width, height } = useWindowSize()
 
   const handleClick = async () => {
-    if (!signer) return;
-    setLoading(true);
-    const receipt = await purchase(contractAddress, signer, abi);
+    if (!signer) return
+    setLoading(true)
+    const receipt = await purchase(contractAddress, signer, abi)
     if (!receipt.error) {
-      setStartConfetti(true);
+      setStartConfetti(true)
       setTimeout(() => {
-        setStartConfetti(false);
-      }, 5000);
+        setStartConfetti(false)
+      }, 5000)
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
-  const className = `${loading ? 'bg-blue-500/50' : 'bg-blue-500'} ${
-    !loading && 'hover:bg-blue-700'
-  } text-white font-bold py-2 px-4 rounded`;
+  const className = `${loading ? "bg-blue-500/50" : "bg-blue-500"} ${
+    !loading && "hover:bg-blue-700"
+  } text-white font-bold py-2 px-4 rounded`
   return (
     <ConnectButton.Custom>
       {({ account, chain, openChainModal, openConnectModal, mounted }) => {
-        const ready = mounted;
-        const connected = ready && account && chain;
+        const ready = mounted
+        const connected = ready && account && chain
 
         return (
           <div
             {...(!ready && {
-              'aria-hidden': true,
+              "aria-hidden": true,
               style: {
                 opacity: 0,
-                pointerEvents: 'none',
-                userSelect: 'none'
-              }
+                pointerEvents: "none",
+                userSelect: "none",
+              },
             })}
           >
             {(() => {
@@ -63,7 +63,7 @@ const MintButton: FC<MintButtonProps> = ({
                   <button onClick={openConnectModal} type="button" className={className}>
                     Connect Wallet
                   </button>
-                );
+                )
               }
 
               if (chain.id !== Number(process.env.NEXT_PUBLIC_CHAIN_ID)) {
@@ -71,7 +71,7 @@ const MintButton: FC<MintButtonProps> = ({
                   <button onClick={openChainModal} type="button" className={className}>
                     Wrong network
                   </button>
-                );
+                )
               }
 
               return (
@@ -79,17 +79,17 @@ const MintButton: FC<MintButtonProps> = ({
                   {loading ? (
                     <Image src="/spinner.gif" alt="spinner" width={50} height={50} />
                   ) : (
-                    'Mint'
+                    "Mint"
                   )}
                 </button>
-              );
+              )
             })()}
             {startConfetti && <Confetti width={width} height={height} />}
           </div>
-        );
+        )
       }}
     </ConnectButton.Custom>
-  );
-};
+  )
+}
 
-export default MintButton;
+export default MintButton
