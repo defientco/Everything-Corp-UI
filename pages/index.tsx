@@ -3,12 +3,13 @@ import Head from "next/head"
 import { useState } from "react"
 import { Web3Button } from "@thirdweb-dev/react"
 import Confetti from "react-confetti"
+import { toast } from "react-toastify"
 import SeoHead from "../components/SeoHead"
 import TextArea from "../components/TextArea"
 import styles from "../styles/Home.module.css"
 import abi from "../lib/abi-allow-list.json"
 import useWindowSize from "../lib/useWindowSize"
-import { toast } from "react-toastify"
+
 const LABEL = "Why do you want to join Crea8tors?"
 const Home: NextPage = () => {
   const [value, setValue] = useState("")

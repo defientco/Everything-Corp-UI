@@ -47,7 +47,7 @@
     ]
   },
   "plugins": ["@typescript-eslint", "prettier", "react"],
-  "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/eslint-recommended"],
+  "extends": ["airbnb", "next", "prettier", "plugin:@typescript-eslint/eslint-recommended"],
   "globals": {
     "Cypress": true,
     "JSX": true,

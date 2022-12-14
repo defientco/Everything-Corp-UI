@@ -48,7 +48,7 @@ jobs:
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-dev-
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install --frozen-lockfile
 
       - name: Fix lint and Formatting
         run: yarn run format
