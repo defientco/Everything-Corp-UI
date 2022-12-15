@@ -6,14 +6,18 @@ import { db } from "../../../utils/db"
 class AllowListApplicants {
   @Post()
   async addAllowListApplicant(@Body() body: ApplicantDTO) {
+    console.log(body)
     const { twitterHandle, walletAddress, reason, creatorType } = body
+    console.log(twitterHandle, walletAddress, reason, creatorType)
     const collection = db.collection("allowListApplicants")
+    console.log("got database")
     const result = await collection.doc().set({
       twitterHandle,
       walletAddress,
       reason,
       creatorType,
     })
+    console.log("added to database")
     return result
   }
 
