@@ -9,8 +9,7 @@ class AllowListApplicants {
     const { twitterHandle, walletAddress, reason, creatorType } = body
     const collection = db.collection("allowListApplicants")
     try {
-      console.log("Adding applicant to allow list")
-      const result = await collection.doc().set({
+      const result = await collection.add({
         twitterHandle,
         walletAddress,
         reason,
