@@ -1,11 +1,11 @@
 /* eslint-disable class-methods-use-this */
-import { createHandler, Post, Body, ValidationPipe, Get } from "next-api-decorators"
+import { createHandler, Post, Body, Get } from "next-api-decorators"
 import { ApplicantDTO } from "../../../DTO/applicant.dto"
 import { db } from "../../../utils/db"
 
 class AllowListApplicants {
   @Post()
-  async addAllowListApplicant(@Body(ValidationPipe) body: ApplicantDTO) {
+  async addAllowListApplicant(@Body() body: ApplicantDTO) {
     const { twitterHandle, walletAddress, reason, creatorType } = body
     const collection = db.collection("allowListApplicants")
     const result = await collection.doc().set({
