@@ -51,13 +51,8 @@ jobs:
         run: yarn install --frozen-lockfile --prefer-offline
 
       - name: Fix Formatting
-        run: yarn run prettier:fix
+        run: yarn format
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          prettier: true
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:

@@ -44,6 +44,13 @@
         "controlComponents": ["CustomInput"],
         "depth": 3
       }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["function-declaration", "arrow-function"],
+        "unnamedComponents": "arrow-function"
+      }
     ]
   },
   "plugins": ["@typescript-eslint", "prettier", "react"],

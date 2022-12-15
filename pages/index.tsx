@@ -1,5 +1,4 @@
 import type { NextPage } from "next"
-import Head from "next/head"
 import { useState } from "react"
 import { Web3Button } from "@thirdweb-dev/react"
 import Confetti from "react-confetti"
@@ -21,7 +20,7 @@ const Home: NextPage = () => {
     toast.success("NFT minted successfully!", { autoClose: 5000 })
     setTimeout(() => {
       setStartConfetti(false)
-      value && setValue("")
+      if (value.length) setValue("")
     }, 5000)
   }
   const handleError = () => {
