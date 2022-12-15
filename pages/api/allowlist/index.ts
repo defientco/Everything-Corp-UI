@@ -2,13 +2,9 @@
 import { createHandler, Post, Body, ValidationPipe, Get } from "next-api-decorators"
 import { ApplicantDTO } from "../../../DTO/applicant.dto"
 import { db } from "../../../utils/db"
-import { AllowListAuthGuard } from "../../../middleware/auth.middleware"
-import { ApplicantRegistered } from "../../../middleware/unique.middleware"
 
 class AllowListApplicants {
   @Post()
-  @AllowListAuthGuard()
-  @ApplicantRegistered()
   async addAllowListApplicant(@Body(ValidationPipe) body: ApplicantDTO) {
     const { twitterHandle, walletAddress, reason, creatorType } = body
     const collection = db.collection("allowListApplicants")
