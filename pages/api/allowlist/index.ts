@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { createHandler, Post, Body, ValidationPipe } from "next-api-decorators"
+import { createHandler, Post, Body } from "next-api-decorators"
 import { ApplicantDTO } from "../../../DTO/applicant.dto"
 import { db } from "../../../utils/db"
 
