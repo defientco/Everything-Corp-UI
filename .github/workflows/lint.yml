@@ -53,6 +53,9 @@ jobs:
       - name: Fix Formatting
         run: yarn format
 
+      -name: Check linting
+        run: yarn lint
+        
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
