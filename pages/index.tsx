@@ -1,5 +1,4 @@
 import type { NextPage } from "next"
-import Head from "next/head"
 import { useState } from "react"
 import { Web3Button } from "@thirdweb-dev/react"
 import Confetti from "react-confetti"
