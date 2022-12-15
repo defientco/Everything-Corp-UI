@@ -3,7 +3,7 @@ import { getFirestore } from "firebase-admin/firestore"
 
 const params: ServiceAccount = {
   projectId: process.env.SERVICE_ACCOUNT_PROJECT_ID,
-  privateKey: process.env.SERVICE_ACCOUNT_PRIVATE_KEY,
+  privateKey: JSON.parse(process.env.SERVICE_ACCOUNT_PRIVATE_KEY),
   clientEmail: process.env.SERVICE_ACCOUNT_CLIENT_EMAIL,
 }
 const apps = getApps()
