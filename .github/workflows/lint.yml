@@ -51,7 +51,7 @@ jobs:
         run: yarn install --frozen-lockfile --prefer-offline
 
       - name: Fix Formatting
-        run: yarn run prettier:fix
+        run: yarn format
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
