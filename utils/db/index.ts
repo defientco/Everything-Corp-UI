@@ -1,4 +1,4 @@
-import { initializeApp, cert, ServiceAccount } from "firebase-admin/app"
+import { initializeApp, cert, ServiceAccount, getApps } from "firebase-admin/app"
 import { getFirestore } from "firebase-admin/firestore"
 
 const params: ServiceAccount = {
@@ -6,8 +6,11 @@ const params: ServiceAccount = {
   privateKey: process.env.SERVICE_ACCOUNT_PRIVATE_KEY,
   clientEmail: process.env.SERVICE_ACCOUNT_CLIENT_EMAIL,
 }
-const firebaseAdmin = initializeApp({
-  credential: cert(params),
-})
+const apps = getApps()
+const firebaseAdmin =
+  !apps.length &&
+  initializeApp({
+    credential: cert(params),
+  })
 
 export const db = getFirestore(firebaseAdmin)
