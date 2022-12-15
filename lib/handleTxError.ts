@@ -12,13 +12,12 @@ const errorMessages = [
 ]
 
 const handleTxError = (error: any) => {
-  console.error(error)
   const primaryError = error?.data?.message
   const nestedError = error?.error?.message
   const fallbackError = error.message
   let customToastMessage
 
-  for (let i = 0; i < errorMessages.length; i++) {
+  for (let i = 0; i < errorMessages.length; i += 1) {
     if (primaryError?.includes(errorMessages[i].error)) {
       customToastMessage = errorMessages[i].solution
     }

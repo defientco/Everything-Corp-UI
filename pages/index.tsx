@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     toast.success("NFT minted successfully!", { autoClose: 5000 })
     setTimeout(() => {
       setStartConfetti(false)
-      value && setValue("")
+      if (value.length) setValue("")
     }, 5000)
   }
   const handleError = () => {

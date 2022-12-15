@@ -13,12 +13,7 @@ interface MintButtonProps {
   formResponse?: string
   resetFormResponse?: (value: string) => void
 }
-const MintButton: FC<MintButtonProps> = ({
-  contractAddress,
-  abi,
-  formResponse,
-  resetFormResponse,
-}) => {
+const MintButton: FC<MintButtonProps> = ({ contractAddress, abi }) => {
   const [loading, setLoading] = useState(false)
   const [startConfetti, setStartConfetti] = useState(false)
   const { data: signer } = useSigner()
@@ -75,7 +70,12 @@ const MintButton: FC<MintButtonProps> = ({
               }
 
               return (
-                <button onClick={handleClick} disabled={loading} className={className}>
+                <button
+                  type="button"
+                  onClick={handleClick}
+                  disabled={loading}
+                  className={className}
+                >
                   {loading ? (
                     <Image src="/spinner.gif" alt="spinner" width={50} height={50} />
                   ) : (
