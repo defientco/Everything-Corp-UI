@@ -37,18 +37,26 @@ const AllowList = () => {
   }
   return (
     <>
-      <AllowListForm
-        walletAddress={walletAddress}
-        setWalletAddress={setWalletAddress}
-        twitterHandle={twitterHandle}
-        setTwitterHandle={setTwitterHandle}
-        whyCre8or={whyCre8or}
-        setWhyCre8or={setWhyCre8or}
-        creatorType={cre8orType}
-        setCreatorType={setCre8orType}
-        handleSignUp={handleSignUp}
-      />
-      {signedUp && <AllowListMintButton whyCre8or={whyCre8or} setWhyCre8or={setWhyCre8or} />}
+      {!signedUp && (
+        <AllowListForm
+          walletAddress={walletAddress}
+          setWalletAddress={setWalletAddress}
+          twitterHandle={twitterHandle}
+          setTwitterHandle={setTwitterHandle}
+          whyCre8or={whyCre8or}
+          setWhyCre8or={setWhyCre8or}
+          creatorType={cre8orType}
+          setCreatorType={setCre8orType}
+          handleSignUp={handleSignUp}
+        />
+      )}
+      {signedUp && (
+        <AllowListMintButton
+          whyCre8or={whyCre8or}
+          setWhyCre8or={setWhyCre8or}
+          setSignedUp={setSignedUp}
+        />
+      )}
     </>
   )
 }

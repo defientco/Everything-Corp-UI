@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 import abi from "../../lib/abi-allow-list.json"
 import useWindowSize from "../../lib/useWindowSize"
 
-const AllowListMintButton = ({ whyCre8or, setWhyCre8or }) => {
+const AllowListMintButton = ({ whyCre8or, setWhyCre8or, setSignedUp }) => {
   const [startConfetti, setStartConfetti] = useState(false)
   const { width, height } = useWindowSize()
   const contractAddress = String(process.env.NEXT_PUBLIC_ALLOW_LIST_ADDRESS)
@@ -15,6 +15,7 @@ const AllowListMintButton = ({ whyCre8or, setWhyCre8or }) => {
     setTimeout(() => {
       setStartConfetti(false)
       if (whyCre8or.length) setWhyCre8or("")
+      setSignedUp(false)
     }, 5000)
   }
   const handleError = () => {
