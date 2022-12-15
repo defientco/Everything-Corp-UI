@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { createHandler, Post, Body, ValidationPipe } from "next-api-decorators"
+import { createHandler, Post, Body, ValidationPipe, Get } from "next-api-decorators"
 import { ApplicantDTO } from "../../../DTO/applicant.dto"
 import { db } from "../../../utils/db"
 import { AllowListAuthGuard } from "../../../middleware/auth.middleware"
@@ -19,6 +19,11 @@ class AllowListApplicants {
       creatorType,
     })
     return result
+  }
+
+  @Get()
+  async helloWorld() {
+    return "Hello World"
   }
 }
 
