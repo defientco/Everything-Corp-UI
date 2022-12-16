@@ -4,7 +4,6 @@ import type { AppProps } from "next/app"
 import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit"
 import { allChains, configureChains, createClient, WagmiConfig } from "wagmi"
 import { publicProvider } from "wagmi/providers/public"
-import { alchemyProvider } from "wagmi/providers/alchemy"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react"
@@ -15,14 +14,7 @@ const { chains, provider, webSocketProvider } = configureChains(
       c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
       c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
   ),
-  [
-    alchemyProvider({
-      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-      stallTimeout: 1_000,
-      priority: 0,
-    }),
-    publicProvider({ priority: 1 }),
-  ],
+  [publicProvider()],
 )
 
 const { connectors } = getDefaultWallets({
