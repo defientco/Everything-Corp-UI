@@ -5,11 +5,13 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from "next-api-decorators"
-import { db } from "../utils/db"
+import Auth from "../Models/Auth"
+import dbConnect from "../utils/db"
 
 export const getApiKeys = async () => {
-  const apiKeys = (await db.collection("auth").doc("apiKeys").get()).data()
-  return apiKeys
+  await dbConnect()
+  const result = Auth.findOne({ collectionName: "AllowList" }).lean()
+  return result
 }
 export const AllowListAuthGuard = createMiddlewareDecorator(
   async (req: NextApiRequest, res: NextApiResponse, next: NextFunction) => {
@@ -20,7 +22,7 @@ export const AllowListAuthGuard = createMiddlewareDecorator(
     }
     const [, token] = authorization.split(" ")
     const apiKeys = await getApiKeys()
-    if (token !== apiKeys.allowList) {
+    if (token !== apiKeys.apiKey) {
       throw new UnauthorizedException("Invalid token")
     }
     next()

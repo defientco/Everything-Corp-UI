@@ -1,13 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { createMiddlewareDecorator, NextFunction, ConflictException } from "next-api-decorators"
-import { db } from "../utils/db"
+import AllowList from "../Models/AllowList"
+import dbConnect from "../utils/db"
 
 export const ApplicantRegistered = createMiddlewareDecorator(
   async (req: NextApiRequest, res: NextApiResponse, next: NextFunction) => {
     const { walletAddress } = req.body
-    const collection = db.collection("allowListApplicants")
-    const result = await collection.where("walletAddress", "==", walletAddress).get()
-    if (result.empty) {
+    await dbConnect()
+    const result = await AllowList.find({ walletAddress }).lean()
+    console.log(result)
+    if (result.length === 0) {
       next()
     } else {
       throw new ConflictException("Applicant already registered")

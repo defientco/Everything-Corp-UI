@@ -1,17 +1,24 @@
-import { NextApiResponse, NextApiRequest } from "next"
+/* eslint-disable class-methods-use-this */
+import { createHandler, Post, Body, ValidationPipe } from "next-api-decorators"
+import { ApplicantDTO } from "../../../DTO/applicant.dto"
+import dbConnect from "../../../utils/db"
+import { ApplicantRegistered } from "../../../middleware/unique.middleware"
+import AllowList from "../../../Models/AllowList"
+import { AllowListAuthGuard } from "../../../middleware/auth.middleware"
 
-import { db } from "../../../utils/db"
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { twitterHandle, walletAddress, reason, creatorType } = req.body
-  console.log(req.body)
-  const collection = db.collection("allowListApplicants")
-  const result = await collection.add({
-    twitterHandle,
-    walletAddress,
-    reason,
-    creatorType,
-  })
-  console.log("done! ", result)
-  res.status(200).json({ result })
+class AllowListApplicants {
+  @Post()
+  @AllowListAuthGuard()
+  @ApplicantRegistered()
+  async addAllowListApplicant(@Body(ValidationPipe) body: ApplicantDTO) {
+    await dbConnect()
+    try {
+      const result = await AllowList.create(body)
+      return { sucess: true, result }
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
 }
+
+export default createHandler(AllowListApplicants)
