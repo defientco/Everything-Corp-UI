@@ -8,7 +8,6 @@ export const ApplicantRegistered = createMiddlewareDecorator(
     const { walletAddress } = req.body
     await dbConnect()
     const result = await AllowList.find({ walletAddress }).lean()
-    console.log(result)
     if (result.length === 0) {
       next()
     } else {
