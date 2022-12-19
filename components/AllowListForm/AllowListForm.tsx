@@ -1,5 +1,4 @@
 import { FC } from "react"
-import Image from "next/image"
 import TextArea from "../TextArea"
 
 interface AllowListFormProps {
@@ -32,7 +31,9 @@ const AllowListForm: FC<AllowListFormProps> = ({
   const disabled = !walletAddress?.length || !twitterHandle?.length || !whyCre8or?.length
   return (
     <div className="w-full max-w-xl">
-      <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+      <form
+        className={`px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md ${loading && "animate-pulse"}`}
+      >
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
             Wallet Address
@@ -96,11 +97,7 @@ const AllowListForm: FC<AllowListFormProps> = ({
             onClick={handleSignUp}
             disabled={disabled}
           >
-            {loading ? (
-              <Image src="/spinner.gif" alt="spinner" width={100} height={25} />
-            ) : (
-              "Sign Up"
-            )}
+            Sign Up
           </button>
         </div>
       </form>
