@@ -1,4 +1,5 @@
 import { FC } from "react"
+import Image from "next/image"
 import TextArea from "../TextArea"
 
 interface AllowListFormProps {
@@ -11,6 +12,7 @@ interface AllowListFormProps {
   creatorType: string
   setCreatorType: (value: string) => void
   handleSignUp: () => void
+  loading: boolean
 }
 const AllowListForm: FC<AllowListFormProps> = ({
   walletAddress,
@@ -22,6 +24,7 @@ const AllowListForm: FC<AllowListFormProps> = ({
   creatorType,
   setCreatorType,
   handleSignUp,
+  loading,
 }) => {
   const displayBorder = (value: string) => !value?.length && "border-red-500"
   const displayRequiredText = (value: string, message: string) =>
@@ -93,7 +96,11 @@ const AllowListForm: FC<AllowListFormProps> = ({
             onClick={handleSignUp}
             disabled={disabled}
           >
-            Sign Up
+            {loading ? (
+              <Image src="/spinner.gif" alt="spinner" width={50} height={50} />
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </div>
       </form>
