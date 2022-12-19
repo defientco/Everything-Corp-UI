@@ -12,7 +12,9 @@ const AllowList = () => {
   const [whyCre8or, setWhyCre8or] = useState("")
   const [signedUp, setSignedUp] = useState(false)
   const { width, height } = useWindowSize()
+  const [loading, setLoading] = useState(false)
   const handleSignUp = async () => {
+    setLoading(true)
     try {
       await axios.post(
         "/api/allowlist",
@@ -28,13 +30,16 @@ const AllowList = () => {
           },
         },
       )
+      setLoading(false)
       setSignedUp(true)
       setTimeout(() => {
         setSignedUp(false)
         setCre8orType("")
         setWalletAddress("")
         setTwitterHandle("")
+        setWhyCre8or("")
       }, 5000)
+      toast.success("Registered successfully!")
     } catch (e) {
       toast.error("Error signing up, please try again!")
     }
@@ -51,6 +56,7 @@ const AllowList = () => {
         creatorType={cre8orType}
         setCreatorType={setCre8orType}
         handleSignUp={handleSignUp}
+        loading={loading}
       />
       {signedUp && <Confetti width={width} height={height} />}
     </>
