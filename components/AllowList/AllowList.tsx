@@ -29,11 +29,11 @@ const AllowList = () => {
         },
       )
       setSignedUp(true)
-      setCre8orType("")
-      setWalletAddress("")
-      setTwitterHandle("")
       setTimeout(() => {
         setSignedUp(false)
+        setCre8orType("")
+        setWalletAddress("")
+        setTwitterHandle("")
       }, 5000)
     } catch (e) {
       toast.error("Error signing up, please try again!")
@@ -41,19 +41,17 @@ const AllowList = () => {
   }
   return (
     <>
-      {!signedUp && (
-        <AllowListForm
-          walletAddress={walletAddress}
-          setWalletAddress={setWalletAddress}
-          twitterHandle={twitterHandle}
-          setTwitterHandle={setTwitterHandle}
-          whyCre8or={whyCre8or}
-          setWhyCre8or={setWhyCre8or}
-          creatorType={cre8orType}
-          setCreatorType={setCre8orType}
-          handleSignUp={handleSignUp}
-        />
-      )}
+      <AllowListForm
+        walletAddress={walletAddress}
+        setWalletAddress={setWalletAddress}
+        twitterHandle={twitterHandle}
+        setTwitterHandle={setTwitterHandle}
+        whyCre8or={whyCre8or}
+        setWhyCre8or={setWhyCre8or}
+        creatorType={cre8orType}
+        setCreatorType={setCre8orType}
+        handleSignUp={handleSignUp}
+      />
       {signedUp && <Confetti width={width} height={height} />}
     </>
   )
