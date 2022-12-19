@@ -42,6 +42,7 @@ const AllowList = () => {
       setLoading(false)
     } catch (e) {
       toast.error("Error signing up, please try again!")
+      setLoading(false)
     }
   }
   return (
