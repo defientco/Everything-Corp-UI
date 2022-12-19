@@ -97,7 +97,7 @@ const AllowListForm: FC<AllowListFormProps> = ({
             disabled={disabled}
           >
             {loading ? (
-              <Image src="/spinner.gif" alt="spinner" width={50} height={50} />
+              <Image src="/spinner.gif" alt="spinner" width={100} height={25} />
             ) : (
               "Sign Up"
             )}

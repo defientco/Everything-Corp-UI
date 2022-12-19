@@ -30,16 +30,16 @@ const AllowList = () => {
           },
         },
       )
-      setLoading(false)
       setSignedUp(true)
+      toast.success("Registered successfully!")
+      setCre8orType("")
+      setWalletAddress("")
+      setTwitterHandle("")
+      setWhyCre8or("")
       setTimeout(() => {
         setSignedUp(false)
-        setCre8orType("")
-        setWalletAddress("")
-        setTwitterHandle("")
-        setWhyCre8or("")
       }, 5000)
-      toast.success("Registered successfully!")
+      setLoading(false)
     } catch (e) {
       toast.error("Error signing up, please try again!")
     }
