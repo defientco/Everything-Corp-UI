@@ -1,8 +1,9 @@
 import axios from "axios"
 import { useState } from "react"
+import Confetti from "react-confetti"
 import { toast } from "react-toastify"
 import AllowListForm from "../AllowListForm"
-import AllowListMintButton from "../AllowListMintButton"
+import useWindowSize from "../../lib/useWindowSize"
 
 const AllowList = () => {
   const [cre8orType, setCre8orType] = useState("")
@@ -10,7 +11,7 @@ const AllowList = () => {
   const [twitterHandle, setTwitterHandle] = useState("")
   const [whyCre8or, setWhyCre8or] = useState("")
   const [signedUp, setSignedUp] = useState(false)
-
+  const { width, height } = useWindowSize()
   const handleSignUp = async () => {
     try {
       await axios.post(
@@ -31,6 +32,9 @@ const AllowList = () => {
       setCre8orType("")
       setWalletAddress("")
       setTwitterHandle("")
+      setTimeout(() => {
+        setSignedUp(false)
+      }, 5000)
     } catch (e) {
       toast.error("Error signing up, please try again!")
     }
@@ -50,13 +54,7 @@ const AllowList = () => {
           handleSignUp={handleSignUp}
         />
       )}
-      {signedUp && (
-        <AllowListMintButton
-          whyCre8or={whyCre8or}
-          setWhyCre8or={setWhyCre8or}
-          setSignedUp={setSignedUp}
-        />
-      )}
+      {signedUp && <Confetti width={width} height={height} />}
     </>
   )
 }
