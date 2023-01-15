@@ -5,6 +5,12 @@ interface AllowList {
   twitterHandle: string
   reason: string
   creatorType: string
+  currentResponseId?: string
+  typeformResponses?: TypeformResponses[]
+}
+interface TypeformResponses {
+  id: string
+  timestamp: string
 }
 const AllowListSchema = new Schema<AllowList>({
   walletAddress: {
@@ -22,6 +28,12 @@ const AllowListSchema = new Schema<AllowList>({
   creatorType: {
     type: String,
     required: [true, "Please add a creator type"],
+  },
+  currentResponseId: {
+    type: String,
+  },
+  typeformResponses: {
+    type: [],
   },
 })
 export default (models.AllowList as Model<AllowList>) || model("AllowList", AllowListSchema)

@@ -4,7 +4,7 @@ import { createHandler, Post, Body, ValidationPipe } from "next-api-decorators"
 import { ethers } from "ethers"
 import { ApplicantDTO } from "../../../../DTO/applicant.dto"
 import abi from "../../../../lib/abi-cre8ors.json"
-import { addAllowListApplicant } from "../../../../helpers/addToDb"
+import { addAllowListApplicant } from "../../../../helpers/db"
 
 const getAddress = async (address?: string) => {
   if (!address) return null

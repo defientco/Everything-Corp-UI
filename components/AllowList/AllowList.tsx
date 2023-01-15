@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import Confetti from "react-confetti"
 import { toast } from "react-toastify"
+import { Widget } from "@typeform/embed-react"
 import AllowListForm from "../AllowListForm"
 import useWindowSize from "../../lib/useWindowSize"
 
@@ -13,6 +14,14 @@ const AllowList = () => {
   const [signedUp, setSignedUp] = useState(false)
   const { width, height } = useWindowSize()
   const [loading, setLoading] = useState(false)
+  const handleSubmission = async ({ responseId }) => {
+    try {
+      const formResponse = await axios.get("/api/allowlist/typeform", { params: { responseId } })
+      console.log(await formResponse.data)
+    } catch (e) {
+      console.error(e)
+    }
+  }
   const handleSignUp = async () => {
     setLoading(true)
     try {
@@ -47,7 +56,12 @@ const AllowList = () => {
   }
   return (
     <>
-      <AllowListForm
+      <Widget
+        id={process.env.NEXT_PUBLIC_TYPEFORM_ID}
+        style={{ width: "100%", height: "600px" }}
+        onSubmit={handleSubmission}
+      />
+      {/* <AllowListForm
         walletAddress={walletAddress}
         setWalletAddress={setWalletAddress}
         twitterHandle={twitterHandle}
@@ -58,7 +72,7 @@ const AllowList = () => {
         setCreatorType={setCre8orType}
         handleSignUp={handleSignUp}
         loading={loading}
-      />
+      /> */}
       {signedUp && <Confetti width={width} height={height} />}
     </>
   )
