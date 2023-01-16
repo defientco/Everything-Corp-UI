@@ -33,7 +33,7 @@ const AllowListSchema = new Schema<AllowList>({
     type: String,
   },
   typeformResponses: {
-    type: [],
+    type: [{ id: String, timestamp: String }],
   },
 })
 export default (models.AllowList as Model<AllowList>) || model("AllowList", AllowListSchema)

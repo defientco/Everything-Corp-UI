@@ -17,7 +17,7 @@ export const Cre8orsProvider = ({ children }) => {
   const [tokenId, setTokenId] = useState<string>("")
   const [txHash, setTxHash] = useState<string>("")
   const [haveTokenId, setHaveTokenId] = useState(false)
-
+  const [timestamp, setTimeStamp] = useState<string>("")
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -38,6 +38,8 @@ export const Cre8orsProvider = ({ children }) => {
         twitterHandle,
         reason: whyCre8or,
         creatorType,
+        currentResponseId: quizId,
+        timestamp,
       },
       {
         headers: {
@@ -46,12 +48,11 @@ export const Cre8orsProvider = ({ children }) => {
       },
     )
     return reciept
-  }, [creatorType, walletAddress, twitterHandle, whyCre8or])
+  }, [creatorType, walletAddress, twitterHandle, whyCre8or, timestamp, quizId])
 
   const handleQuizSubmission = useCallback(async ({ responseId }) => {
     try {
       setQuizId(responseId)
-      await axios.get("/api/allowlist/typeform", { params: { responseId } })
       setShowQuiz(false)
     } catch (e) {
       throw new Error(e)
@@ -83,10 +84,12 @@ export const Cre8orsProvider = ({ children }) => {
     }
   }, [mint])
 
-  const fetchCre8orType = useCallback(async () => {
+  const fetchQuizResponse = useCallback(async () => {
     const quizData = await axios.get("/api/allowlist/typeform", {
       params: { responseId: quizId },
     })
+    console.log(quizData)
+    setTimeStamp(quizData.data.submitted_at)
     setCreatorType(quizData.data.outcome.title)
   }, [quizId])
 
@@ -94,11 +97,11 @@ export const Cre8orsProvider = ({ children }) => {
     let timeout = null
     if (quizId || !creatorType) {
       timeout = setTimeout(() => {
-        fetchCre8orType()
+        fetchQuizResponse()
       }, 2000)
     }
     return () => timeout && clearTimeout(timeout)
-  }, [quizId, fetchCre8orType, creatorType])
+  }, [quizId, fetchQuizResponse, creatorType])
 
   useEffect(() => {
     let timeout = null

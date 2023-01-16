@@ -1,8 +1,10 @@
+import _ from "lodash"
 import { ApplicantDTO } from "../DTO/applicant.dto"
 import AllowList from "../Models/AllowList"
 import dbConnect from "../utils/db"
 
 interface UpdateAllowListApplicant {
+  creatorType?: string
   responseId?: string
   timestamp?: string
   tokenId?: string
@@ -20,7 +22,7 @@ export const getAllowListApplicant = async (address: string) => {
   try {
     await dbConnect()
     const result = await AllowList.findOne({ walletAddress: address }).lean()
-    return result
+    return result as any
   } catch (e) {
     throw new Error(e)
   }
@@ -33,14 +35,14 @@ export const updateAllowListApplicantResponseIds = async (
   try {
     await dbConnect()
     const currentDoc = (await getAllowListApplicant(address)) as any
-    const originalResponseIds = currentDoc?.responseIds || []
+    const originalResponseIds = currentDoc?.typeformResponses || []
     const newResponseIds = [
-      { responseId: body.responseId, timestamp: body.timestamp },
+      { id: body.responseId, timestamp: body.timestamp },
       ...originalResponseIds,
     ]
     const result = await AllowList.findOneAndUpdate(
       { walletAddress: address },
-      { responseIds: newResponseIds, currentResponseId: body.responseId },
+      { typeformResponses: _.uniqBy(newResponseIds, "id"), currentResponseId: body.responseId },
     )
     return { sucess: true, result }
   } catch (e) {
