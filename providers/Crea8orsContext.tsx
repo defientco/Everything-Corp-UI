@@ -7,22 +7,22 @@ export interface Cre8orsContextInterface {
   setWalletAddress?: Dispatch<SetStateAction<string>>
   loading: boolean
   setLoading?: Dispatch<SetStateAction<boolean>>
-  setShowResults?: Dispatch<SetStateAction<boolean>>
-  showResults?: boolean
-  name?: string
-  setName?: Dispatch<SetStateAction<string>>
-  description?: string
-  setDescription?: Dispatch<SetStateAction<string>>
-  imageURI?: string
-  setImageURI?: Dispatch<SetStateAction<string>>
-  twitterId?: string
-  setTwitterId?: Dispatch<SetStateAction<string>>
+  whyCre8or?: string
+  setWhyCre8or?: Dispatch<SetStateAction<string>>
   tokenId?: string
   creatorType?: string
   setCreatorType?: Dispatch<SetStateAction<string>>
   startConfetti?: boolean
   setStartConfetti?: Dispatch<SetStateAction<boolean>>
   haveTokenId?: boolean
+  signedUp?: boolean
+  setSignedUp?: Dispatch<SetStateAction<boolean>>
+  quizId?: string
+  setQuizId?: Dispatch<SetStateAction<string>>
+  showQuiz?: boolean
+  setShowQuiz?: Dispatch<SetStateAction<boolean>>
+  handleSignUp?: () => void
+  handleQuizSubmission?: ({ responseId }) => void
 }
 export const initialContext: Cre8orsContextInterface = {
   loading: false,
