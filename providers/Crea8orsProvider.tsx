@@ -9,7 +9,7 @@ export const Cre8orsProvider = ({ children }) => {
   const [creatorType, setCreatorType] = useState("")
   const [whyCre8or, setWhyCre8or] = useState("")
   const [signedUp, setSignedUp] = useState(false)
-  const [quizId, setQuizId] = useState("crizrnb21789dcm6qh8crizrqz6ev1o3")
+  const [quizId, setQuizId] = useState("")
   const [showQuiz, setShowQuiz] = useState(!quizId.length)
   const [twitterHandle, setTwitterHandle] = useState<string>("")
   const [walletAddress, setWalletAddress] = useState<string>("")

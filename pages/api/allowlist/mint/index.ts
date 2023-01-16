@@ -8,7 +8,7 @@ import {
   updateAllowListApplicantResponseIds,
 } from "../../../../helpers/db"
 import { ApplicantDTO } from "../../../../DTO/applicant.dto"
-import abi from "../../../../lib/abi-cre8ors.json"
+import abi from "../../../../lib/abi-allow-list.json"
 
 const getAddress = async (address?: string) => {
   if (!address) return null
