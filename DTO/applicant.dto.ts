@@ -28,4 +28,8 @@ export class ApplicantDTO {
   @IsOptional()
   @IsArray()
   typeformResponses?: Array<{ id: string; timestamp: string }>
+
+  @IsOptional()
+  @IsString()
+  tokenId?: string
 }

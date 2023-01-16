@@ -22,6 +22,7 @@ export const Cre8orsProvider = ({ children }) => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
         txHash,
+        chainId: process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID,
       },
     })
     if (response) {
@@ -68,9 +69,6 @@ export const Cre8orsProvider = ({ children }) => {
       if (receipt.status === 200) {
         setSignedUp(true)
         toast.success("Registered successfully!")
-        setWalletAddress("")
-        setTwitterHandle("")
-        setWhyCre8or("")
         setTimeout(() => {
           setSignedUp(false)
           setQuizId("")
@@ -94,6 +92,26 @@ export const Cre8orsProvider = ({ children }) => {
     setCreatorType(quizData.data.outcome.title)
   }, [quizId])
 
+  const updateRecordWithTokenID = useCallback(async () => {
+    const response = await axios.post(
+      "/api/allowlist/tokenID",
+      {
+        walletAddress,
+        tokenID: tokenId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_ALLOWLIST_API_KEY}`,
+        },
+      },
+    )
+    setTwitterHandle("")
+    setWhyCre8or("")
+    setWalletAddress("")
+    setTokenId("")
+    setHaveTokenId(false)
+    return response
+  }, [tokenId, walletAddress])
   useEffect(() => {
     let timeout = null
     if (quizId || !creatorType) {
@@ -114,6 +132,12 @@ export const Cre8orsProvider = ({ children }) => {
     return () => timeout && clearTimeout(timeout)
   }, [txHash, haveTokenId, checkTx])
 
+  useEffect(() => {
+    if (haveTokenId && tokenId.length > 0) {
+      toast.success("Minted successfully!")
+      updateRecordWithTokenID()
+    }
+  })
   const value = useMemo(
     () => ({
       twitterHandle,

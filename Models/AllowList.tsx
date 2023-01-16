@@ -7,6 +7,7 @@ interface AllowList {
   creatorType: string
   currentResponseId?: string
   typeformResponses?: TypeformResponses[]
+  tokenId?: string
 }
 interface TypeformResponses {
   id: string
@@ -34,6 +35,9 @@ const AllowListSchema = new Schema<AllowList>({
   },
   typeformResponses: {
     type: [{ id: String, timestamp: String }],
+  },
+  tokenId: {
+    type: String,
   },
 })
 export default (models.AllowList as Model<AllowList>) || model("AllowList", AllowListSchema)

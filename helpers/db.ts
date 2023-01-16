@@ -49,3 +49,13 @@ export const updateAllowListApplicantResponseIds = async (
     throw new Error(e)
   }
 }
+
+export const addTokenIdToAllowListApplicant = async (address: string, tokenId: string) => {
+  try {
+    await dbConnect()
+    const result = await AllowList.findOneAndUpdate({ walletAddress: address }, { tokenId })
+    return { sucess: true, result }
+  } catch (e) {
+    throw new Error(e)
+  }
+}

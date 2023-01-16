@@ -9,6 +9,7 @@ import {
 } from "../../../../helpers/db"
 import { ApplicantDTO } from "../../../../DTO/applicant.dto"
 import abi from "../../../../lib/abi-allow-list.json"
+import { AllowListAuthGuard } from "../../../../middleware/auth.middleware"
 
 const getAddress = async (address?: string) => {
   if (!address) return null
@@ -18,6 +19,7 @@ const getAddress = async (address?: string) => {
 }
 class Mint {
   @Post()
+  @AllowListAuthGuard()
   async mint(@Body(ValidationPipe) body: ApplicantDTO) {
     try {
       const contractAddress = process.env.NEXT_PUBLIC_ALLOWLIST_CONTRACT_ADDRESS
