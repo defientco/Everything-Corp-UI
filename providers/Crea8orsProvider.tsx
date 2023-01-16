@@ -120,7 +120,7 @@ export const Cre8orsProvider = ({ children }) => {
       setLoading,
       signedUp,
       setSignedUp,
-      cre8orType: creatorType,
+      creatorType,
       whyCre8or,
       setWhyCre8or,
       tokenId,
