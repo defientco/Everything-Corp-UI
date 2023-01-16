@@ -68,12 +68,14 @@ export const Cre8orsProvider = ({ children }) => {
       if (receipt.status === 200) {
         setSignedUp(true)
         toast.success("Registered successfully!")
-        setCreatorType("")
         setWalletAddress("")
         setTwitterHandle("")
         setWhyCre8or("")
         setTimeout(() => {
           setSignedUp(false)
+          setQuizId("")
+          setCreatorType("")
+          setShowQuiz(true)
         }, 5000)
         setLoading(false)
       }
