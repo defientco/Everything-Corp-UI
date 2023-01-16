@@ -88,7 +88,6 @@ export const Cre8orsProvider = ({ children }) => {
     const quizData = await axios.get("/api/allowlist/typeform", {
       params: { responseId: quizId },
     })
-    console.log(quizData)
     setTimeStamp(quizData.data.submitted_at)
     setCreatorType(quizData.data.outcome.title)
   }, [quizId])
