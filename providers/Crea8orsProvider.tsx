@@ -140,7 +140,6 @@ export const Cre8orsProvider = ({ children }) => {
 
   useEffect(() => {
     if (haveTokenId && tokenId.length > 0 && walletAddress.length > 0) {
-      toast.success("Minted successfully!")
       updateRecordWithTokenID()
     }
   }, [haveTokenId, tokenId, updateRecordWithTokenID, walletAddress])
