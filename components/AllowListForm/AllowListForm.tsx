@@ -1,30 +1,19 @@
 import { FC } from "react"
+import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 import TextArea from "../TextArea"
 
-interface AllowListFormProps {
-  walletAddress: string
-  setWalletAddress?: (value: string) => void
-  twitterHandle: string
-  setTwitterHandle: (value: string) => void
-  whyCre8or: string
-  setWhyCre8or: (value: string) => void
-  creatorType: string
-  setCreatorType: (value: string) => void
-  handleSignUp: () => void
-  loading: boolean
-}
-const AllowListForm: FC<AllowListFormProps> = ({
-  walletAddress,
-  setWalletAddress,
-  twitterHandle,
-  setTwitterHandle,
-  whyCre8or,
-  setWhyCre8or,
-  creatorType,
-  setCreatorType,
-  handleSignUp,
-  loading,
-}) => {
+const AllowListForm: FC = () => {
+  const {
+    walletAddress,
+    setWalletAddress,
+    twitterHandle,
+    setTwitterHandle,
+    whyCre8or,
+    setWhyCre8or,
+    creatorType,
+    handleSignUp,
+    loading,
+  } = useCre8orsProvider()
   const displayBorder = (value: string) => !value?.length && "border-red-500"
   const displayRequiredText = (value: string, message: string) =>
     !value?.length && <p className="text-xs italic text-red-500">{message}</p>
@@ -77,10 +66,9 @@ const AllowListForm: FC<AllowListFormProps> = ({
             id="creatorType"
             type="text"
             value={creatorType}
-            onChange={(e) => setCreatorType(e.target.value)}
+            readOnly
             placeholder="artist, musician, etc."
           />
-          {displayRequiredText(creatorType, "Please enter a type of cre8or.")}
         </div>
         <div className="mb-6">
           <TextArea

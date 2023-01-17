@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator"
+import { IsNotEmpty, IsOptional, IsString, IsArray } from "class-validator"
 
 export class ApplicantDTO {
   @IsNotEmpty()
@@ -16,4 +16,20 @@ export class ApplicantDTO {
   @IsNotEmpty()
   @IsString()
   creatorType: string
+
+  @IsOptional()
+  @IsString()
+  currentResponseId?: string
+
+  @IsOptional()
+  @IsString()
+  timestamp?: string
+
+  @IsOptional()
+  @IsArray()
+  typeformResponses?: Array<{ id: string; timestamp: string }>
+
+  @IsOptional()
+  @IsString()
+  tokenId?: string
 }
