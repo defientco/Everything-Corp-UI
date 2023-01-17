@@ -23,6 +23,7 @@ export interface Cre8orsContextInterface {
   setShowQuiz?: Dispatch<SetStateAction<boolean>>
   handleSignUp?: () => void
   handleQuizSubmission?: ({ responseId }) => void
+  showSkeleton?: boolean
 }
 export const initialContext: Cre8orsContextInterface = {
   loading: false,

@@ -3,9 +3,10 @@ import { Widget } from "@typeform/embed-react"
 import AllowListForm from "../AllowListForm"
 import useWindowSize from "../../lib/useWindowSize"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
+import SkeletonCard from "../SkeletonCard"
 
 const AllowList = () => {
-  const { handleQuizSubmission, showQuiz, signedUp } = useCre8orsProvider()
+  const { handleQuizSubmission, showQuiz, signedUp, showSkeleton } = useCre8orsProvider()
 
   const { width, height } = useWindowSize()
   return (
@@ -17,7 +18,8 @@ const AllowList = () => {
           onSubmit={handleQuizSubmission}
         />
       )}
-      {!showQuiz && <AllowListForm />}
+      {!showQuiz && !showSkeleton && <AllowListForm />}
+      {showSkeleton && <SkeletonCard />}
       {signedUp && <Confetti width={width} height={height} />}
     </>
   )

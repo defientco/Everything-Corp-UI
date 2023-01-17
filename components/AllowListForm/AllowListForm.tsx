@@ -69,7 +69,6 @@ const AllowListForm: FC = () => {
             readOnly
             placeholder="artist, musician, etc."
           />
-          {displayRequiredText(creatorType, "Please enter a type of cre8or.")}
         </div>
         <div className="mb-6">
           <TextArea

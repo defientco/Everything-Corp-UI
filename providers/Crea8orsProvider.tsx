@@ -18,6 +18,7 @@ export const Cre8orsProvider = ({ children }) => {
   const [txHash, setTxHash] = useState<string>("")
   const [haveTokenId, setHaveTokenId] = useState(false)
   const [timestamp, setTimeStamp] = useState<string>("")
+  const [showSkeleton, setShowSkeleton] = useState(false)
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -55,6 +56,7 @@ export const Cre8orsProvider = ({ children }) => {
     try {
       setQuizId(responseId)
       setShowQuiz(false)
+      setShowSkeleton(true)
     } catch (e) {
       throw new Error(e)
     }
@@ -90,6 +92,9 @@ export const Cre8orsProvider = ({ children }) => {
     })
     setTimeStamp(quizData.data.submitted_at)
     setCreatorType(quizData.data.outcome.title)
+    if (quizData?.data?.outcome?.title) {
+      setShowSkeleton(false)
+    }
   }, [quizId])
 
   const updateRecordWithTokenID = useCallback(async () => {
@@ -112,6 +117,7 @@ export const Cre8orsProvider = ({ children }) => {
     setHaveTokenId(false)
     return response
   }, [tokenId, walletAddress])
+
   useEffect(() => {
     let timeout = null
     if (quizId || !creatorType) {
@@ -133,11 +139,11 @@ export const Cre8orsProvider = ({ children }) => {
   }, [txHash, haveTokenId, checkTx])
 
   useEffect(() => {
-    if (haveTokenId && tokenId.length > 0) {
+    if (haveTokenId && tokenId.length > 0 && walletAddress.length > 0) {
       toast.success("Minted successfully!")
       updateRecordWithTokenID()
     }
-  })
+  }, [haveTokenId, tokenId, updateRecordWithTokenID, walletAddress])
   const value = useMemo(
     () => ({
       twitterHandle,
@@ -159,6 +165,7 @@ export const Cre8orsProvider = ({ children }) => {
       showQuiz,
       handleSignUp,
       handleQuizSubmission,
+      showSkeleton,
     }),
     [
       twitterHandle,
@@ -179,6 +186,7 @@ export const Cre8orsProvider = ({ children }) => {
       signedUp,
       setSignedUp,
       handleQuizSubmission,
+      showSkeleton,
     ],
   )
   return <Cre8orsContext.Provider value={value}>{children}</Cre8orsContext.Provider>
