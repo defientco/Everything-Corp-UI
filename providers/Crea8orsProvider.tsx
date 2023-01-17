@@ -93,8 +93,8 @@ export const Cre8orsProvider = ({ children }) => {
       params: { responseId: quizId },
     })
     setTimeStamp(quizData.data.submitted_at)
-    setCreatorType(quizData.data.outcome.title)
     if (quizData?.data?.outcome?.title) {
+      setCreatorType(quizData.data.outcome.title)
       setShowSkeleton(false)
     }
   }, [quizId])
