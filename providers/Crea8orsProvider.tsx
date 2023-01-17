@@ -19,6 +19,7 @@ export const Cre8orsProvider = ({ children }) => {
   const [haveTokenId, setHaveTokenId] = useState(false)
   const [timestamp, setTimeStamp] = useState<string>("")
   const [showSkeleton, setShowSkeleton] = useState(false)
+
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -61,6 +62,7 @@ export const Cre8orsProvider = ({ children }) => {
       throw new Error(e)
     }
   }, [])
+
   const handleSignUp = useCallback(async () => {
     setLoading(true)
     try {
