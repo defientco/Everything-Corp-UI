@@ -1,12 +1,16 @@
 import MintButton from "../MintButton"
 import abi from "../../lib/abi-cre8ors.json"
+import NavBar from "../NavBar"
 
 function ClaimPage() {
   const contractAddress = String(process.env.NEXT_PUBLIC_CRE8ORS_ADDRESS)
   return (
-    <div className="flex flex-col items-center justify-around text-4xl pt-10 h-[75vh]">
-      <div>Claim Page</div>
-      <MintButton contractAddress={contractAddress} abi={abi} />
+    <div className="mt-3 flex flex-col">
+      <NavBar />
+      <div className="flex flex-col items-center justify-around text-4xl pt-10 h-[75vh]">
+        <div>Claim Page</div>
+        <MintButton contractAddress={contractAddress} abi={abi} />
+      </div>
     </div>
   )
 }
