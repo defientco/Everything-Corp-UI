@@ -1,3 +1,3 @@
-import LaunchPage from "./LaunchPage";
+import LaunchPage from "./LaunchPage"
 
 export default LaunchPage
