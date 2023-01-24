@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   const [entered, setEntered] = useState(false)
 
   return (
-    <div className={styles.container}>
+    <div className="bg-[#010e17] text-white">
       <SeoHead title="CRE8ORS" description="CRE8ORS coming soon" image="" />
 
       {entered ? (
