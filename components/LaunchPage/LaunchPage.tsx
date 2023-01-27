@@ -12,7 +12,7 @@ const LaunchPage = (props: any) => {
         onClick={onClick}
         className="bg-[#be0e11] text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-[#be0e11]"
       >
-        enter
+        HELLO WORLD
       </button>
     </div>
   )
