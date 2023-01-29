@@ -4,7 +4,8 @@ import { useEffect, useState } from "react"
 const Roadmap = (props: any) => {
   const { setActiveStep } = props
   const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 })
-  const className = "h-[80vh] min-w-[100vw] sm:min-w-[30vw] rounded-2xl p-5 overflow-x-scroll"
+  const className =
+    "border border-sky-500 h-[80vh] min-w-[100vw] sm:min-w-[30vw] rounded-2xl p-5 overflow-x-scroll"
 
   useEffect(() => {
     const handleScroll = (event) => {
