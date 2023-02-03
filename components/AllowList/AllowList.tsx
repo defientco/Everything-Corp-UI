@@ -10,18 +10,18 @@ const AllowList = () => {
 
   const { width, height } = useWindowSize()
   return (
-    <>
+    <div className="h-screen flex items-center justify-center">
       {showQuiz && (
         <Widget
           id={process.env.NEXT_PUBLIC_TYPEFORM_ID}
-          style={{ width: "100%", height: "600px" }}
+          style={{ width: "100%", height: "100%" }}
           onSubmit={handleQuizSubmission}
         />
       )}
       {!showQuiz && !showSkeleton && <AllowListForm />}
       {showSkeleton && <SkeletonCard />}
       {signedUp && <Confetti width={width} height={height} />}
-    </>
+    </div>
   )
 }
 
