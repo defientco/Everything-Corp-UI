@@ -32,11 +32,11 @@ const Roadmap = (props: any) => {
 
   return (
     <div className="sm:h-screen h-[200vh] w-[200vw] snap-x snap-mandatory flex nowrap items-center  gap-3 pl-[154vw] sm:pl-[50vw] overflow-x-auto">
-      {RoadmapCards.map((item) => (
+      {RoadmapCards.map((item, index) => (
         <div
           key={item as any}
           className={className}
-          onClick={() => setActiveStep(4)}
+          onClick={() => setActiveStep(index === 0 ? 1 : 4)}
           aria-hidden="true"
         >
           {item}
