@@ -29,9 +29,12 @@ interface ThankYouScreen {
   attachment: ThankYouScreenAttachment
 }
 const mapTitleToDescrition = (data: ThankYouScreen[]) => {
-  const map = {}
+  const map = []
   data.forEach((item) => {
-    map[item.title] = item.properties.description
+    map.push({
+      title: item.title,
+      description: item.properties.description,
+    })
   })
   return map
 }
