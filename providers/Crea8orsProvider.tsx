@@ -19,7 +19,7 @@ export const Cre8orsProvider = ({ children }) => {
   const [haveTokenId, setHaveTokenId] = useState(false)
   const [timestamp, setTimeStamp] = useState<string>("")
   const [showSkeleton, setShowSkeleton] = useState(false)
-
+  const [cre8orTypes, setCre8orTypes] = useState<Array<{ title: string; description: string }>>([])
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -33,6 +33,10 @@ export const Cre8orsProvider = ({ children }) => {
     }
   }, [txHash])
 
+  const getCre8orTypes = useCallback(async () => {
+    const response = await axios.get("/api/allowlist/typeform/getFormInfo")
+    setCre8orTypes(response.data)
+  }, [])
   const mint = useCallback(async () => {
     const reciept = await axios.post(
       "/api/allowlist/mint",
@@ -145,6 +149,10 @@ export const Cre8orsProvider = ({ children }) => {
       updateRecordWithTokenID()
     }
   }, [haveTokenId, tokenId, updateRecordWithTokenID, walletAddress])
+
+  useEffect(() => {
+    getCre8orTypes()
+  }, [getCre8orTypes, cre8orTypes])
   const value = useMemo(
     () => ({
       twitterHandle,
@@ -167,6 +175,7 @@ export const Cre8orsProvider = ({ children }) => {
       handleSignUp,
       handleQuizSubmission,
       showSkeleton,
+      cre8orTypes,
     }),
     [
       twitterHandle,
@@ -188,6 +197,7 @@ export const Cre8orsProvider = ({ children }) => {
       setSignedUp,
       handleQuizSubmission,
       showSkeleton,
+      cre8orTypes,
     ],
   )
   return <Cre8orsContext.Provider value={value}>{children}</Cre8orsContext.Provider>
