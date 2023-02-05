@@ -68,6 +68,7 @@ export const Cre8orsProvider = ({ children }) => {
   const handleQuizSubmission = useCallback(async ({ responseId }) => {
     try {
       setQuizId(responseId)
+      setScreen(Screens.Details)
       setShowQuiz(false)
       setShowSkeleton(true)
     } catch (e) {
