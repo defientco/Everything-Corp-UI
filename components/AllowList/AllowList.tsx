@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react"
 import Confetti from "react-confetti"
-import { Widget } from "@typeform/embed-react"
 import AllowListForm from "../AllowListForm"
 import useWindowSize from "../../lib/useWindowSize"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
