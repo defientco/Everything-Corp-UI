@@ -25,8 +25,6 @@ export interface Cre8orsContextInterface {
   handleQuizSubmission?: ({ responseId }) => void
   showSkeleton?: boolean
   cre8orTypes?: Array<{ title: string; description: string }>
-  firstHalf?: Array<{ title: string; description: string }>
-  secondHalf?: Array<{ title: string; description: string }>
   screen?: number
   setScreen?: Dispatch<SetStateAction<number>>
 }
