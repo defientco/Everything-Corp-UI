@@ -36,6 +36,7 @@ const mapTitleToDescrition = (data: ThankYouScreen[]) => {
       description: item.properties.description,
     })
   })
+  map.pop()
   return map
 }
 class TypeformInfoHandler {

@@ -20,6 +20,8 @@ export const Cre8orsProvider = ({ children }) => {
   const [timestamp, setTimeStamp] = useState<string>("")
   const [showSkeleton, setShowSkeleton] = useState(false)
   const [cre8orTypes, setCre8orTypes] = useState<Array<{ title: string; description: string }>>([])
+  const [firstHalf, setFirstHalf] = useState<Array<{ title: string; description: string }>>([])
+  const [secondHalf, setSecondHalf] = useState<Array<{ title: string; description: string }>>([])
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -35,6 +37,9 @@ export const Cre8orsProvider = ({ children }) => {
 
   const getCre8orTypes = useCallback(async () => {
     const response = await axios.get("/api/allowlist/typeform/getFormInfo")
+    const half = Math.ceil(response.data.length / 2)
+    setFirstHalf(response.data.slice(0, half))
+    setSecondHalf(response.data.slice(half, response.data.length))
     setCre8orTypes(response.data)
   }, [])
   const mint = useCallback(async () => {
@@ -152,7 +157,7 @@ export const Cre8orsProvider = ({ children }) => {
 
   useEffect(() => {
     getCre8orTypes()
-  }, [getCre8orTypes, cre8orTypes])
+  }, [getCre8orTypes, cre8orTypes, firstHalf, secondHalf])
   const value = useMemo(
     () => ({
       twitterHandle,
@@ -164,6 +169,7 @@ export const Cre8orsProvider = ({ children }) => {
       signedUp,
       setSignedUp,
       creatorType,
+      setCreatorType,
       whyCre8or,
       setWhyCre8or,
       tokenId,
@@ -176,6 +182,8 @@ export const Cre8orsProvider = ({ children }) => {
       handleQuizSubmission,
       showSkeleton,
       cre8orTypes,
+      firstHalf,
+      secondHalf,
     }),
     [
       twitterHandle,
@@ -186,6 +194,7 @@ export const Cre8orsProvider = ({ children }) => {
       setLoading,
       tokenId,
       creatorType,
+      setCreatorType,
       whyCre8or,
       setWhyCre8or,
       quizId,
@@ -198,6 +207,8 @@ export const Cre8orsProvider = ({ children }) => {
       handleQuizSubmission,
       showSkeleton,
       cre8orTypes,
+      firstHalf,
+      secondHalf,
     ],
   )
   return <Cre8orsContext.Provider value={value}>{children}</Cre8orsContext.Provider>

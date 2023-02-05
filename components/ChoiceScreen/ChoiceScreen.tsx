@@ -1,4 +1,5 @@
 import React from "react"
+import { ChoiceOptions } from "../../lib/enums"
 
 /* eslint-disable @next/next/no-img-element */
 const ChoiceScreen: React.FC<{ onClickHandler: (value: number) => void }> = ({
@@ -8,7 +9,7 @@ const ChoiceScreen: React.FC<{ onClickHandler: (value: number) => void }> = ({
     <button
       type="button"
       className="overflow-hidden border-4 border-red-500 shadow-lg cursor-pointer rounded-xl max-w-s"
-      onClick={() => onClickHandler(0)}
+      onClick={() => onClickHandler(ChoiceOptions.PickYourCre8orType)}
     >
       <div className="p-10">
         <div className="m-2 text-xl font-bold">Pick Your Cre8or Type</div>
@@ -21,7 +22,7 @@ const ChoiceScreen: React.FC<{ onClickHandler: (value: number) => void }> = ({
     <button
       type="button"
       className="overflow-hidden border-4 border-red-500 shadow-lg cursor-pointer rounded-xl max-w-s"
-      onClick={() => onClickHandler(1)}
+      onClick={() => onClickHandler(ChoiceOptions.FindYourCre8orType)}
     >
       <div className="p-10">
         <div className="m-2 text-xl font-bold">Find your Cre8or Type</div>

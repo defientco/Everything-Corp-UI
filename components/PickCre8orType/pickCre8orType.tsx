@@ -1,17 +1,31 @@
 import React from "react"
-import Cre8orsContext from "../../providers/Crea8orsContext"
+import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 
 const PickCre8orType: React.FC = () => {
-  const { cre8orTypes } = React.useContext(Cre8orsContext)
+  const { cre8orTypes, setCreatorType } = useCre8orsProvider()
+
   return (
-    <div>
-      {cre8orTypes.map((cre8or) => (
-        <div key={cre8or.title}>
-          <div>{cre8or.title}</div>
-          <div>{cre8or.description}</div>
+    cre8orTypes?.length && (
+      <div className="justify-center text-center align-middle">
+        <div className="grid gap-2 lg:grid-cols-4 gap-y-4">
+          {cre8orTypes.map((cre8orType) => (
+            <button
+              type="button"
+              className="max-w-xs mx-4 mb-2 bg-white rounded-lg shadow-lg cursor-pointer"
+              key={cre8orType.title}
+              onClick={() => setCreatorType(cre8orType.title)}
+            >
+              <div className="px-6 py-4">
+                <h4 className="mb-2 text-xl font-semibold tracking-tight text-gray-800">
+                  {cre8orType.title}
+                </h4>
+                <p className="leading-normal text-gray-700">{cre8orType.description}</p>
+              </div>
+            </button>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    )
   )
 }
 
