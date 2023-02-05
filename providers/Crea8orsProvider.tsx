@@ -131,7 +131,7 @@ export const Cre8orsProvider = ({ children }) => {
 
   useEffect(() => {
     let timeout = null
-    if (quizId || !creatorType) {
+    if (quizId.length && !creatorType) {
       timeout = setTimeout(() => {
         fetchQuizResponse()
       }, 2000)
