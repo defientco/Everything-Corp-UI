@@ -12,50 +12,63 @@ import { ChoiceOptions, Screens } from "../../lib/enums"
 import FindCre8orType from "../FindCre8orType"
 
 const AllowList = () => {
-  const { showQuiz, signedUp, showSkeleton, creatorType } = useCre8orsProvider()
+  const { showQuiz, signedUp, showSkeleton, creatorType, screen, setScreen, setCreatorType } =
+    useCre8orsProvider()
   const [choice, setChoice] = React.useState(ChoiceOptions.Undecided)
-  const [currentScreen, setCurrentScreen] = React.useState(Screens.AllowListChoice)
-  const onClickHandler = (value: number, screen: number) => {
+  const onClickHandler = (value: number, nextScreen: number) => {
     setChoice(value)
-    setCurrentScreen(screen)
+    setScreen(nextScreen)
   }
   const onBackClickHandler = () => {
-    switch (currentScreen) {
+    switch (screen) {
       case Screens.AllowListChoice:
-        setCurrentScreen(Screens.Roadmap)
+        setScreen(Screens.Roadmap)
+        setCreatorType("")
         break
       default:
-        setCurrentScreen(Screens.AllowListChoice)
+        setScreen(Screens.AllowListChoice)
         setChoice(ChoiceOptions.Undecided)
+        setCreatorType("")
     }
   }
   const { width, height } = useWindowSize()
   return (
     <div>
-      {currentScreen !== Screens.AllowListChoice && (
+      {screen !== Screens.AllowListChoice && (
         <button
           type="button"
-          className="absolute px-5 py-2 mt-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 z-2"
+          className="absolute text-sm font-medium text-center text-white rounded-lg z-2"
           onClick={onBackClickHandler}
         >
-          Back
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-12 h-12"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z"
+            />
+          </svg>
         </button>
       )}
       <div className="flex flex-row items-center justify-center w-full h-screen">
         {choice === ChoiceOptions.Undecided &&
           !creatorType &&
-          currentScreen === Screens.AllowListChoice && (
-            <ChoiceScreen onClickHandler={onClickHandler} />
-          )}
+          screen === Screens.AllowListChoice && <ChoiceScreen onClickHandler={onClickHandler} />}
         {choice === ChoiceOptions.PickYourCre8orType &&
           !creatorType &&
-          currentScreen === Screens.PickYourCre8orType && <PickCre8orType />}
+          screen === Screens.PickYourCre8orType && <PickCre8orType />}
         {choice === ChoiceOptions.FindYourCre8orType &&
           !creatorType &&
-          currentScreen === Screens.FindYourCre8orType && <FindCre8orType />}
-        {((!showQuiz && !showSkeleton) || creatorType.length > 0) &&
-          currentScreen === Screens.Details &&
-          currentScreen === Screens.Details && <AllowListForm />}
+          screen === Screens.FindYourCre8orType && <FindCre8orType />}
+        {((!showQuiz && !showSkeleton) || creatorType.length > 0) && screen === Screens.Details && (
+          <AllowListForm />
+        )}
         {showSkeleton && <SkeletonCard />}
         {signedUp && <Confetti width={width} height={height} />}
       </div>

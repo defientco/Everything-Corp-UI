@@ -1,8 +1,9 @@
 import React from "react"
+import { Screens } from "../../lib/enums"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 
 const PickCre8orType: React.FC = () => {
-  const { cre8orTypes, setCreatorType } = useCre8orsProvider()
+  const { cre8orTypes, setCreatorType, setScreen } = useCre8orsProvider()
 
   return (
     cre8orTypes?.length && (
@@ -13,7 +14,10 @@ const PickCre8orType: React.FC = () => {
               type="button"
               className="max-w-xs mx-4 mb-2 bg-white rounded-lg shadow-lg cursor-pointer"
               key={cre8orType.title}
-              onClick={() => setCreatorType(cre8orType.title)}
+              onClick={() => {
+                setCreatorType(cre8orType.title)
+                setScreen(Screens.Details)
+              }}
             >
               <div className="px-6 py-4">
                 <h4 className="mb-2 text-xl font-semibold tracking-tight text-gray-800">

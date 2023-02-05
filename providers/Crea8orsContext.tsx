@@ -27,6 +27,8 @@ export interface Cre8orsContextInterface {
   cre8orTypes?: Array<{ title: string; description: string }>
   firstHalf?: Array<{ title: string; description: string }>
   secondHalf?: Array<{ title: string; description: string }>
+  screen?: number
+  setScreen?: Dispatch<SetStateAction<number>>
 }
 export const initialContext: Cre8orsContextInterface = {
   loading: false,

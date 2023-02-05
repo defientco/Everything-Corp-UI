@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { toast } from "react-toastify"
+import { Screens } from "../lib/enums"
 import Cre8orsContext from "./Crea8orsContext"
 
 export const useCre8orsProvider = () => useContext(Cre8orsContext)
@@ -22,6 +23,8 @@ export const Cre8orsProvider = ({ children }) => {
   const [cre8orTypes, setCre8orTypes] = useState<Array<{ title: string; description: string }>>([])
   const [firstHalf, setFirstHalf] = useState<Array<{ title: string; description: string }>>([])
   const [secondHalf, setSecondHalf] = useState<Array<{ title: string; description: string }>>([])
+  const [screen, setScreen] = useState(Screens.AllowListChoice)
+
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -182,8 +185,8 @@ export const Cre8orsProvider = ({ children }) => {
       handleQuizSubmission,
       showSkeleton,
       cre8orTypes,
-      firstHalf,
-      secondHalf,
+      screen,
+      setScreen,
     }),
     [
       twitterHandle,
@@ -207,8 +210,8 @@ export const Cre8orsProvider = ({ children }) => {
       handleQuizSubmission,
       showSkeleton,
       cre8orTypes,
-      firstHalf,
-      secondHalf,
+      screen,
+      setScreen,
     ],
   )
   return <Cre8orsContext.Provider value={value}>{children}</Cre8orsContext.Provider>
