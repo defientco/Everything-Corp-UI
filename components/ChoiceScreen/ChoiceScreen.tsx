@@ -8,7 +8,7 @@ const ChoiceScreen: React.FC<{ onClickHandler: (value: number, screen: number) =
   <div className="flex flex-row items-center justify-center w-full h-screen gap-12">
     <button
       type="button"
-      className="overflow-hidden border-4 border-red-500 shadow-lg cursor-pointer rounded-xl max-w-s"
+      className="overflow-hidden border-4 border-blue-500 shadow-lg cursor-pointer rounded-2xl max-w-s"
       onClick={() => onClickHandler(ChoiceOptions.PickYourCre8orType, Screens.PickYourCre8orType)}
     >
       <div className="p-10">
@@ -21,7 +21,7 @@ const ChoiceScreen: React.FC<{ onClickHandler: (value: number, screen: number) =
     </button>
     <button
       type="button"
-      className="overflow-hidden border-4 border-red-500 shadow-lg cursor-pointer rounded-xl max-w-s"
+      className="overflow-hidden border-4 border-red-500 shadow-lg cursor-pointer rounded-2xl max-w-s"
       onClick={() => onClickHandler(ChoiceOptions.FindYourCre8orType, Screens.FindYourCre8orType)}
     >
       <div className="p-10">
