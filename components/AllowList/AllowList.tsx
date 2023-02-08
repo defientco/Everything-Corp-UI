@@ -55,7 +55,7 @@ const AllowList = ({ setActiveStep }) => {
           </svg>
         </button>
       )}
-      <div className="flex flex-row items-center justify-center w-full h-screen">
+      <div className="flex flex-row items-center justify-center w-full min-h-screen">
         {choice === ChoiceOptions.Undecided &&
           !creatorType &&
           screen === Screens.AllowListChoice && <ChoiceScreen onClickHandler={onClickHandler} />}
