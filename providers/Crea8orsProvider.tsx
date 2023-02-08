@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { toast } from "react-toastify"
+import { Screens } from "../lib/enums"
 import Cre8orsContext from "./Crea8orsContext"
 
 export const useCre8orsProvider = () => useContext(Cre8orsContext)
@@ -19,6 +20,8 @@ export const Cre8orsProvider = ({ children }) => {
   const [haveTokenId, setHaveTokenId] = useState(false)
   const [timestamp, setTimeStamp] = useState<string>("")
   const [showSkeleton, setShowSkeleton] = useState(false)
+  const [cre8orTypes, setCre8orTypes] = useState<Array<{ title: string; description: string }>>([])
+  const [screen, setScreen] = useState(Screens.AllowListChoice)
 
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
@@ -33,6 +36,10 @@ export const Cre8orsProvider = ({ children }) => {
     }
   }, [txHash])
 
+  const getCre8orTypes = useCallback(async () => {
+    const response = await axios.get("/api/allowlist/typeform/getFormInfo")
+    setCre8orTypes(response.data)
+  }, [])
   const mint = useCallback(async () => {
     const reciept = await axios.post(
       "/api/allowlist/mint",
@@ -56,6 +63,7 @@ export const Cre8orsProvider = ({ children }) => {
   const handleQuizSubmission = useCallback(async ({ responseId }) => {
     try {
       setQuizId(responseId)
+      setScreen(Screens.Details)
       setShowQuiz(false)
       setShowSkeleton(true)
     } catch (e) {
@@ -122,7 +130,7 @@ export const Cre8orsProvider = ({ children }) => {
 
   useEffect(() => {
     let timeout = null
-    if (quizId || !creatorType) {
+    if (quizId.length && !creatorType) {
       timeout = setTimeout(() => {
         fetchQuizResponse()
       }, 2000)
@@ -145,6 +153,10 @@ export const Cre8orsProvider = ({ children }) => {
       updateRecordWithTokenID()
     }
   }, [haveTokenId, tokenId, updateRecordWithTokenID, walletAddress])
+
+  useEffect(() => {
+    getCre8orTypes()
+  }, [getCre8orTypes, cre8orTypes])
   const value = useMemo(
     () => ({
       twitterHandle,
@@ -156,6 +168,7 @@ export const Cre8orsProvider = ({ children }) => {
       signedUp,
       setSignedUp,
       creatorType,
+      setCreatorType,
       whyCre8or,
       setWhyCre8or,
       tokenId,
@@ -167,6 +180,9 @@ export const Cre8orsProvider = ({ children }) => {
       handleSignUp,
       handleQuizSubmission,
       showSkeleton,
+      cre8orTypes,
+      screen,
+      setScreen,
     }),
     [
       twitterHandle,
@@ -177,6 +193,7 @@ export const Cre8orsProvider = ({ children }) => {
       setLoading,
       tokenId,
       creatorType,
+      setCreatorType,
       whyCre8or,
       setWhyCre8or,
       quizId,
@@ -188,6 +205,9 @@ export const Cre8orsProvider = ({ children }) => {
       setSignedUp,
       handleQuizSubmission,
       showSkeleton,
+      cre8orTypes,
+      screen,
+      setScreen,
     ],
   )
   return <Cre8orsContext.Provider value={value}>{children}</Cre8orsContext.Provider>
