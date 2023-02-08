@@ -1,10 +1,10 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { Screens } from "../../lib/enums"
+import { AllowListScreens } from "../../lib/enums"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 
 const PickCre8orType: React.FC = () => {
-  const { cre8orTypes, setCreatorType, setScreen } = useCre8orsProvider()
+  const { cre8orTypes, setCreatorType, setAllowListScreen } = useCre8orsProvider()
 
   return (
     cre8orTypes?.length && (
@@ -26,7 +26,7 @@ const PickCre8orType: React.FC = () => {
                   className="max-w-xs h-[35vh] mx-4 mb-2 bg-white rounded-lg shadow-lg cursor-pointer"
                   onClick={() => {
                     setCreatorType(cre8orType.title)
-                    setScreen(Screens.Details)
+                    setAllowListScreen(AllowListScreens.Details)
                   }}
                 >
                   <div className="px-6 py-4">

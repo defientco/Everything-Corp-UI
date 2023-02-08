@@ -1,14 +1,21 @@
 export enum ChoiceOptions {
-  Undecided = 0,
-  PickYourCre8orType = 1,
-  FindYourCre8orType = 2,
+  Undecided = "undecided",
+  PickYourCre8orType = "pick-your-cre8or-type",
+  FindYourCre8orType = "find-your-cre8or-type",
 }
-
-export enum Screens {
-  Roadmap = 0,
-  AllowListChoice = 1,
-  PickYourCre8orType = 2,
-  FindYourCre8orType = 3,
-  TypeformQuiz = 4,
-  Details = 5,
+export enum RoadmapScreens {
+  Roadmap = "roadmap",
+  Trailer = "trailer",
+  Mysteries = "mysteries",
+  Storyline = "story",
+  AllowListChoice = "allow-list-choice",
+  ComingSoon = "roadmap",
+}
+export enum AllowListScreens {
+  AllowListChoice = "allow-list-choice",
+  PickYourCre8orType = "pick-your-cre8or-type",
+  FindYourCre8orType = "find-your-cre8or-type",
+  TypeformQuiz = "typeform-quiz",
+  Details = "details",
+  ComingSoon = "roadmap",
 }

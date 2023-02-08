@@ -25,8 +25,10 @@ export interface Cre8orsContextInterface {
   handleQuizSubmission?: ({ responseId }) => void
   showSkeleton?: boolean
   cre8orTypes?: Array<{ title: string; description: string }>
-  screen?: number
-  setScreen?: Dispatch<SetStateAction<number>>
+  roadMapScreen?: string
+  setRoadMapScreen?: Dispatch<SetStateAction<string>>
+  allowListScreen?: string
+  setAllowListScreen?: Dispatch<SetStateAction<string>>
 }
 export const initialContext: Cre8orsContextInterface = {
   loading: false,
