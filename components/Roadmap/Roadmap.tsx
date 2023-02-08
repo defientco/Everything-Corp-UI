@@ -1,19 +1,34 @@
 /* eslint-disable react/button-has-type */
 import { useEffect, useState } from "react"
+import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 
-const Roadmap = (props: any) => {
-  const { setActiveStep } = props
+const Roadmap = () => {
+  const { setRoadMapScreen } = useCre8orsProvider()
   const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 })
   const className =
-    "border border-sky-500 h-[80vh] min-w-[100vw] sm:min-w-[30vw] rounded-2xl p-5 overflow-x-scroll snap-always snap-center"
-  const RoadmapCards: String[] = [
-    "Watch Trailer",
-    "Mysteries Revealed",
-    "Storyline",
-    "Play Whitelist Quiz",
-    "COMING SOON",
-    "COMING SOON",
-    "COMING SOON",
+    "border cursor-pointer border-sky-500 h-[80vh] min-w-[100vw] sm:min-w-[30vw] rounded-2xl p-5 overflow-x-scroll snap-always snap-center"
+
+  const RoadmapCards: Array<{ displayText: string; id: string; img?: string }> = [
+    {
+      displayText: "Watch Trailer",
+      id: "trailer",
+    },
+    {
+      displayText: "Mysteries Revealed",
+      id: "mysteries",
+    },
+    {
+      displayText: "Storyline",
+      id: "story",
+    },
+    {
+      displayText: "Play Whitelist Quiz",
+      id: "allow-list-choice",
+    },
+    {
+      displayText: "COMING SOON",
+      id: "roadmap",
+    },
   ]
 
   useEffect(() => {
@@ -34,12 +49,14 @@ const Roadmap = (props: any) => {
     <div className="sm:h-screen h-[200vh] w-[200vw] snap-x snap-mandatory flex nowrap items-center  gap-3 pl-[154vw] sm:pl-[50vw] overflow-x-auto">
       {RoadmapCards.map((item) => (
         <div
-          key={item as any}
+          key={item.id}
           className={className}
-          onClick={() => setActiveStep(4)}
+          onClick={() => {
+            setRoadMapScreen(item.id)
+          }}
           aria-hidden="true"
         >
-          {item}
+          {item.displayText}
         </div>
       ))}
     </div>
