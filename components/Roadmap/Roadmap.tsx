@@ -27,7 +27,15 @@ const Roadmap = () => {
     },
     {
       displayText: "COMING SOON",
-      id: "roadmap",
+      id: "coming-soon1",
+    },
+    {
+      displayText: "COMING SOON",
+      id: "coming-soon2",
+    },
+    {
+      displayText: "COMING SOON",
+      id: "coming-soon3",
     },
   ]
 
