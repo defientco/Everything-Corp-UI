@@ -9,7 +9,7 @@ const RoadmapPage = () => {
   return (
     <div className="sm:h-screen h-[200vh]">
       {activeStep === 0 && <Roadmap setActiveStep={setActiveStep} />}
-      {activeStep === 4 && <AllowList />}
+      {activeStep === 4 && <AllowList setActiveStep={setActiveStep} />}
     </div>
   )
 }

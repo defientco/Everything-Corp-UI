@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Confetti from "react-confetti"
 import AllowListForm from "../AllowListForm"
 import useWindowSize from "../../lib/useWindowSize"
@@ -9,10 +9,10 @@ import PickCre8orType from "../PickCre8orType"
 import { ChoiceOptions, Screens } from "../../lib/enums"
 import FindCre8orType from "../FindCre8orType"
 
-const AllowList = () => {
+const AllowList = ({ setActiveStep }) => {
   const { showQuiz, signedUp, showSkeleton, creatorType, screen, setScreen, setCreatorType } =
     useCre8orsProvider()
-  const [choice, setChoice] = React.useState(ChoiceOptions.Undecided)
+  const [choice, setChoice] = useState(ChoiceOptions.Undecided)
   const onClickHandler = (value: number, nextScreen: number) => {
     setChoice(value)
     setScreen(nextScreen)
@@ -22,6 +22,7 @@ const AllowList = () => {
       case Screens.AllowListChoice:
         setScreen(Screens.Roadmap)
         setCreatorType("")
+        setActiveStep(0)
         break
       default:
         setScreen(Screens.AllowListChoice)
@@ -32,7 +33,7 @@ const AllowList = () => {
   const { width, height } = useWindowSize()
   return (
     <div>
-      {screen !== Screens.AllowListChoice && (
+      {screen !== Screens.Roadmap && (
         <button
           type="button"
           className="absolute text-sm font-medium text-center text-white rounded-lg z-2"
