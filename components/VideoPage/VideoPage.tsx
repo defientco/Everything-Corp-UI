@@ -1,11 +1,6 @@
-import Confetti from "react-confetti"
-import { Widget } from "@typeform/embed-react"
-import AllowListForm from "../AllowListForm"
-import useWindowSize from "../../lib/useWindowSize"
-import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
-import SkeletonCard from "../SkeletonCard"
 import { useRef, useState } from "react"
 import Image from "next/image"
+import useWindowSize from "../../lib/useWindowSize"
 
 const VideoPage = ({ goBack }: any) => {
   const [playing, setPlaying] = useState(false)
