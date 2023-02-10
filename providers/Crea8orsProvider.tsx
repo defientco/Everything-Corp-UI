@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { toast } from "react-toastify"
-import { Screens } from "../lib/enums"
+import { AllowListScreens, RoadmapScreens } from "../lib/enums"
 import Cre8orsContext from "./Crea8orsContext"
 
 export const useCre8orsProvider = () => useContext(Cre8orsContext)
@@ -21,7 +21,8 @@ export const Cre8orsProvider = ({ children }) => {
   const [timestamp, setTimeStamp] = useState<string>("")
   const [showSkeleton, setShowSkeleton] = useState(false)
   const [cre8orTypes, setCre8orTypes] = useState<Array<{ title: string; description: string }>>([])
-  const [screen, setScreen] = useState(Screens.AllowListChoice)
+  const [allowListScreen, setAllowListScreen] = useState(AllowListScreens.AllowListChoice)
+  const [roadMapScreen, setRoadMapScreen] = useState(RoadmapScreens.Roadmap)
 
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
@@ -63,7 +64,7 @@ export const Cre8orsProvider = ({ children }) => {
   const handleQuizSubmission = useCallback(async ({ responseId }) => {
     try {
       setQuizId(responseId)
-      setScreen(Screens.Details)
+      setAllowListScreen(AllowListScreens.Details)
       setShowQuiz(false)
       setShowSkeleton(true)
     } catch (e) {
@@ -181,8 +182,10 @@ export const Cre8orsProvider = ({ children }) => {
       handleQuizSubmission,
       showSkeleton,
       cre8orTypes,
-      screen,
-      setScreen,
+      allowListScreen,
+      setAllowListScreen,
+      roadMapScreen,
+      setRoadMapScreen,
     }),
     [
       twitterHandle,
@@ -206,8 +209,10 @@ export const Cre8orsProvider = ({ children }) => {
       handleQuizSubmission,
       showSkeleton,
       cre8orTypes,
-      screen,
-      setScreen,
+      allowListScreen,
+      setAllowListScreen,
+      roadMapScreen,
+      setRoadMapScreen,
     ],
   )
   return <Cre8orsContext.Provider value={value}>{children}</Cre8orsContext.Provider>

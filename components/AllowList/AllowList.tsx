@@ -6,26 +6,34 @@ import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 import SkeletonCard from "../SkeletonCard"
 import ChoiceScreen from "../ChoiceScreen"
 import PickCre8orType from "../PickCre8orType"
-import { ChoiceOptions, Screens } from "../../lib/enums"
+import { ChoiceOptions, AllowListScreens, RoadmapScreens } from "../../lib/enums"
 import FindCre8orType from "../FindCre8orType"
 
-const AllowList = ({ setActiveStep }) => {
-  const { showQuiz, signedUp, showSkeleton, creatorType, screen, setScreen, setCreatorType } =
-    useCre8orsProvider()
+const AllowList = () => {
+  const {
+    showQuiz,
+    signedUp,
+    showSkeleton,
+    creatorType,
+    setAllowListScreen,
+    allowListScreen,
+    roadMapScreen,
+    setRoadMapScreen,
+    setCreatorType,
+  } = useCre8orsProvider()
   const [choice, setChoice] = useState(ChoiceOptions.Undecided)
-  const onClickHandler = (value: number, nextScreen: number) => {
+  const onClickHandler = (value: ChoiceOptions, nextScreen: string) => {
     setChoice(value)
-    setScreen(nextScreen)
+    setAllowListScreen(nextScreen)
   }
   const onBackClickHandler = () => {
-    switch (screen) {
-      case Screens.AllowListChoice:
-        setScreen(Screens.Roadmap)
+    switch (allowListScreen) {
+      case AllowListScreens.AllowListChoice:
+        setRoadMapScreen(RoadmapScreens.Roadmap)
         setCreatorType("")
-        setActiveStep(0)
         break
       default:
-        setScreen(Screens.AllowListChoice)
+        setAllowListScreen(AllowListScreens.AllowListChoice)
         setChoice(ChoiceOptions.Undecided)
         setCreatorType("")
     }
@@ -33,7 +41,7 @@ const AllowList = ({ setActiveStep }) => {
   const { width, height } = useWindowSize()
   return (
     <div>
-      {screen !== Screens.Roadmap && (
+      {roadMapScreen !== RoadmapScreens.Roadmap && (
         <button
           type="button"
           className="absolute text-sm font-medium text-center text-white rounded-lg z-2"
@@ -55,19 +63,20 @@ const AllowList = ({ setActiveStep }) => {
           </svg>
         </button>
       )}
-      <div className="flex flex-row items-center justify-center w-full h-screen">
+      <div className="flex flex-row items-center justify-center w-full min-h-screen">
         {choice === ChoiceOptions.Undecided &&
           !creatorType &&
-          screen === Screens.AllowListChoice && <ChoiceScreen onClickHandler={onClickHandler} />}
+          allowListScreen === AllowListScreens.AllowListChoice && (
+            <ChoiceScreen onClickHandler={onClickHandler} />
+          )}
         {choice === ChoiceOptions.PickYourCre8orType &&
           !creatorType &&
-          screen === Screens.PickYourCre8orType && <PickCre8orType />}
+          allowListScreen === AllowListScreens.PickYourCre8orType && <PickCre8orType />}
         {choice === ChoiceOptions.FindYourCre8orType &&
           !creatorType &&
-          screen === Screens.FindYourCre8orType && <FindCre8orType />}
-        {((!showQuiz && !showSkeleton) || creatorType.length > 0) && screen === Screens.Details && (
-          <AllowListForm />
-        )}
+          allowListScreen === AllowListScreens.FindYourCre8orType && <FindCre8orType />}
+        {((!showQuiz && !showSkeleton) || creatorType.length > 0) &&
+          allowListScreen === AllowListScreens.Details && <AllowListForm />}
         {showSkeleton && <SkeletonCard />}
         {signedUp && <Confetti width={width} height={height} />}
       </div>
