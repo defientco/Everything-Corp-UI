@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useUserProvider } from "../../providers/UserProvider"
-import Table, { StatusPill, SelectColumnFilter } from "./components/Table"
+import Table from "./components/Table"
+import StatusPill from "./components/StatusPill"
+import SelectColumnFilter from "./components/SelectColumFilter"
 
 type ITableDatum = {
   walletAddress: string

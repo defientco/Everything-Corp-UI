@@ -1,4 +1,3 @@
-import Table, { StatusPill, SelectColumnFilter } from "./Table"
+import Table from "./Table"
 
 export default Table
-export { StatusPill, SelectColumnFilter }
