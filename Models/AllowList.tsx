@@ -8,7 +8,7 @@ interface AllowList {
   currentResponseId?: string
   typeformResponses?: TypeformResponses[]
   tokenId?: string
-  accepted?: boolean
+  status?: "Review" | "Accepted" | "Rejected"
 }
 interface TypeformResponses {
   id: string
@@ -40,9 +40,9 @@ const AllowListSchema = new Schema<AllowList>({
   tokenId: {
     type: String,
   },
-  accepted: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "Review",
   },
 })
 export default (models.AllowList as Model<AllowList>) || model("AllowList", AllowListSchema)
