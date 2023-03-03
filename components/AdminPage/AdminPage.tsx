@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { useUserProvider } from "../../providers/UserProvider"
 import Table, { StatusPill, SelectColumnFilter } from "./components/Table"
 
 type ITableDatum = {
@@ -11,6 +12,7 @@ type ITableDatum = {
 }
 type ITableData = Array<ITableDatum>
 const AdminPage = () => {
+  const { user } = useUserProvider()
   const [data, setData] = useState([])
   const tableData: ITableData = useMemo(
     () =>
@@ -26,7 +28,6 @@ const AdminPage = () => {
       }),
     [data],
   )
-
   const columns = useMemo(
     () => [
       {
@@ -70,16 +71,18 @@ const AdminPage = () => {
   }, [getData])
 
   return (
-    <div className="h-screen bg-gray-100 text-white-900">
-      <main className="min-w-full px-4 pt-4 mx-auto sm:px-6 lg:px-8">
-        <div className="">
-          <h1 className="text-xl font-semibold">Current Allowlist Applicants</h1>
-        </div>
-        <div className="mt-4">
-          <Table columns={columns} data={tableData} />
-        </div>
-      </main>
-    </div>
+    user?.issuer && (
+      <div className="h-screen bg-gray-100 text-white-900">
+        <main className="min-w-full px-4 pt-4 mx-auto sm:px-6 lg:px-8">
+          <div className="">
+            <h1 className="text-xl font-semibold">Current Allowlist Applicants</h1>
+          </div>
+          <div className="mt-4">
+            <Table columns={columns} data={tableData} />
+          </div>
+        </main>
+      </div>
+    )
   )
 }
 export default AdminPage
