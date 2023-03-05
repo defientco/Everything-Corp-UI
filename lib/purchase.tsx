@@ -10,6 +10,7 @@ const purchase = async (
 ) => {
   const contract = new ethers.Contract(contractAddress, abi, signer)
   try {
+    console.log("Starting purchase...")
     const tx = formResponse ? await contract.purchase(1, formResponse) : await contract.purchase(1)
     const receipt = await tx.wait()
     return receipt
