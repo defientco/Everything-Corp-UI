@@ -1,6 +1,7 @@
 import { allChains, useAccount, useNetwork, useSigner } from "wagmi"
 import { Contract, ethers } from "ethers"
 import { useCallback, useEffect, useState } from "react"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 import getNFTs from "../../lib/getNFTs"
 import abi from "../../lib/abi-cre8ors.json"
 import StakingCard from "../../components/StakingCard"
@@ -51,16 +52,66 @@ const Staking = () => {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col flex-wrap items-center justify-center min-h-screen gap-2 sm:flex-row">
-        {tokens.length > 0 &&
-          tokens.map((token) => (
-            <StakingCard
-              key={token.id}
-              token={token}
-              stakedTokens={stakedTokens}
-              onSuccess={() => load(signer)}
-              nftContract={nftContract}
-            />
-          ))}
+        <ConnectButton.Custom>
+          {({ account: account1, chain: chain1, openChainModal, openConnectModal, mounted }) => {
+            const ready = mounted
+            const connected = ready && account1 && chain1
+
+            return (
+              <div
+                {...(!ready && {
+                  "aria-hidden": true,
+                  style: {
+                    opacity: 0,
+                    pointerEvents: "none",
+                    userSelect: "none",
+                  },
+                })}
+              >
+                {(() => {
+                  if (!connected) {
+                    return (
+                      <button
+                        onClick={openConnectModal}
+                        type="button"
+                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded"
+                      >
+                        Connect Wallet
+                      </button>
+                    )
+                  }
+
+                  if (chain.id !== Number(process.env.NEXT_PUBLIC_CHAIN_ID)) {
+                    return (
+                      <button
+                        onClick={openChainModal}
+                        type="button"
+                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded"
+                      >
+                        Wrong network
+                      </button>
+                    )
+                  }
+
+                  return (
+                    <div className="flex flex-col flex-wrap items-center justify-center min-h-screen gap-2 sm:flex-row">
+                      {tokens.length > 0 &&
+                        tokens.map((token) => (
+                          <StakingCard
+                            key={token.id}
+                            token={token}
+                            stakedTokens={stakedTokens}
+                            onSuccess={() => load(signer)}
+                            nftContract={nftContract}
+                          />
+                        ))}
+                    </div>
+                  )
+                })()}
+              </div>
+            )
+          }}
+        </ConnectButton.Custom>
       </div>
     </div>
   )
