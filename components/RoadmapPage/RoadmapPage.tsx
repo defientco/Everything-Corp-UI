@@ -1,6 +1,7 @@
 import { RoadmapScreens } from "../../lib/enums"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 import AllowList from "../AllowList"
+import VideoPage from "../VideoPage"
 import Roadmap from "../Roadmap"
 
 const RoadmapPage = () => {
@@ -10,6 +11,8 @@ const RoadmapPage = () => {
     switch (roadMapScreen) {
       case RoadmapScreens.AllowListChoice:
         return <AllowList />
+      case RoadmapScreens.Trailer:
+        return <VideoPage />
       default:
         return <Roadmap />
     }
