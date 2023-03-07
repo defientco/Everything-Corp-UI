@@ -14,7 +14,7 @@ import { AllowListAuthGuard } from "../../../../middleware/auth.middleware"
 const getAddress = async (address?: string) => {
   if (!address) return null
   if (ethers.utils.isAddress(address)) return address
-  const provider = new ethers.providers.AlchemyProvider(1, process.env.ALCHEMY_API_KEY)
+  const provider = new ethers.providers.AlchemyProvider(1, process.env.NEXT_PUBLIC_ALCHEMY_API_KEY)
   return provider.resolveName(address)
 }
 class Mint {
