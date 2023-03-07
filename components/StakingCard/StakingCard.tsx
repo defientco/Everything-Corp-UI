@@ -1,4 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image"
+import { useState } from "react"
 import { toast } from "react-toastify"
 import { allChains, useNetwork, useSigner, useSwitchNetwork } from "wagmi"
 import getIpfsLink from "../../lib/getIpfsLink"
@@ -13,7 +14,7 @@ const StakingCard = ({ token, stakedTokens, onSuccess, nftContract }) => {
   const { data: signer } = useSigner()
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
-
+  const [isProcessing, setIsProcessing] = useState<boolean>(false)
   const handleClick = async () => {
     if (!signer) {
       toast.error("please connect wallet")
@@ -28,41 +29,36 @@ const StakingCard = ({ token, stakedTokens, onSuccess, nftContract }) => {
       return
     }
     if (isStaked) {
-      await processStaking(nftContract, myTokenId, onSuccess, false)
+      await processStaking(nftContract, myTokenId, onSuccess, false, setIsProcessing)
     } else {
-      await processStaking(nftContract, myTokenId, onSuccess, true)
+      await processStaking(nftContract, myTokenId, onSuccess, true, setIsProcessing)
     }
   }
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <img className="rounded-t-lg" src={imageUrl || "/docs/images/blog/image-1.jpg"} alt="" />
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           TOKEN ID #{myTokenId}
         </h5>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-          chronological order.
+          {isStaked ? "Staked" : "Not Staked"}
         </p>
+
         <button
           type="button"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className={`inline-flex items-center px-3 py-2 text-m font-medium text-center text-white ${
+            isStaked ? "bg-red-700" : "bg-blue-700"
+          } rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ${
+            isStaked ? "dark:bg-red-600" : "dark:bg-blue-600"
+          } dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-25 disabled:cursor-not-allowed`}
           onClick={() => handleClick()}
+          disabled={isProcessing}
         >
           {isStaked ? "Unstake" : "Stake"}
-          <svg
-            aria-hidden="true"
-            className="w-4 h-4 ml-2 -mr-1"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            />
-          </svg>
+
+          <span className="px-4">
+            <Image src={imageUrl || "/cre8ors.png"} alt="" layout="fixed" width={20} height={25} />
+          </span>
         </button>
       </div>
     </div>

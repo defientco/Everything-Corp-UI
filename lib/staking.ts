@@ -7,10 +7,13 @@ export const processStaking = async (
   tokenId: string | number,
   onSuccess: any,
   stake?: boolean,
+  setIsProcessing?: (state: boolean) => void,
 ) => {
   try {
+    setIsProcessing(true)
     const tx = await contract.toggleCre8ing([tokenId], { gasLimit: 1000000 })
     await tx.wait()
+    setIsProcessing(false)
     toast.success(`Successfully ${stake ? "staked" : "unstaked"}!`)
     await onSuccess()
   } catch (err) {
