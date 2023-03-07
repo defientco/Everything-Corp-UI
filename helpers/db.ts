@@ -22,6 +22,16 @@ export const getAllowListApplicant = async (address: string) => {
   try {
     await dbConnect()
     const result = await AllowList.findOne({ walletAddress: address }).lean()
+    return result
+  } catch (e) {
+    throw new Error(e)
+  }
+}
+
+export const getAllAllowListApplicants = async () => {
+  try {
+    await dbConnect()
+    const result = await AllowList.find({}).lean()
     return result as any
   } catch (e) {
     throw new Error(e)
