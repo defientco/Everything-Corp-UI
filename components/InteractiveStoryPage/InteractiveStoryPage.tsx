@@ -9,7 +9,7 @@ const InteractiveStoryPage = () => {
   const [puzzleCompleted, setPuzzleCompleted] = useState(false)
   const { width, height } = useWindowSize()
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setPuzzleCompleted(true)
   }
 

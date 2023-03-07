@@ -1,3 +1,3 @@
-import BackToRoadmapButton from "./BackToRoadmapButton";
+import BackToRoadmapButton from "./BackToRoadmapButton"
 
 export default BackToRoadmapButton
