@@ -5,14 +5,14 @@ import VideoPage from "../VideoPage"
 import Roadmap from "../Roadmap"
 
 const RoadmapPage = () => {
-  const { roadMapScreen, setRoadMapScreen } = useCre8orsProvider()
+  const { roadMapScreen } = useCre8orsProvider()
 
   const displayScreen = () => {
     switch (roadMapScreen) {
       case RoadmapScreens.AllowListChoice:
         return <AllowList />
       case RoadmapScreens.Trailer:
-        return <VideoPage goBack={() => setRoadMapScreen(RoadmapScreens.Roadmap)} />
+        return <VideoPage />
       default:
         return <Roadmap />
     }
