@@ -4,6 +4,7 @@ import AllowList from "../AllowList"
 import VideoPage from "../VideoPage"
 import Roadmap from "../Roadmap"
 import InteractiveStoryPage from "../InteractiveStoryPage"
+import FaqPage from "../FaqPage"
 
 const RoadmapPage = () => {
   const { roadMapScreen } = useCre8orsProvider()
@@ -14,6 +15,8 @@ const RoadmapPage = () => {
         return <VideoPage />
       case RoadmapScreens.Mysteries:
         return <InteractiveStoryPage />
+      case RoadmapScreens.Storyline:
+        return <FaqPage />
       case RoadmapScreens.AllowListChoice:
         return <AllowList />
 
