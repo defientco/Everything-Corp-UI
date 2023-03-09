@@ -7,7 +7,7 @@ class GetTxLogs {
   async getTxLogs(@Query("txHash") txHash: string, @Query("chainId") chainId: string) {
     const provider = new ethers.providers.AlchemyProvider(
       Number(chainId),
-      process.env.ALCHEMY_API_KEY,
+      process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     )
     const txLogs = await provider.getTransactionReceipt(txHash)
     if (txLogs && txLogs.blockNumber) {
