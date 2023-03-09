@@ -28,12 +28,9 @@ const StakingCard = ({ token, stakedTokens, onSuccess, nftContract }) => {
       toast.error(`Please connect to ${myChain.name} and try again`)
       return
     }
-    if (isStaked) {
-      await processStaking(nftContract, myTokenId, onSuccess, false, setIsProcessing)
-    } else {
-      await processStaking(nftContract, myTokenId, onSuccess, true, setIsProcessing)
-    }
+    await processStaking(nftContract, myTokenId, onSuccess, !isStaked, setIsProcessing)
   }
+
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="p-5">
