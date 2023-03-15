@@ -1,5 +1,13 @@
-import { FC } from "react"
-import { useTable, useGlobalFilter, useFilters, useSortBy, usePagination } from "react-table"
+/* eslint-disable react/no-unstable-nested-components */
+import { FC, forwardRef, useEffect, useRef } from "react"
+import {
+  useTable,
+  useGlobalFilter,
+  useFilters,
+  useSortBy,
+  usePagination,
+  useRowSelect,
+} from "react-table"
 import GlobalFilter from "../GlobalFilter"
 import Pagination from "../Pagination"
 import TableBody from "../TableBody"
@@ -17,9 +25,21 @@ interface TableProps {
     reason: string
     status: "Review" | "Accepted" | "Rejected"
   }>
+  setAcceptedApplicants: (acceptedApplicants: Array<string>) => void
 }
+const IndeterminateCheckbox = forwardRef<any, any>(({ indeterminate, ...rest }, ref) => {
+  const defaultRef = useRef()
+  const resolvedRef: any = ref || defaultRef
 
-const Table: FC<TableProps> = ({ columns, data }) => {
+  useEffect(() => {
+    resolvedRef.current.indeterminate = indeterminate
+  }, [resolvedRef, indeterminate])
+
+  return <input type="checkbox" ref={resolvedRef} {...rest} />
+})
+
+IndeterminateCheckbox.displayName = "IndeterminateCheckbox"
+const Table: FC<TableProps> = ({ columns, data, setAcceptedApplicants }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -27,6 +47,7 @@ const Table: FC<TableProps> = ({ columns, data }) => {
     prepareRow,
     state,
     preGlobalFilteredRows,
+    selectedFlatRows,
     setGlobalFilter,
     page,
     canPreviousPage,
@@ -46,7 +67,43 @@ const Table: FC<TableProps> = ({ columns, data }) => {
     useFilters,
     useSortBy,
     usePagination,
+    useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns1) => [
+        // Let's make a column for selection
+        {
+          id: "selection",
+          // The header can use the table's getToggleAllRowsSelectedProps method
+          // to render a checkbox
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <IndeterminateCheckbox
+                {...getToggleAllRowsSelectedProps()}
+                className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600"
+              />
+            </div>
+          ),
+          // The cell can use the individual row's getToggleRowSelectedProps method
+          // to the render a checkbox
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox
+                {...row.getToggleRowSelectedProps()}
+                className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600"
+                checked={row.isSelected}
+              />
+            </div>
+          ),
+        },
+        ...columns1,
+      ])
+    },
   )
+  useEffect(() => {
+    const acceptedApplicants = selectedFlatRows.map((row) => row.original.walletAddress)
+    setAcceptedApplicants(acceptedApplicants)
+  }, [selectedFlatRows, setAcceptedApplicants])
+
   return (
     <>
       <GlobalFilter
