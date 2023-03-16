@@ -100,7 +100,7 @@ const Table: FC<TableProps> = ({ columns, data, setAcceptedApplicants }) => {
     },
   )
   useEffect(() => {
-    const acceptedApplicants = selectedFlatRows.map((row) => row.original.walletAddress)
+    const acceptedApplicants = selectedFlatRows.map((row) => row.original.tokenId)
     setAcceptedApplicants(acceptedApplicants)
   }, [selectedFlatRows, setAcceptedApplicants])
 

@@ -1,11 +1,16 @@
 import axios from "axios"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { allChains } from "wagmi"
+import { useSigner } from "wagmi"
+import Confetti from "react-confetti"
 import { useUserProvider } from "../../providers/UserProvider"
 import Table from "./components/Table"
 import StatusPill from "./components/StatusPill"
 import SelectColumnFilter from "./components/SelectColumFilter"
+import useWindowSize from "../../lib/useWindowSize"
+import acceptApplicants from "../../lib/acceptApplicants"
+import abi from "../../lib/abi-metadata-renderer.json"
+import PopupModal from "./components/PopupModal"
 
 type ITableDatum = {
   walletAddress: string
@@ -16,11 +21,13 @@ type ITableDatum = {
 }
 type ITableData = Array<ITableDatum>
 const AdminPage = () => {
-  const chainId = process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID
-  const chain = allChains.find((c) => c.id === Number(chainId))
+  const { data: signer } = useSigner({ chainId: 80001 })
   const { user } = useUserProvider()
   const [data, setData] = useState([])
   const [acceptedApplicants, setAcceptedApplicants] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [startConfetti, setStartConfetti] = useState(false)
+  const { width, height } = useWindowSize()
   const tableData: ITableData = useMemo(
     () =>
       data.map((datum) => {
@@ -35,6 +42,38 @@ const AdminPage = () => {
       }),
     [data],
   )
+  const handleClick = async () => {
+    if (!signer) return
+    setLoading(true)
+    const [receipt] = await Promise.all([
+      acceptApplicants(
+        process.env.NEXT_PUBLIC_ALLOWLIST_METADATA_CONTRACT_ADDRESS,
+        signer,
+        abi,
+        acceptedApplicants,
+      ),
+      axios.post(
+        "/api/allowlist/updateStatus",
+        {
+          applicants: acceptedApplicants,
+          status: "Accepted",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_ALLOWLIST_API_KEY}`,
+          },
+        },
+      ),
+    ])
+
+    if (!receipt.error) {
+      setStartConfetti(true)
+      setTimeout(() => {
+        setStartConfetti(false)
+      }, 5000)
+    }
+    setLoading(false)
+  }
   const columns = useMemo(
     () => [
       {
@@ -75,7 +114,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     getData()
-  }, [getData])
+  }, [getData, startConfetti])
 
   return (
     user?.issuer && (
@@ -91,18 +130,12 @@ const AdminPage = () => {
               setAcceptedApplicants={setAcceptedApplicants}
             />
           </div>
-          {acceptedApplicants.length > 0 && (
+          {acceptedApplicants.length > 0 && signer && (
             <div className="justify-end m-2 text-right">
               <ConnectButton.Custom>
-                {({
-                  account: account1,
-                  chain: chain1,
-                  openChainModal,
-                  openConnectModal,
-                  mounted,
-                }) => {
+                {({ account, chain, openChainModal, openConnectModal, mounted }) => {
                   const ready = mounted
-                  const connected = ready && account1 && chain1
+                  const connected = ready && account && chain
 
                   return (
                     <div
@@ -143,6 +176,7 @@ const AdminPage = () => {
                         return (
                           <button
                             type="button"
+                            onClick={() => handleClick()}
                             className="px-4 py-2 m-2 font-bold text-white rounded bg-emerald-500"
                           >
                             Accept
@@ -156,6 +190,8 @@ const AdminPage = () => {
             </div>
           )}
         </main>
+        {startConfetti && <Confetti width={width} height={height} />}
+        {loading && <PopupModal open={loading} />}
       </div>
     )
   )
