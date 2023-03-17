@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import SeoHead from "../components/SeoHead"
 import Header from "../components/Header"
 import HoverImageChange from "../components/HoverImageChange"
@@ -89,10 +90,10 @@ const Home: NextPage = () => {
           alt="ubiquity"
         />
       </div>
-      <div className="flex flex-col items-center justify-around gap-4 m-4 cursor-auto">
+      <div className="flex flex-col items-center justify-around gap-4 m-4 cursor-pointer">
         {Cards.map((card) => (
           <div className="w-full h-full" key={card.title}>
-            <a href={card.link || "#"}>
+            <Link href={card.link || "#"}>
               <Image
                 src={card.image}
                 layout="responsive"
@@ -101,7 +102,7 @@ const Home: NextPage = () => {
                 alt={card.alt}
                 key={card.title}
               />
-            </a>
+            </Link>
           </div>
         ))}
       </div>
