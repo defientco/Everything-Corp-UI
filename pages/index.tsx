@@ -59,7 +59,7 @@ const Home: NextPage = () => {
   ]
   return (
     <div className="overflow-y-auto text-white bg-">
-      <SeoHead title="Evil Corp" description="Evil Corp" image="" />
+      <SeoHead title="Evil Corp" description="Evil Corp" image="/evclogoIcon.png" />
       <Header />
 
       <img
