@@ -69,21 +69,21 @@ const Home: NextPage = () => {
       />
       <div className="flex flex-col justify-around gap-4 m-4 cursor-auto lg:md:flex-row itmes-center">
         <HoverImageChange
-          hoveredSrc="/PHOTO_RESTORATION_HOVER.PNG"
+          hoveredSrc="/PHOTO_RESTORATION_HOVER.png"
           regSrc="/PHOTO_RESTORATION.png"
           width={398}
           height={389}
           alt="restoration"
         />
         <HoverImageChange
-          hoveredSrc="/PHOTO_UBIQUITY_HOVER.PNG"
+          hoveredSrc="/PHOTO_UBIQUITY_HOVER.png"
           regSrc="/PHOTO_UBIQUITY.png"
           width={398}
           height={389}
           alt="ubiquity"
         />
         <HoverImageChange
-          hoveredSrc="/PHOTO_NEUTRALITY_HOVER.PNG"
+          hoveredSrc="/PHOTO_NEUTRALITY_HOVER.png"
           regSrc="/PHOTO_NEUTRALITY.png"
           width={398}
           height={389}
