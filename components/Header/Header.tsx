@@ -15,13 +15,13 @@ const Header = () => (
       </Link>
     </div>
     <div className="flex-col items-center w-full lg:md:flex-row lg:items-right lg:w-auto">
-      <Link href="/contact">
+      <Link href="#contact">
         <div className="inline-block px-4 py-2 mt-4 text-white text-[32px] leading-[31px] font-[400] rounded font-aldrich font-weight-400 text-md hover:border-transparent lg:mt-0">
           Contact
         </div>
       </Link>
       <Link
-        href="/about"
+        href="#about"
         className="inline-block px-4 py-2 mt-4 text-white text-[32px] leading-[31px] font-[400] rounded hover:border-transparent   lg:mt-0"
       >
         <div className="inline-block px-4 py-2 mt-4 text-white text-[32px] leading-[31px] font-[400] rounded font-aldrich font-weight-400 text-md hover:border-transparent lg:mt-0">
