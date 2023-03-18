@@ -61,12 +61,9 @@ const Home: NextPage = () => {
     <div className="h-full overflow-y-auto text-white">
       <SeoHead title="Evil Corp" description="Evil Corp" image="/evclogoIcon.png" />
       <Header />
-
-      <img
-        src="/LANDINGPAGE_BACKGROUND.png"
-        alt="EVC Logo"
-        className="w-full lg:h-[100vh] h-auto"
-      />
+      <div className="relative w-full h-screen">
+        <Image src="/LANDINGPAGE_BACKGROUND.png" alt="EVC Logo" layout="fill" />
+      </div>
       <div className="flex flex-col justify-around gap-4 m-4 cursor-auto lg:md:flex-row itmes-center">
         <HoverImageChange
           hoveredSrc="/PHOTO_RESTORATION_HOVER.png"
