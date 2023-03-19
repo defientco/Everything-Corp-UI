@@ -6,6 +6,7 @@ import SeoHead from "../components/SeoHead"
 import Header from "../components/Header"
 import HoverImageChange from "../components/HoverImageChange"
 import Footer from "../components/Footer"
+import Contact from "../components/Contact"
 
 const Home: NextPage = () => {
   const Cards = [
@@ -106,6 +107,7 @@ const Home: NextPage = () => {
       <div className="relative w-full lg:h-[2144px] h-[100vh]">
         <Image src="/about_us.png" layout="fill" alt="aboutUs" id="about" />
       </div>
+      <Contact />
       <Footer />
     </div>
   )

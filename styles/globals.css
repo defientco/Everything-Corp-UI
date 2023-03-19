@@ -1,8 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css?family=Aldrich");
 
+@layer base{
+  @font-face {
+    font-family: "Aldrich";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/Aldrich/Aldrich-Regular.ttf") format("truetype");
+  }
+}
 html,
 body {
   background-color: #010e17;
