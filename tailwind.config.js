@@ -6,7 +6,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        aldrich: ["Aldrich", "sans-serif"],
+      },
+    },
   },
   plugins: [
     // eslint-disable-next-line global-require
