@@ -1,6 +1,8 @@
 import _ from "lodash"
 import { ApplicantDTO } from "../DTO/applicant.dto"
+import { ParticipantDTO } from "../DTO/participant.dto"
 import AllowList from "../Models/AllowList"
+import Participants from "../Models/Participants"
 import dbConnect from "../utils/db"
 
 interface UpdateAllowListApplicant {
@@ -8,6 +10,10 @@ interface UpdateAllowListApplicant {
   responseId?: string
   timestamp?: string
   tokenId?: string
+}
+interface Result {
+  walletAddress: string
+  twitterHandle: string
 }
 export const addAllowListApplicant = async (body: ApplicantDTO) => {
   try {
@@ -67,5 +73,25 @@ export const addTokenIdToAllowListApplicant = async (address: string, tokenId: s
     return { sucess: true, result }
   } catch (e) {
     throw new Error(e)
+  }
+}
+
+export const getAllParticipants = async () => {
+  try {
+    await dbConnect()
+    const result: Result[] = await Participants.find({}).lean()
+    return result
+  } catch (e) {
+    throw new Error(e)
+  }
+}
+
+export const addParticipant = async (body: ParticipantDTO) => {
+  try {
+    await dbConnect()
+    const result = await Participants.create(body)
+    return { sucess: true, result }
+  } catch (error) {
+    throw new Error(error)
   }
 }
