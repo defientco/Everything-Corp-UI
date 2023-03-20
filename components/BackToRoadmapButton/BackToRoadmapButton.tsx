@@ -1,13 +1,12 @@
 import Image from "next/image"
-import { RoadmapScreens } from "../../lib/enums"
-import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
+import { useRouter } from "next/router"
 
 const BackToRoadmapButton = ({ textColor = "" }) => {
-  const { setRoadMapScreen } = useCre8orsProvider()
+  const router = useRouter()
 
   return (
     <button
-      onClick={() => setRoadMapScreen(RoadmapScreens.Roadmap)}
+      onClick={() => router.push("/")}
       type="button"
       className={`absolute z-[10] left-10 top-10 p-5 border border-[#be0e11] hover:bg-white hover:text-[#be0e11] rounded-l-3xl rounded-r-lg flex align-middle gap-3 sm:text-xl text-xs ${
         textColor && `text-[${textColor}]`

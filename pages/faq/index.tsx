@@ -1,3 +1,5 @@
-const FAQ = () => <div className="text-white">FAQ Page</div>
+import FaqPage from "../../components/FaqPage"
+
+const FAQ = () => <FaqPage />
 
 export default FAQ
