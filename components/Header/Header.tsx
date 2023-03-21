@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = ({ contactHref, aboutHref }) => (
       </Link>
     </span>
 
-    <div className="items-center  flex-row text-sm lg:items-right lg:w-auto lg:md:text-[32px] lg:md:leading-[31px] font-[400] rounded font-aldrich font-weight-400 ">
+    <div className="items-center  flex-row text-xs lg:items-right lg:w-auto lg:md:text-[32px] lg:md:leading-[31px] font-[400] rounded font-aldrich font-weight-400 ">
       <Link href={contactHref || "/#contact"}>
         <div className="inline-block px-4 py-2 mt-4 text-white cursor-pointer text-md hover:border-transparent lg:mt-0">
           Contact
