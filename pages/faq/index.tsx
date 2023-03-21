@@ -5,7 +5,7 @@ import Header from "../../components/Header"
 
 const FAQ = () => (
   <div className="relative z-0 w-full h-screen">
-    <Header />
+    <Header contactHref="#contact" />
     <div className="relative w-full z-1">
       <div className="absolute w-full h-2/3 z-2">
         <Image src="/landing2.png" layout="fill" alt="landing2" objectFit="cover" />
