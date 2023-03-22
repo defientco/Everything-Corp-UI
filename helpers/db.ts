@@ -1,7 +1,9 @@
 import _ from "lodash"
 import { ApplicantDTO } from "../DTO/applicant.dto"
-import { ParticipantDTO } from "../DTO/participant.dto"
+import { ContactFormDTO } from "../DTO/contactform.dto"
 import AllowList from "../Models/AllowList"
+import ContactForm from "../Models/ContactForm"
+import { ParticipantDTO } from "../DTO/participant.dto"
 import Participants from "../Models/Participants"
 import dbConnect from "../utils/db"
 
@@ -24,6 +26,17 @@ export const addAllowListApplicant = async (body: ApplicantDTO) => {
     throw new Error(error)
   }
 }
+
+export const addMessage = async (body: ContactFormDTO) => {
+  try {
+    await dbConnect()
+    const result = await ContactForm.create(body)
+    return { sucess: true, result }
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 export const getAllowListApplicant = async (address: string) => {
   try {
     await dbConnect()
