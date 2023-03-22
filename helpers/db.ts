@@ -79,6 +79,20 @@ export const updateAllowListApplicantResponseIds = async (
   }
 }
 
+export const updateStatus = async (applicants: string[], status: string) => {
+  try {
+    await dbConnect()
+    const [result] = await Promise.all(
+      applicants.map(async (applicant) => {
+        await AllowList.findOneAndUpdate({ tokenId: applicant }, { status })
+      }),
+    )
+    return { sucess: true, result }
+  } catch (e) {
+    console.error(e)
+    throw new Error(e)
+  }
+}
 export const addTokenIdToAllowListApplicant = async (address: string, tokenId: string) => {
   try {
     await dbConnect()
