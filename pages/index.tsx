@@ -59,7 +59,7 @@ const Home: NextPage = () => {
     },
   ]
   return (
-    <div className="h-full overflow-y-auto text-white">
+    <div className="h-full overflow-y-auto text-white bg-black">
       <SeoHead title="Evil Corp" description="Evil Corp" image="/evclogoIcon.png" />
       <Header />
       <div className="relative w-full h-full mt-24">
