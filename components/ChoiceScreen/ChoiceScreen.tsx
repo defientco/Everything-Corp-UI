@@ -5,7 +5,7 @@ import { ChoiceOptions, AllowListScreens } from "../../lib/enums"
 const ChoiceScreen: React.FC<{
   onClickHandler: (value: ChoiceOptions, screen: string) => void
 }> = ({ onClickHandler }) => (
-  <div className="flex flex-row items-center justify-center w-full h-screen gap-12">
+  <div className="flex flex-row items-center justify-center w-full h-screen gap-12 text-white">
     <button
       type="button"
       className="overflow-hidden border-4 border-blue-500 shadow-lg cursor-pointer rounded-2xl max-w-s"
