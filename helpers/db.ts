@@ -89,7 +89,6 @@ export const updateStatus = async (applicants: string[], status: string) => {
     )
     return { sucess: true, result }
   } catch (e) {
-    console.error(e)
     throw new Error(e)
   }
 }

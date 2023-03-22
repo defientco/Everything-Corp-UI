@@ -23,6 +23,7 @@ interface TableProps {
     tokenId: string
     twitterHandle: string
     reason: string
+    creatorType: string
     status: "Review" | "Accepted" | "Rejected"
   }>
   setAcceptedApplicants: (acceptedApplicants: Array<string>) => void
