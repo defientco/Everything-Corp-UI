@@ -47,18 +47,20 @@ const AdminPage = () => {
   const handleClick = async () => {
     if (!signer) return
     setLoading(true)
+    const acceptedTokenIDs = acceptedApplicants.map((applicant) => applicant.tokenId)
+    const acceptedImageUris = acceptedApplicants.map((applicant) => applicant.imageUri)
     const [receipt] = await Promise.all([
       acceptApplicants(
         process.env.NEXT_PUBLIC_ALLOWLIST_METADATA_CONTRACT_ADDRESS,
         signer,
         abi,
-        acceptedApplicants.map((applicant) => applicant.tokenId),
-        acceptedApplicants.map((applicant) => applicant.imageUri),
+        acceptedTokenIDs,
+        acceptedImageUris,
       ),
       axios.post(
         "/api/allowlist/updateStatus",
         {
-          applicants: acceptedApplicants.map((applicant) => applicant.tokenId),
+          applicants: acceptedTokenIDs,
           status: "Accepted",
         },
         {
