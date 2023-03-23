@@ -5,10 +5,12 @@ import ImageCard from "./ImageCard"
 import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewards"
 import truncate from "../../lib/truncate"
 
+const NUMBER_OF_TOKENS = "0"
+
 function CollectorPage() {
   const router = useRouter()
   const { collectorId } = router.query
-  const [balance, setBalance] = useState("0")
+  const [balance, setBalance] = useState(NUMBER_OF_TOKENS)
 
   useEffect(() => {
     const init = async () => {
