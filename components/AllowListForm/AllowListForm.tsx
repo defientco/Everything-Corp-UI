@@ -10,7 +10,6 @@ const AllowListForm: FC = () => {
     setTwitterHandle,
     whyCre8or,
     setWhyCre8or,
-    creatorType,
     handleSignUp,
     loading,
   } = useCre8orsProvider()
@@ -55,21 +54,7 @@ const AllowListForm: FC = () => {
           />
           {displayRequiredText(twitterHandle, "Please enter a twitter handle.")}
         </div>
-        <div className="mb-6">
-          <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
-            What type of cre8or are you?
-          </label>
-          <input
-            className={`w-full px-3 py-2 mb-3 leading-tight text-gray-700 border ${displayBorder(
-              creatorType,
-            )} rounded shadow appearance-none focus:outline-none focus:shadow-outline`}
-            id="creatorType"
-            type="text"
-            value={creatorType}
-            readOnly
-            placeholder="artist, musician, etc."
-          />
-        </div>
+
         <div className="mb-6">
           <TextArea
             value={whyCre8or}
