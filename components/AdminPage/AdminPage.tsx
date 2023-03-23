@@ -52,12 +52,13 @@ const AdminPage = () => {
         process.env.NEXT_PUBLIC_ALLOWLIST_METADATA_CONTRACT_ADDRESS,
         signer,
         abi,
-        acceptedApplicants,
+        acceptedApplicants.map((applicant) => applicant.tokenId),
+        acceptedApplicants.map((applicant) => applicant.imageUri),
       ),
       axios.post(
         "/api/allowlist/updateStatus",
         {
-          applicants: acceptedApplicants,
+          applicants: acceptedApplicants.map((applicant) => applicant.tokenId),
           status: "Accepted",
         },
         {

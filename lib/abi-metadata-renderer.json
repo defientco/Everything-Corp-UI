@@ -33,6 +33,17 @@
     "type": "event"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "target", "type": "address" },
+      { "indexed": false, "internalType": "address", "name": "sender", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "indexed": false, "internalType": "string", "name": "imageURI", "type": "string" }
+    ],
+    "name": "TokenImageURIUpdated",
+    "type": "event"
+  },
+  {
     "inputs": [],
     "name": "contractURI",
     "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
@@ -118,8 +129,8 @@
   {
     "inputs": [
       { "internalType": "address", "name": "target", "type": "address" },
-      { "internalType": "uint256[]", "name": "tokenIDs", "type": "uint256[]" },
-      { "internalType": "string", "name": "imageURI", "type": "string" }
+      { "internalType": "uint256[]", "name": "tokenIds", "type": "uint256[]" },
+      { "internalType": "string[]", "name": "imageUris", "type": "string[]" }
     ],
     "name": "updateMetadata",
     "outputs": [],

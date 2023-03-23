@@ -8,6 +8,7 @@ import {
   usePagination,
   useRowSelect,
 } from "react-table"
+import { ACCEPTED_IMAGE_URIS } from "../../../../helpers/constants"
 import GlobalFilter from "../GlobalFilter"
 import Pagination from "../Pagination"
 import TableBody from "../TableBody"
@@ -101,7 +102,10 @@ const Table: FC<TableProps> = ({ columns, data, setAcceptedApplicants }) => {
     },
   )
   useEffect(() => {
-    const acceptedApplicants = selectedFlatRows.map((row) => row.original.tokenId)
+    const acceptedApplicants = selectedFlatRows.map((row) => ({
+      tokenId: row.original.tokenId,
+      imageUri: ACCEPTED_IMAGE_URIS[row.original.creatorType.toLowerCase()],
+    }))
     setAcceptedApplicants(acceptedApplicants)
   }, [selectedFlatRows, setAcceptedApplicants])
 
