@@ -1,17 +1,10 @@
 import AdminPage from "../../components/AdminPage"
-import LoadingPage from "../../components/LoadingPage"
-import LoginPage from "../../components/LoginPage"
-import { useUserProvider } from "../../providers/UserProvider"
+import Auth from "../../components/Auth"
 
-const Admin = () => {
-  const { userIsLoggedIn, user } = useUserProvider()
-  return (
-    <>
-      {user?.loading && <LoadingPage />}
-      {!userIsLoggedIn && !user?.loading && <LoginPage />}
-      {userIsLoggedIn && !user?.loading && <AdminPage />}
-    </>
-  )
-}
+const Admin = () => (
+  <Auth url="/admin">
+    <AdminPage />
+  </Auth>
+)
 
 export default Admin
