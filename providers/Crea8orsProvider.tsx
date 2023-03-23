@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useRouter } from "next/router"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { toast } from "react-toastify"
 import { AllowListScreens, RoadmapScreens } from "../lib/enums"
@@ -23,7 +24,7 @@ export const Cre8orsProvider = ({ children }) => {
   const [cre8orTypes, setCre8orTypes] = useState<Array<{ title: string; description: string }>>([])
   const [allowListScreen, setAllowListScreen] = useState(AllowListScreens.AllowListChoice)
   const [roadMapScreen, setRoadMapScreen] = useState(RoadmapScreens.Roadmap)
-
+  const router = useRouter()
   const checkTx = useCallback(async () => {
     const response = await axios.get("/api/getTxLogs", {
       params: {
@@ -89,13 +90,14 @@ export const Cre8orsProvider = ({ children }) => {
           setShowQuiz(true)
         }, 5000)
         setLoading(false)
+        router.push("/")
       }
       setLoading(false)
     } catch (e) {
       toast.error("Registration failed")
       setLoading(false)
     }
-  }, [mint])
+  }, [mint, router])
 
   const fetchQuizResponse = useCallback(async () => {
     const quizData = await axios.get("/api/allowlist/typeform", {
