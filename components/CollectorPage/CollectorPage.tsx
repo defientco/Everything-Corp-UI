@@ -3,7 +3,7 @@ import { BigNumber } from "ethers"
 import { useRouter } from "next/router"
 import ImageCard from "./ImageCard"
 import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewards"
-import truncate from "../../lib/truncate"
+import truncateEthAddress from "../../lib/truncateEthAddress"
 
 const NUMBER_OF_TOKENS = "0"
 
@@ -25,7 +25,7 @@ function CollectorPage() {
   return (
     <div className="mt-3 flex flex-col">
       <div className="flex flex-col items-center justify-around text-4xl text-white pt-10 h-[75vh]">
-        <div>CRE8OR Profile - {truncate(collectorId as string)}</div>
+        <div>CRE8OR Profile - {truncateEthAddress(collectorId as string)}</div>
         {BigNumber.from(balance).gt(0) && (
           <div className="flex flex-col items-center gap-5">
             <ImageCard
