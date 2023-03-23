@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { useSigner } from "wagmi"
 import { BigNumber } from "ethers"
 import { useRouter } from "next/router"
-import abi from "../../lib/abi-cre8ors.json"
-import MintButton from "../MintButton"
 import ImageCard from "./ImageCard"
 import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewards"
 import truncate from "../../lib/truncate"
@@ -13,7 +11,6 @@ function CollectorPage() {
   const router = useRouter()
   const { collectorId } = router.query
   const [balance, setBalance] = useState("0")
-  const contractAddress = String(process.env.NEXT_PUBLIC_CRE8ORS_ADDRESS)
 
   useEffect(() => {
     const init = async () => {

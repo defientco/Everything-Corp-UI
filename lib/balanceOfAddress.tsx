@@ -1,4 +1,4 @@
-import { ethers, Signer } from "ethers"
+import { ethers } from "ethers"
 import abi from "./abi-cre8ors.json"
 import getDefaultProvider from "./getDefaultProvider"
 
