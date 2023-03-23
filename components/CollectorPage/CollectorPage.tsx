@@ -30,17 +30,12 @@ function CollectorPage() {
     <div className="mt-3 flex flex-col">
       <div className="flex flex-col items-center justify-around text-4xl text-white pt-10 h-[75vh]">
         <div>CRE8OR Profile - {truncate(collectorId as string)}</div>
-        {BigNumber.from(balance).gt(0) ? (
+        {BigNumber.from(balance).gt(0) && (
           <div className="flex flex-col items-center gap-5">
             <ImageCard
               imageUrl="https://nftstorage.link/ipfs/bafybeiaoglcj47pklfmwnxp6sd352y4fndr3ojopof7f3ciiaogshcz3au"
               title={`Participation Rewards: ${balance.toString()}`}
             />
-          </div>
-        ) : (
-          <div className="flex flex-col items-center gap-5">
-            <div> please mint a CRE8OR Participation Rewards before visiting a profile</div>
-            <MintButton contractAddress={contractAddress} abi={abi} />
           </div>
         )}
       </div>
