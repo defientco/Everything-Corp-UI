@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useSigner } from "wagmi"
 import { BigNumber } from "ethers"
 import { useRouter } from "next/router"
 import ImageCard from "./ImageCard"
@@ -7,7 +6,6 @@ import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewar
 import truncate from "../../lib/truncate"
 
 function CollectorPage() {
-  const { data: signer } = useSigner()
   const router = useRouter()
   const { collectorId } = router.query
   const [balance, setBalance] = useState("0")
@@ -19,7 +17,6 @@ function CollectorPage() {
       setBalance(response.toString())
     }
 
-    if (!signer) return
     init()
   })
 
