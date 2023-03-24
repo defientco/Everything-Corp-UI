@@ -2,29 +2,25 @@ import { useEffect } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
 import { signIn, useSession, signOut } from "next-auth/react"
-import NavBar from "../NavBar"
 import axios from "axios"
-import isAddressRegistered from "../../lib/isAddressRegistered"
 import { toast } from "react-toastify"
+import isAddressRegistered from "../../lib/isAddressRegistered"
+import NavBar from "../NavBar"
 
 function ConnectPage() {
   const { address } = useAccount()
   const { data: session } = useSession()
 
-  const checkRegistered = async () => {
-    const registered = await isAddressRegistered(address)
-    if (registered) toast.success("You're registered!")
-    return registered
-  }
-
   useEffect(() => {
+    const checkRegistered = async () => {
+      const registered = await isAddressRegistered(address)
+      if (registered) toast.success("You're registered!")
+      return registered
+    }
+
     const init = async () => {
-      console.log("getting user API...")
-
       if (await checkRegistered()) return
-
-      console.log("/api/participants/addNewRecord", session.user.name)
-      const response = await axios.post(
+      await axios.post(
         "/api/participants/addNewRecord",
         {
           walletAddress: address,
@@ -36,7 +32,6 @@ function ConnectPage() {
           },
         },
       )
-      console.log("response", response)
       await checkRegistered()
     }
     if (!session?.user || !address) return
