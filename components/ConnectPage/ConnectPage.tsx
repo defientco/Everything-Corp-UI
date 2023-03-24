@@ -1,21 +1,34 @@
+import { useEffect } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
-import { signIn, useSession } from "next-auth/react"
-import { Button } from "../../shared/Button"
+import { signIn, useSession, signOut } from "next-auth/react"
 import NavBar from "../NavBar"
+import axios from "axios"
 
 function ConnectPage() {
   const { address } = useAccount()
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
+
+  useEffect(() => {
+    const init = async () => {
+      console.log("getting user API...")
+
+      const response = await axios.get("/api/participants/get", {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PARTICIPANTS_API_KEY}`,
+        },
+      })
+      console.log("api response", response)
+    }
+    if (!session?.user || !address) return
+    init()
+  }, [session, address])
 
   return (
     <div className="mt-3 flex flex-col">
       {address && <NavBar />}
       <div className="flex flex-col items-center justify-around text-white pt-10 h-[75vh]">
-        {address ? (
-          // <Button type="button" onClick={handleClick}>
-          //   Connect Twitter
-          // </Button>
+        {!session?.user && (
           <a
             href="/api/auth/signin"
             className=""
@@ -24,20 +37,25 @@ function ConnectPage() {
               signIn("twitter")
             }}
           >
-            Sign in
+            Twitter Sign in
           </a>
-        ) : (
-          <ConnectButton />
         )}
+        {!address && <ConnectButton />}
         {session?.user && (
-          <>
-            <span style={{ backgroundImage: `url(${session.user.image})` }} />
-            <span>
-              <small>Signed in as</small>
-              <br />
-              <strong>{session.user.email || session.user.name}</strong>
-            </span>
-          </>
+          <span>
+            <small>Signed in as</small>
+            <br />
+            <strong>{session.user.email || session.user.name}</strong>
+            <a
+              href="/api/auth/signout"
+              onClick={(e) => {
+                e.preventDefault()
+                signOut()
+              }}
+            >
+              Sign out
+            </a>
+          </span>
         )}
       </div>
     </div>
