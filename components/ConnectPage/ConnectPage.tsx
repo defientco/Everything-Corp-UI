@@ -13,12 +13,31 @@ function ConnectPage() {
     const init = async () => {
       console.log("getting user API...")
 
-      const response = await axios.get("/api/participants/get", {
+      const { data } = await axios.get("/api/participants/get", {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_PARTICIPANTS_API_KEY}`,
         },
       })
-      console.log("api response", response)
+
+      const addresses = data.map((participant) => participant.walletAddress)
+
+      console.log("addresses", addresses)
+      if (addresses.includes(address)) return
+      console.log("/api/participants/addNewRecord", session.user.name)
+
+      const response = await axios.post(
+        "/api/participants/addNewRecord",
+        {
+          walletAddress: address,
+          twitterHandle: session.user.name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_PARTICIPANTS_API_KEY}`,
+          },
+        },
+      )
+      console.log("response", response)
     }
     if (!session?.user || !address) return
     init()
