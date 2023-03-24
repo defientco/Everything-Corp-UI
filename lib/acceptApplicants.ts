@@ -6,14 +6,15 @@ const acceptedApplicants = async (
   contractAddress: string,
   signer: Signer,
   abi: ContractInterface,
-  applicantIDs: string[],
+  tokenIDs: string[],
+  imageUris: string[],
 ) => {
   const contract = new ethers.Contract(contractAddress, abi, signer)
   try {
     const tx = await contract.updateMetadata(
       process.env.NEXT_PUBLIC_ALLOWLIST_CONTRACT_ADDRESS,
-      applicantIDs,
-      "ipfs://bafybeibtpwcomwerumqjtnz4ydnretxnfc7ii5dhxlmsk45e5gby5qfeku",
+      tokenIDs,
+      imageUris,
     )
     const receipt = await tx.wait()
     return receipt

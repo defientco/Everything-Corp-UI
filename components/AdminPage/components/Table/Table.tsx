@@ -8,6 +8,7 @@ import {
   usePagination,
   useRowSelect,
 } from "react-table"
+import { ACCEPTED_IMAGE_URIS } from "../../../../helpers/constants"
 import GlobalFilter from "../GlobalFilter"
 import Pagination from "../Pagination"
 import TableBody from "../TableBody"
@@ -23,9 +24,10 @@ interface TableProps {
     tokenId: string
     twitterHandle: string
     reason: string
+    creatorType: string
     status: "Review" | "Accepted" | "Rejected"
   }>
-  setAcceptedApplicants: (acceptedApplicants: Array<string>) => void
+  setAcceptedApplicants?: (acceptedApplicants: Array<string>) => void
 }
 const IndeterminateCheckbox = forwardRef<any, any>(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef()
@@ -100,7 +102,11 @@ const Table: FC<TableProps> = ({ columns, data, setAcceptedApplicants }) => {
     },
   )
   useEffect(() => {
-    const acceptedApplicants = selectedFlatRows.map((row) => row.original.tokenId)
+    const filteredApplicants = selectedFlatRows.filter((row) => row.original.status === "Review")
+    const acceptedApplicants = filteredApplicants.map((row) => ({
+      tokenId: row.original.tokenId,
+      imageUri: ACCEPTED_IMAGE_URIS[row.original.creatorType.toLowerCase()],
+    }))
     setAcceptedApplicants(acceptedApplicants)
   }, [selectedFlatRows, setAcceptedApplicants])
 

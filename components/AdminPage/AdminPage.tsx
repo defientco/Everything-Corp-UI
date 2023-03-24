@@ -17,6 +17,7 @@ type ITableDatum = {
   tokenId: string
   twitterHandle: string
   reason: string
+  creatorType: string
   status: "Review" | "Accepted" | "Rejected"
 }
 type ITableData = Array<ITableDatum>
@@ -31,13 +32,14 @@ const AdminPage = () => {
   const tableData: ITableData = useMemo(
     () =>
       data.map((datum) => {
-        const { walletAddress, tokenId, twitterHandle, reason, status } = datum
+        const { walletAddress, tokenId, twitterHandle, reason, status, creatorType } = datum
         return {
           walletAddress,
           tokenId,
           twitterHandle,
           reason,
           status,
+          creatorType,
         }
       }),
     [data],
@@ -45,17 +47,20 @@ const AdminPage = () => {
   const handleClick = async () => {
     if (!signer) return
     setLoading(true)
+    const acceptedTokenIDs = acceptedApplicants.map((applicant) => applicant.tokenId)
+    const acceptedImageUris = acceptedApplicants.map((applicant) => applicant.imageUri)
     const [receipt] = await Promise.all([
       acceptApplicants(
         process.env.NEXT_PUBLIC_ALLOWLIST_METADATA_CONTRACT_ADDRESS,
         signer,
         abi,
-        acceptedApplicants,
+        acceptedTokenIDs,
+        acceptedImageUris,
       ),
       axios.post(
         "/api/allowlist/updateStatus",
         {
-          applicants: acceptedApplicants,
+          applicants: acceptedTokenIDs,
           status: "Accepted",
         },
         {
@@ -98,6 +103,10 @@ const AdminPage = () => {
       {
         Header: "Reason",
         accessor: "reason",
+      },
+      {
+        Header: "Quiz Result",
+        accessor: "creatorType",
       },
     ],
     [],

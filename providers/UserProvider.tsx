@@ -9,12 +9,14 @@ export const UserProvider = ({ children }) => {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false)
   const [loading, setLoading] = useState(true)
   const [email, setEmail] = useState("")
+  const [url, setUrl] = useState("/")
   const handleLogin = useCallback(
     async (e) => {
       e.preventDefault()
 
       const didToken = await magic.auth.loginWithMagicLink({
         email,
+        redirectURI: new URL(url, window.location.origin).href,
       })
 
       // Send this token to our validation endpoint
@@ -33,7 +35,7 @@ export const UserProvider = ({ children }) => {
         setUserIsLoggedIn(true)
       }
     },
-    [email],
+    [email, url],
   )
 
   const logout = useCallback(() => {
@@ -82,6 +84,7 @@ export const UserProvider = ({ children }) => {
       logout,
       loading,
       setLoading,
+      setUrl,
     }),
     [
       user,
@@ -94,6 +97,7 @@ export const UserProvider = ({ children }) => {
       logout,
       loading,
       setLoading,
+      setUrl,
     ],
   )
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
