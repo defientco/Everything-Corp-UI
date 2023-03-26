@@ -4,6 +4,7 @@ import { useAccount } from "wagmi"
 import { signIn, useSession, signOut } from "next-auth/react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import Link from "next/link"
 import isAddressRegistered from "../../lib/isAddressRegistered"
 import NavBar from "../NavBar"
 
@@ -42,33 +43,25 @@ function ConnectPage() {
     <div className="mt-3 flex flex-col">
       {address && <NavBar />}
       <div className="flex flex-col items-center justify-around text-white pt-10 h-[75vh]">
-        {!session?.user && (
-          <a
-            href="/api/auth/signin"
-            className=""
-            onClick={(e) => {
-              e.preventDefault()
-              signIn("twitter")
-            }}
-          >
-            Twitter Sign in
-          </a>
-        )}
         {!address && <ConnectButton />}
         {session?.user && (
           <span>
             <small>Signed in as</small>
             <br />
             <strong>{session.user.email || session.user.name}</strong>
-            <a
-              href="/api/auth/signout"
+            <Link
+              href={session?.user ? "/api/auth/signout" : "/api/auth/signin"}
               onClick={(e) => {
                 e.preventDefault()
-                signOut()
+                if (session?.user) {
+                  signOut()
+                } else {
+                  signIn("twitter")
+                }
               }}
             >
-              Sign out
-            </a>
+              {session?.user ? "Sign out" : "Twitter Sign in"}
+            </Link>
           </span>
         )}
       </div>
