@@ -1,4 +1,4 @@
-import getParticipants from "./getParticipants";
+import getParticipants from "./getParticipants"
 
 const isAddressRegistered = async (address: string) => {
   const data = await getParticipants()

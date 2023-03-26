@@ -14,34 +14,24 @@ const LeaderboardPage = () => {
   const findIndex = (array, targetValue) =>
     array.findIndex((item) => item.ownerAddress === targetValue)
 
-  const fetchTopCollectors = async () => {
-    // Replace this with your API call to fetch the top collectors
-    console.log("GETTING OWNERS")
-    const { ownerAddresses } = await getOwnersForCollection()
-    console.log("data", ownerAddresses)
-    const newCollectors = sortCollectors(ownerAddresses)
-    console.log("newCollectors", newCollectors)
-    const participants = await getParticipants()
-    console.log("participants", participants)
-    for (let i = 0; i < participants.length; i += 1) {
-      const participant = participants[i]
-      console.log("participant", participant.walletAddress)
-      const index = findIndex(newCollectors, participant.walletAddress.toLowerCase())
-      if (index !== -1) {
-        console.log("ASSIGNING TWITTER HANDLE")
-        newCollectors[index] = {
-          ...newCollectors[index],
-          twitterHandle: participant.twitterHandle,
-        }
-      } else {
-        console.log("No entry found with the specified attribute value.")
-      }
-      console.log("index", index)
-    }
-    setCollectors(newCollectors)
-  }
-
   useEffect(() => {
+    const fetchTopCollectors = async () => {
+      const { ownerAddresses } = await getOwnersForCollection()
+      const newCollectors = sortCollectors(ownerAddresses)
+      const participants = await getParticipants()
+      for (let i = 0; i < participants.length; i += 1) {
+        const participant = participants[i]
+        const index = findIndex(newCollectors, participant.walletAddress.toLowerCase())
+        if (index !== -1) {
+          newCollectors[index] = {
+            ...newCollectors[index],
+            twitterHandle: participant.twitterHandle,
+          }
+        }
+      }
+      setCollectors(newCollectors)
+    }
+
     fetchTopCollectors()
   }, [])
 
