@@ -1,12 +1,14 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { useEffect } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
 import { signIn, useSession, signOut } from "next-auth/react"
 import axios from "axios"
 import { toast } from "react-toastify"
-import Link from "next/link"
 import isAddressRegistered from "../../lib/isAddressRegistered"
 import NavBar from "../NavBar"
+import { Button } from "../../shared/Button"
+import Link from "next/link"
 
 function ConnectPage() {
   const { address } = useAccount()
@@ -43,26 +45,32 @@ function ConnectPage() {
     <div className="mt-3 flex flex-col">
       {address && <NavBar />}
       <div className="flex flex-col items-center justify-around text-white pt-10 h-[75vh]">
+        <span>
+          {session?.user && <small>Signed in as</small>}
+          <br />
+          {session?.user && <strong>{session?.user.email || session.user.name}</strong>}
+          <a
+            href={session?.user ? "/api/auth/signout" : "/api/auth/signin"}
+            onClick={(e) => {
+              e.preventDefault()
+              if (session?.user) {
+                signOut()
+              } else {
+                signIn("twitter")
+              }
+            }}
+          >
+            <Button onClick={(e) => e.preventDefault()}>
+              {session?.user ? "Sign out" : "Twitter Sign in"}
+            </Button>
+          </a>
+        </span>
+
         {!address && <ConnectButton />}
         {session?.user && (
-          <span>
-            <small>Signed in as</small>
-            <br />
-            <strong>{session.user.email || session.user.name}</strong>
-            <Link
-              href={session?.user ? "/api/auth/signout" : "/api/auth/signin"}
-              onClick={(e) => {
-                e.preventDefault()
-                if (session?.user) {
-                  signOut()
-                } else {
-                  signIn("twitter")
-                }
-              }}
-            >
-              {session?.user ? "Sign out" : "Twitter Sign in"}
-            </Link>
-          </span>
+          <Link href="/leaderboard">
+            <Button>Leaderboard</Button>
+          </Link>
         )}
       </div>
     </div>

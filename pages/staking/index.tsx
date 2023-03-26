@@ -2,7 +2,7 @@ import { allChains, useAccount, useNetwork, useSigner } from "wagmi"
 import { Contract, ethers } from "ethers"
 import { useCallback, useEffect, useState } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import getNFTs from "../../lib/getNFTs"
+import getNFTs from "../../lib/alchemy/getNFTs"
 import abi from "../../lib/abi-cre8ors.json"
 import StakingCard from "../../components/StakingCard"
 

@@ -1,11 +1,7 @@
-import axios from "axios"
+import getParticipants from "./getParticipants";
 
 const isAddressRegistered = async (address: string) => {
-  const { data } = await axios.get("/api/participants/get", {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_PARTICIPANTS_API_KEY}`,
-    },
-  })
+  const data = await getParticipants()
   const addresses = data.map((participant) => participant.walletAddress)
   return addresses.includes(address)
 }
