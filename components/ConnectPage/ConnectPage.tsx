@@ -5,10 +5,10 @@ import { useAccount } from "wagmi"
 import { signIn, useSession, signOut } from "next-auth/react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import Link from "next/link"
 import isAddressRegistered from "../../lib/isAddressRegistered"
 import NavBar from "../NavBar"
 import { Button } from "../../shared/Button"
-import Link from "next/link"
 
 function ConnectPage() {
   const { address } = useAccount()
