@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { toast } from "react-toastify"
 import { useEnsName } from "wagmi"
 import truncateEthAddress from "../../lib/truncateEthAddress"
@@ -7,6 +8,7 @@ const LeaderboardRow = ({ address, numberOwned, rank, twitterHandle }) => {
     address,
     chainId: 1,
   })
+  console.log("ensName", ensName)
 
   const handleCopyClick = async () => {
     await navigator.clipboard.writeText(address)
@@ -18,9 +20,9 @@ const LeaderboardRow = ({ address, numberOwned, rank, twitterHandle }) => {
       <td className="px-4 py-2 border-b">#{rank}</td>
       <td className="px-4 py-2 border-b">{numberOwned}</td>
       <td className="px-4 py-2 border-b">
-        <button onClick={handleCopyClick} type="button">
+        <Link href={`/collector/${address}`} type="button">
           {ensName || truncateEthAddress(address)}
-        </button>
+        </Link>
       </td>
       <td className="px-4 py-2 border-b">{twitterHandle}</td>
     </tr>
