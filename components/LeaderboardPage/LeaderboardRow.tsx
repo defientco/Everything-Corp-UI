@@ -9,6 +9,8 @@ const LeaderboardRow = ({ address, numberOwned, rank, twitterHandle }) => {
     chainId: 1,
   })
 
+  console.log("ensName", ensName)
+
   return (
     <tr key={address} className="bg-gray-100  hover:bg-blue-300">
       <td className="px-4 py-2 border-b">#{rank}</td>
