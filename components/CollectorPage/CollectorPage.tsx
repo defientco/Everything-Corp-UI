@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import { BigNumber } from "ethers"
 import { useRouter } from "next/router"
-import { useEnsName } from "wagmi"
 import { toast } from "react-toastify"
 import ImageCard from "./ImageCard"
 import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewards"
 import truncateEthAddress from "../../lib/truncateEthAddress"
-import PFP from "../PFP/PFP"
+import PFP from "../PFP"
 import getAnniversary from "../../lib/getAnniversary"
 import epochToReadableDate from "../../lib/epochToReadableDate"
 import getTwitterHandle from "../../lib/getTwitterHandle"
+import getEns from "../../lib/getEns"
 
 const NUMBER_OF_TOKENS = "0"
 
@@ -19,10 +19,7 @@ function CollectorPage() {
   const [balance, setBalance] = useState(NUMBER_OF_TOKENS)
   const [anniversary, setAnniversary] = useState(null as string)
   const [twitter, setTwitter] = useState(null as string)
-  const { data: ensName } = useEnsName({
-    address: (collectorId as any) || "0x0",
-    chainId: 1,
-  })
+  const [ens, setEns] = useState({} as any)
 
   const handleCopyClick = async () => {
     await navigator.clipboard.writeText(collectorId as string)
@@ -39,6 +36,8 @@ function CollectorPage() {
       setAnniversary(readable)
       const handle = await getTwitterHandle(collectorId as string)
       setTwitter(handle)
+      const ensRecord = await getEns(collectorId as string)
+      setEns(ensRecord)
     }
 
     init()
@@ -52,7 +51,7 @@ function CollectorPage() {
           <div>
             <div>CRE8OR Profile</div>
             <button onClick={handleCopyClick} type="button">
-              {ensName || truncateEthAddress(collectorId as string)}
+              {ens?.title || truncateEthAddress(collectorId as string)}
             </button>
             {anniversary && <div className="text-sm">Joined {anniversary}</div>}
             {twitter && <div className="text-sm">Twitter: {twitter}</div>}

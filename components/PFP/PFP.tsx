@@ -1,21 +1,29 @@
-import { useEnsAvatar } from "wagmi"
+import axios from "axios"
+import { useEffect, useState } from "react"
+import retryGetEns from "../../lib/retryGetEns"
 
 /* eslint-disable @next/next/no-img-element */
 const PFP = ({ address, width = 100, height = 100 }: any) => {
-  const { data: ensAvatar } = useEnsAvatar({
-    address,
-    chainId: 1,
-  })
+  const [avatar, setAvatar] = useState("/logo-cre8ors.png")
 
-  return (
-    <img
-      src={ensAvatar || "/logo-cre8ors.png"}
-      alt="pfp"
-      width={width}
-      height={height}
-      className="rounded"
-    />
-  )
+  useEffect(() => {
+    const init = async () => {
+      const ensRecord = await retryGetEns(address)
+      if (!ensRecord?.title) return
+      let uri = `https://metadata.ens.domains/mainnet/avatar/${ensRecord.title}`
+      try {
+        await axios.get(uri)
+      } catch {
+        uri = ensRecord.metadata.image
+      }
+      setAvatar(uri)
+    }
+
+    if (!address) return
+    init()
+  }, [address])
+
+  return <img src={avatar} alt="pfp" width={width} height={height} className="rounded" />
 }
 
 export default PFP

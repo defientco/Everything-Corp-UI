@@ -1,13 +1,22 @@
 import Link from "next/link"
-import { useEnsName } from "wagmi"
+import { useEffect, useState } from "react"
+import retryGetEns from "../../lib/retryGetEns"
 import truncateEthAddress from "../../lib/truncateEthAddress"
-import PFP from "../PFP/PFP"
+import PFP from "../PFP"
 
 const LeaderboardRow = ({ address, numberOwned, rank, twitterHandle }) => {
-  const { data: ensName } = useEnsName({
-    address,
-    chainId: 1,
-  })
+  const [ensName, setEnsName] = useState(null as string)
+
+  useEffect(() => {
+    const init = async () => {
+      const ensRecord = await retryGetEns(address)
+      if (!ensRecord?.title) return
+      setEnsName(ensRecord?.title)
+    }
+
+    if (!address) return
+    init()
+  }, [address])
 
   return (
     <tr key={address} className="bg-gray-100  hover:bg-blue-300">
