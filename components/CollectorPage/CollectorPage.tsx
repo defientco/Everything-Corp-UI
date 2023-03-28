@@ -9,7 +9,7 @@ import truncateEthAddress from "../../lib/truncateEthAddress"
 import PFP from "../PFP/PFP"
 import getAnniversary from "../../lib/getAnniversary"
 import epochToReadableDate from "../../lib/epochToReadableDate"
-import getParticipants from "../../lib/getParticipants"
+import getTwitterHandle from "../../lib/getTwitterHandle"
 
 const NUMBER_OF_TOKENS = "0"
 
@@ -37,13 +37,8 @@ function CollectorPage() {
       const epoch = await getAnniversary(collectorId as string)
       const readable = epochToReadableDate(epoch)
       setAnniversary(readable)
-      const participants = await getParticipants()
-      console.log("participants", participants)
-      console.log(
-        "participants[(collectorId as string).toLowerCase()]",
-        participants[(collectorId as string).toLowerCase()],
-      )
-      setTwitter(participants[(collectorId as string).toLowerCase()])
+      const handle = await getTwitterHandle(collectorId as string)
+      setTwitter(handle)
     }
 
     init()
