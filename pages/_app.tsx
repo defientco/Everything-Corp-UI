@@ -2,9 +2,8 @@ import "../styles/globals.css"
 import "@rainbow-me/rainbowkit/styles.css"
 import type { AppProps } from "next/app"
 import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit"
-import { allChains, chain, configureChains, createClient, WagmiConfig } from "wagmi"
+import { allChains, configureChains, createClient, WagmiConfig } from "wagmi"
 import { publicProvider } from "wagmi/providers/public"
-import { alchemyProvider } from "wagmi/providers/alchemy"
 import { ToastContainer } from "react-toastify"
 import { SessionProvider } from "next-auth/react"
 import "react-toastify/dist/ReactToastify.css"
@@ -12,21 +11,12 @@ import { Cre8orsProvider } from "../providers/Crea8orsProvider"
 import { UserProvider } from "../providers/UserProvider"
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [
-    chain.mainnet,
-    ...allChains.filter(
-      (c) =>
-        c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
-        c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
-    ),
-  ],
-  [
-    alchemyProvider({
-      apiKey: "0jEGdrOL9bPX8YEcylQIuYm6cgObvmHo",
-      priority: 0,
-    }),
-    publicProvider(),
-  ],
+  allChains.filter(
+    (c) =>
+      c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
+      c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
+  ),
+  [publicProvider()],
 )
 
 const { connectors } = getDefaultWallets({
