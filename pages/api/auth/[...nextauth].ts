@@ -71,9 +71,26 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
     // async signIn({ user, account, profile, email, credentials }) { return true },
-    // async redirect({ url, baseUrl }) { return baseUrl },
-    // async session({ session, token, user }) { return session },
-    // async jwt({ token, user, account, profile, isNewUser }) { return token }
+    // async redirect({ url, baseUrl }) {
+    //   return baseUrl
+    // },
+    async session({ session, token }) {
+      const userSession: any = session
+      userSession.accessToken = token.accessToken
+      userSession.user.id = token.id
+      userSession.user.handle = token.handle
+      return userSession
+    },
+    async jwt({ token, account, profile }) {
+      const userToken: any = token
+      const userProfile: any = profile
+      if (account) {
+        userToken.accessToken = account.access_token
+        userToken.id = userProfile.id
+        userToken.handle = userProfile.screen_name
+      }
+      return token
+    },
   },
 
   // Events are useful for logging

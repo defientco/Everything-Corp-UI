@@ -13,7 +13,7 @@ import { Button } from "../../shared/Button"
 function ConnectPage() {
   const { address } = useAccount()
   const { data: session } = useSession()
-
+  console.log(session)
   useEffect(() => {
     const checkRegistered = async () => {
       const registered = await isAddressRegistered(address)
@@ -42,7 +42,7 @@ function ConnectPage() {
   }, [session, address])
 
   return (
-    <div className="mt-3 flex flex-col">
+    <div className="flex flex-col mt-3">
       {address && <NavBar />}
       <div className="flex flex-col items-center justify-around text-white pt-10 h-[75vh]">
         <span>
