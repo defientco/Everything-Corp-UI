@@ -2,8 +2,8 @@ import getParticipants from "./getParticipants"
 
 const isAddressRegistered = async (address: string) => {
   const data = await getParticipants()
-  const addresses = data.map((participant) => participant.walletAddress)
-  return addresses.includes(address)
+  const twitterHandle = data[address.toLowerCase()]
+  return Boolean(twitterHandle)
 }
 
 export default isAddressRegistered

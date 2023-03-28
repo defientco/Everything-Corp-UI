@@ -14,19 +14,11 @@ const LeaderboardPage = () => {
     const fetchTopCollectors = async () => {
       const { ownerAddresses } = await getOwnersForCollection()
       const newCollectors = _.orderBy(ownerAddresses, ["tokenBalances[0].balance"], ["desc"])
-      const participants = await getParticipants()
+      const addressToTwitter = await getParticipants()
       const mappedData = newCollectors.map((collector) => ({
         walletAddress: collector.ownerAddress,
         nftsOwned: collector.tokenBalances[0].balance,
       }))
-      const addressToTwitter = _.reduce(
-        participants,
-        (acc, { walletAddress, twitterHandle }) => ({
-          ...acc,
-          [walletAddress.toLowerCase()]: twitterHandle,
-        }),
-        {},
-      )
       const tableData = mappedData.map((item) => ({
         ...item,
         twitterHandle: addressToTwitter[item.walletAddress.toString()],
