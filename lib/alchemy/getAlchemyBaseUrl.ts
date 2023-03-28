@@ -1,10 +1,13 @@
+const ETH = "https://eth-mainnet.g.alchemy.com/"
+const GOERLI = "https://eth-goerli.g.alchemy.com/"
 const getAlchemyBaseUrl = (chainId: number) => {
   if (chainId === 1) {
-    return "https://eth-mainnet.g.alchemy.com/"
+    return ETH
   }
   if (chainId === 5) {
-    return "https://eth-goerli.g.alchemy.com/"
+    return GOERLI
   }
+  return ETH
 }
 
-export default getAlchemyBaseUrl;
+export default getAlchemyBaseUrl
