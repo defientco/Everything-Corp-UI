@@ -13,12 +13,12 @@ import { UserProvider } from "../providers/UserProvider"
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
+    chain.mainnet,
     ...allChains.filter(
       (c) =>
         c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
         c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
     ),
-    chain.mainnet,
   ],
   [
     alchemyProvider({
