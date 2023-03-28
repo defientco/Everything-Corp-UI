@@ -7,6 +7,8 @@ import ImageCard from "./ImageCard"
 import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewards"
 import truncateEthAddress from "../../lib/truncateEthAddress"
 import PFP from "../PFP/PFP"
+import getAnniversary from "../../lib/getAnniversary"
+import epochToReadableDate from "../../lib/epochToReadableDate"
 
 const NUMBER_OF_TOKENS = "0"
 
@@ -14,6 +16,7 @@ function CollectorPage() {
   const router = useRouter()
   const { collectorId } = router.query
   const [balance, setBalance] = useState(NUMBER_OF_TOKENS)
+  const [anniversary, setAnniversary] = useState(null as string)
   const { data: ensName } = useEnsName({
     address: (collectorId as any) || "0x0",
     chainId: 1,
@@ -29,6 +32,9 @@ function CollectorPage() {
       const response = await balanceOfParticipationRewards(collectorId as string)
       if (response.error) return
       setBalance(response.toString())
+      const epoch = await getAnniversary(collectorId as string)
+      const readable = epochToReadableDate(epoch)
+      setAnniversary(readable)
     }
 
     init()
@@ -44,6 +50,7 @@ function CollectorPage() {
             <button onClick={handleCopyClick} type="button">
               {ensName || truncateEthAddress(collectorId as string)}
             </button>
+            {anniversary && <div className="text-sm">Joined {anniversary}</div>}
           </div>
         </div>
         {BigNumber.from(balance).gt(0) && (
