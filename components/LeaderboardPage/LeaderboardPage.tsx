@@ -1,5 +1,6 @@
 import Link from "next/link"
 import React, { useState, useEffect } from "react"
+import * as _ from "lodash"
 import getOwnersForCollection from "../../lib/alchemy/getOwnersForCollection"
 import getParticipants from "../../lib/getParticipants"
 import { Button } from "../../shared/Button"
@@ -8,28 +9,28 @@ import LeaderboardRow from "./LeaderboardRow"
 const LeaderboardPage = () => {
   const [collectors, setCollectors] = useState([])
 
-  const sortCollectors = (array) =>
-    array.sort((a, b) => b.tokenBalances[0].balance - a.tokenBalances[0].balance)
-
-  const findIndex = (array, targetValue) =>
-    array.findIndex((item) => item.ownerAddress === targetValue)
-
   useEffect(() => {
     const fetchTopCollectors = async () => {
       const { ownerAddresses } = await getOwnersForCollection()
-      const newCollectors = sortCollectors(ownerAddresses)
+      const newCollectors = _.orderBy(ownerAddresses, ["tokenBalances[0].balance"], ["desc"])
       const participants = await getParticipants()
-      for (let i = 0; i < participants.length; i += 1) {
-        const participant = participants[i]
-        const index = findIndex(newCollectors, participant.walletAddress.toLowerCase())
-        if (index !== -1) {
-          newCollectors[index] = {
-            ...newCollectors[index],
-            twitterHandle: participant.twitterHandle,
-          }
-        }
-      }
-      setCollectors(newCollectors)
+      const mappedData = newCollectors.map((collector) => ({
+        walletAddress: collector.ownerAddress,
+        nftsOwned: collector.tokenBalances[0].balance,
+      }))
+      const addressToTwitter = _.reduce(
+        participants,
+        (acc, { walletAddress, twitterHandle }) => ({
+          ...acc,
+          [walletAddress.toLowerCase()]: twitterHandle,
+        }),
+        {},
+      )
+      const tableData = mappedData.map((item) => ({
+        ...item,
+        twitterHandle: addressToTwitter[item.walletAddress.toString()],
+      }))
+      setCollectors(tableData)
     }
 
     fetchTopCollectors()
@@ -55,9 +56,9 @@ const LeaderboardPage = () => {
         <tbody>
           {collectors.map((collector, index) => (
             <LeaderboardRow
-              key={collector.ownerAddress}
-              address={collector.ownerAddress}
-              numberOwned={collector.tokenBalances[0].balance}
+              key={collector.walletAddress}
+              address={collector.walletAddress}
+              numberOwned={collector.nftsOwned}
               twitterHandle={collector.twitterHandle}
               rank={index + 1}
             />
