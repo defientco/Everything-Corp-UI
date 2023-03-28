@@ -9,6 +9,7 @@ import truncateEthAddress from "../../lib/truncateEthAddress"
 import PFP from "../PFP/PFP"
 import getAnniversary from "../../lib/getAnniversary"
 import epochToReadableDate from "../../lib/epochToReadableDate"
+import getParticipants from "../../lib/getParticipants"
 
 const NUMBER_OF_TOKENS = "0"
 
@@ -17,6 +18,7 @@ function CollectorPage() {
   const { collectorId } = router.query
   const [balance, setBalance] = useState(NUMBER_OF_TOKENS)
   const [anniversary, setAnniversary] = useState(null as string)
+  const [twitter, setTwitter] = useState(null as string)
   const { data: ensName } = useEnsName({
     address: (collectorId as any) || "0x0",
     chainId: 1,
@@ -35,6 +37,13 @@ function CollectorPage() {
       const epoch = await getAnniversary(collectorId as string)
       const readable = epochToReadableDate(epoch)
       setAnniversary(readable)
+      const participants = await getParticipants()
+      console.log("participants", participants)
+      console.log(
+        "participants[(collectorId as string).toLowerCase()]",
+        participants[(collectorId as string).toLowerCase()],
+      )
+      setTwitter(participants[(collectorId as string).toLowerCase()])
     }
 
     init()
@@ -51,6 +60,7 @@ function CollectorPage() {
               {ensName || truncateEthAddress(collectorId as string)}
             </button>
             {anniversary && <div className="text-sm">Joined {anniversary}</div>}
+            {twitter && <div className="text-sm">Twitter: {twitter}</div>}
           </div>
         </div>
         {BigNumber.from(balance).gt(0) && (
