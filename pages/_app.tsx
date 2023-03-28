@@ -5,6 +5,7 @@ import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit"
 import { allChains, configureChains, createClient, WagmiConfig } from "wagmi"
 import { publicProvider } from "wagmi/providers/public"
 import { ToastContainer } from "react-toastify"
+import { SessionProvider } from "next-auth/react"
 import "react-toastify/dist/ReactToastify.css"
 import { Cre8orsProvider } from "../providers/Crea8orsProvider"
 import { UserProvider } from "../providers/UserProvider"
@@ -34,12 +35,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider modalSize="compact" chains={chains}>
-        <UserProvider>
-          <Cre8orsProvider>
-            <Component {...pageProps} />
-            <ToastContainer />
-          </Cre8orsProvider>
-        </UserProvider>
+        <SessionProvider>
+          <UserProvider>
+            <Cre8orsProvider>
+              <Component {...pageProps} />
+              <ToastContainer />
+            </Cre8orsProvider>
+          </UserProvider>
+        </SessionProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   )
