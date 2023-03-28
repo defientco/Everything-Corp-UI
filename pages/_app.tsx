@@ -2,7 +2,7 @@ import "../styles/globals.css"
 import "@rainbow-me/rainbowkit/styles.css"
 import type { AppProps } from "next/app"
 import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit"
-import { allChains, configureChains, createClient, WagmiConfig } from "wagmi"
+import { allChains, chain, configureChains, createClient, WagmiConfig } from "wagmi"
 import { publicProvider } from "wagmi/providers/public"
 import { ToastContainer } from "react-toastify"
 import { SessionProvider } from "next-auth/react"
@@ -11,16 +11,19 @@ import { Cre8orsProvider } from "../providers/Crea8orsProvider"
 import { UserProvider } from "../providers/UserProvider"
 
 const { chains, provider, webSocketProvider } = configureChains(
-  allChains.filter(
-    (c) =>
-      c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
-      c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
-  ),
+  [
+    ...allChains.filter(
+      (c) =>
+        c.id === Number(process.env.NEXT_PUBLIC_CHAIN_ID) ||
+        c.id === Number(process.env.NEXT_PUBLIC_ALLOW_LIST_CHAIN_ID),
+    ),
+    chain.mainnet,
+  ],
   [publicProvider()],
 )
 
 const { connectors } = getDefaultWallets({
-  appName: "RainbowKit App",
+  appName: "CRE8ORS",
   chains,
 })
 
