@@ -1,7 +1,6 @@
 const SCALAR = 1000
 
 const epochToReadableDate = (epochSeconds: number) => {
-    console.log("epochToReadableDate", epochSeconds)
   const date = new Date(epochSeconds * SCALAR)
 
   const day = date.getDate()
