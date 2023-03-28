@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { BigNumber } from "ethers"
 import { useRouter } from "next/router"
-import { useEnsAvatar, useEnsName } from "wagmi"
+import { useEnsName } from "wagmi"
+import { toast } from "react-toastify"
 import ImageCard from "./ImageCard"
 import balanceOfParticipationRewards from "../../lib/balanceOfParticipationRewards"
 import truncateEthAddress from "../../lib/truncateEthAddress"
-import Image from "next/image"
+import PFP from "../PFP/PFP"
 
 const NUMBER_OF_TOKENS = "0"
 
@@ -17,10 +18,11 @@ function CollectorPage() {
     address: (collectorId as any) || "0x0",
     chainId: 1,
   })
-  const { data: ensAvatar } = useEnsAvatar({
-    address: (collectorId as any) || "0x0",
-    chainId: 1,
-  })
+
+  const handleCopyClick = async () => {
+    await navigator.clipboard.writeText(collectorId as string)
+    toast.success("copied to clipboard!")
+  }
 
   useEffect(() => {
     const init = async () => {
@@ -31,25 +33,17 @@ function CollectorPage() {
 
     init()
   }, [collectorId])
-  console.log("collectorId", collectorId)
-  console.log("ensName", ensName)
-  console.log("ensAvatar", ensAvatar)
 
   return (
     <div className="mt-3 flex flex-col">
       <div className="flex flex-col items-center justify-around text-4xl text-white pt-10 h-[75vh]">
         <div className="flex items-center gap-11">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={ensAvatar || "/logo-cre8ors.png"}
-            alt="pfp"
-            width={100}
-            height={100}
-            className="rounded"
-          />
+          <PFP address={(collectorId as string) || "0x0"} />
           <div>
             <div>CRE8OR Profile</div>
-            <div>{ensName || truncateEthAddress(collectorId as string)}</div>
+            <button onClick={handleCopyClick} type="button">
+              {ensName || truncateEthAddress(collectorId as string)}
+            </button>
           </div>
         </div>
         {BigNumber.from(balance).gt(0) && (
