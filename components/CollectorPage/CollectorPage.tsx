@@ -16,7 +16,7 @@ const NUMBER_OF_TOKENS = "0"
 function CollectorPage() {
   const router = useRouter()
   const { collectorId } = router.query
-  const collectorIdAsString = collectorId.toString()
+  const collectorIdAsString = collectorId as string
   const [balance, setBalance] = useState(NUMBER_OF_TOKENS)
   const [anniversary, setAnniversary] = useState(null as string)
   const [twitter, setTwitter] = useState(null as string)
