@@ -7,6 +7,7 @@ import Header from "../components/Header"
 import HoverImageChange from "../components/HoverImageChange"
 import Footer from "../components/Footer"
 import Contact from "../components/Contact"
+import customLoader from "../lib/customLoader"
 
 const Home: NextPage = () => {
   const Cards = [
@@ -69,6 +70,7 @@ const Home: NextPage = () => {
           layout="responsive"
           width={1920}
           height={1080}
+          loader={customLoader}
         />
       </div>
       <div className="flex flex-col items-center justify-around gap-4 m-8 cursor-auto lg:md:flex-row">
@@ -105,13 +107,14 @@ const Home: NextPage = () => {
                 height={489}
                 alt={card.alt}
                 key={card.title}
+                loader={customLoader}
               />
             </Link>
           </div>
         ))}
       </div>
       <div className="relative w-full lg:h-[2144px] h-[100vh]">
-        <Image src="/about_us.png" layout="fill" alt="aboutUs" id="about" />
+        <Image src="/about_us.png" layout="fill" alt="aboutUs" id="about" loader={customLoader} />
       </div>
       <Contact />
       <Footer />

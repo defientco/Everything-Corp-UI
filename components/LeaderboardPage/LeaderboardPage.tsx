@@ -5,6 +5,7 @@ import getOwnersForCollection from "../../lib/alchemy/getOwnersForCollection"
 import getParticipants from "../../lib/getParticipants"
 import { Button } from "../../shared/Button"
 import LeaderboardRow from "./LeaderboardRow"
+import SkeletonTableBody from "./SkeletonTableBody"
 
 const LeaderboardPage = () => {
   const [collectors, setCollectors] = useState([])
@@ -13,19 +14,11 @@ const LeaderboardPage = () => {
     const fetchTopCollectors = async () => {
       const { ownerAddresses } = await getOwnersForCollection()
       const newCollectors = _.orderBy(ownerAddresses, ["tokenBalances[0].balance"], ["desc"])
-      const participants = await getParticipants()
+      const addressToTwitter = await getParticipants()
       const mappedData = newCollectors.map((collector) => ({
         walletAddress: collector.ownerAddress,
         nftsOwned: collector.tokenBalances[0].balance,
       }))
-      const addressToTwitter = _.reduce(
-        participants,
-        (acc, { walletAddress, twitterHandle }) => ({
-          ...acc,
-          [walletAddress.toLowerCase()]: twitterHandle,
-        }),
-        {},
-      )
       const tableData = mappedData.map((item) => ({
         ...item,
         twitterHandle: addressToTwitter[item.walletAddress.toString()],
@@ -37,7 +30,7 @@ const LeaderboardPage = () => {
   }, [])
 
   return (
-    <div className="w-full max-w-2xl mx-auto font-sans pt-11">
+    <div className="w-full max-w-2xl mx-auto pt-11">
       <div className="flex justify-end mr-3">
         <Link href="/connect">
           <Button>Connect</Button>
@@ -53,17 +46,21 @@ const LeaderboardPage = () => {
             <th className="px-4 py-2 text-left border-b">Twitter</th>
           </tr>
         </thead>
-        <tbody>
-          {collectors.map((collector, index) => (
-            <LeaderboardRow
-              key={collector.walletAddress}
-              address={collector.walletAddress}
-              numberOwned={collector.nftsOwned}
-              twitterHandle={collector.twitterHandle}
-              rank={index + 1}
-            />
-          ))}
-        </tbody>
+        {collectors.length > 0 ? (
+          <tbody>
+            {collectors.map((collector, index) => (
+              <LeaderboardRow
+                key={collector.walletAddress}
+                address={collector.walletAddress}
+                numberOwned={collector.nftsOwned}
+                twitterHandle={collector.twitterHandle}
+                rank={index + 1}
+              />
+            ))}
+          </tbody>
+        ) : (
+          <SkeletonTableBody />
+        )}
       </table>
     </div>
   )

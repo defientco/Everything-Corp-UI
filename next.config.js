@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["nftstorage.link"],
+    domains: [],
+    loader: "custom",
+    path: "/",
+    loaderFile: "./lib/customLoader",
   },
 }
 

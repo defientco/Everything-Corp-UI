@@ -4,6 +4,7 @@ import { toast } from "react-toastify"
 import { allChains, useNetwork, useSigner, useSwitchNetwork } from "wagmi"
 import getIpfsLink from "../../lib/getIpfsLink"
 import { processStaking } from "../../lib/staking"
+import customLoader from "../../lib/customLoader"
 
 const StakingCard = ({ token, stakedTokens, onSuccess, nftContract }) => {
   const myTokenId = parseInt(token.id.tokenId, 16)
@@ -54,7 +55,14 @@ const StakingCard = ({ token, stakedTokens, onSuccess, nftContract }) => {
           {isStaked ? "Unstake" : "Stake"}
 
           <span className="px-4">
-            <Image src={imageUrl || "/cre8ors.png"} alt="" layout="fixed" width={20} height={25} />
+            <Image
+              src={imageUrl || "/cre8ors.png"}
+              alt=""
+              layout="fixed"
+              width={20}
+              height={25}
+              loader={customLoader}
+            />
           </span>
         </button>
       </div>

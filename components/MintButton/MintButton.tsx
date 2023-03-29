@@ -6,6 +6,7 @@ import Confetti from "react-confetti"
 import { ContractInterface } from "ethers/lib/ethers"
 import purchase from "../../lib/purchase"
 import useWindowSize from "../../lib/useWindowSize"
+import customLoader from "../../lib/customLoader"
 
 interface MintButtonProps {
   contractAddress: string
@@ -77,7 +78,13 @@ const MintButton: FC<MintButtonProps> = ({ contractAddress, abi }) => {
                   className={className}
                 >
                   {loading ? (
-                    <Image src="/spinner.gif" alt="spinner" width={50} height={50} />
+                    <Image
+                      src="/spinner.gif"
+                      alt="spinner"
+                      width={50}
+                      height={50}
+                      loader={customLoader}
+                    />
                   ) : (
                     "Mint"
                   )}

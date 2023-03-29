@@ -1,12 +1,20 @@
 import Image from "next/image"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import customLoader from "../../lib/customLoader"
 
 const Careers = () => (
   <div className="h-full overflow-y-auto text-white">
     <Header />
     <div className="object-fill w-full h-full mt-36">
-      <Image src="/careers.png" layout="responsive" width={1332} height={492} alt="careers" />
+      <Image
+        src="/careers.png"
+        layout="responsive"
+        width={1332}
+        height={492}
+        alt="careers"
+        loader={customLoader}
+      />
     </div>
     <div className="flex flex-col mx-4 my-4 space-y-8 text-lg lg:md:mx-32 lg:md:my-16 lg:md:text-4xl font-aldrich">
       <p>
@@ -62,6 +70,7 @@ const Careers = () => (
         width={1332}
         height={492}
         alt="careers"
+        loader={customLoader}
       />
     </div>
     <Footer />

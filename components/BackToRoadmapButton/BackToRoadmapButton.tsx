@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { RoadmapScreens } from "../../lib/enums"
+import customLoader from "../../lib/customLoader"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 
 const BackToRoadmapButton = ({ textColor = "" }) => {
@@ -20,6 +21,7 @@ const BackToRoadmapButton = ({ textColor = "" }) => {
           width="30px"
           alt="logo"
           className="border-r border-gray-400 h-full"
+          loader={customLoader}
         />
       </div>
       &larr; Back to Roadmap

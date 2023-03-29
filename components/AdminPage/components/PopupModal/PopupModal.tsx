@@ -1,4 +1,5 @@
 import Image from "next/image"
+import customLoader from "../../../../lib/customLoader"
 
 const PopupModal = ({ open }: { open: boolean }) =>
   open && (
@@ -7,7 +8,14 @@ const PopupModal = ({ open }: { open: boolean }) =>
 
       <div className="fixed inset-0 z-10 overflow-y-auto">
         <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0 rounded-2xl">
-          <Image src="/spinner.gif" alt="potion" width={800} height={800} className="rounded-2xl" />
+          <Image
+            src="/spinner.gif"
+            alt="potion"
+            width={800}
+            height={800}
+            className="rounded-2xl"
+            loader={customLoader}
+          />
         </div>
       </div>
     </div>
