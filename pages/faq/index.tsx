@@ -2,7 +2,7 @@ import Image from "next/image"
 import Contact from "../../components/Contact"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 const FAQ = () => (
   <div className="relative z-0 w-full h-screen">

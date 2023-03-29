@@ -7,7 +7,7 @@ import Header from "../components/Header"
 import HoverImageChange from "../components/HoverImageChange"
 import Footer from "../components/Footer"
 import Contact from "../components/Contact"
-import { customLoader } from "../next.config"
+import customLoader from "../lib/customLoader"
 
 const Home: NextPage = () => {
   const Cards = [

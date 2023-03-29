@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { RoadmapScreens } from "../../lib/enums"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 import { useCre8orsProvider } from "../../providers/Crea8orsProvider"
 
 const BackToRoadmapButton = ({ textColor = "" }) => {

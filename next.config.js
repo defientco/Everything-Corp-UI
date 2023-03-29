@@ -1,5 +1,3 @@
-const customLoader = ({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -7,9 +5,8 @@ const nextConfig = {
     domains: [],
     loader: "custom",
     path: "/",
-    customLoader,
+    loaderFile: "./lib/customLoader",
   },
-  customLoader,
 }
 
 module.exports = nextConfig

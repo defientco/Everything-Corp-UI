@@ -1,6 +1,6 @@
 import { useState, FC } from "react"
 import Image from "next/image"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 interface HoverImageChangeProps {
   alt: string

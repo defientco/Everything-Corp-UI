@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { customLoader } from "../../../../next.config"
+import customLoader from "../../../../lib/customLoader"
 
 const PopupModal = ({ open }: { open: boolean }) =>
   open && (

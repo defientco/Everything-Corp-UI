@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 const Footer = () => (
   <footer className="m-4 bg-none">

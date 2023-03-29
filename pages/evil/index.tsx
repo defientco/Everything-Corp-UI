@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 const Evil = () => (
   <div className="h-full overflow-y-auto text-white">

@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 import { allChains, useNetwork, useSigner, useSwitchNetwork } from "wagmi"
 import getIpfsLink from "../../lib/getIpfsLink"
 import { processStaking } from "../../lib/staking"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 const StakingCard = ({ token, stakedTokens, onSuccess, nftContract }) => {
   const myTokenId = parseInt(token.id.tokenId, 16)

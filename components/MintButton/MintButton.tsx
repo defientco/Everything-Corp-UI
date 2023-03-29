@@ -6,7 +6,7 @@ import Confetti from "react-confetti"
 import { ContractInterface } from "ethers/lib/ethers"
 import purchase from "../../lib/purchase"
 import useWindowSize from "../../lib/useWindowSize"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 interface MintButtonProps {
   contractAddress: string

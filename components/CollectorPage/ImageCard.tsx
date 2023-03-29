@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 const ImageCard = ({ imageUrl, title }) => (
   <div className="bg-white shadow-md rounded-lg overflow-hidden">

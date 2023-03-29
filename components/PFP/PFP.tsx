@@ -2,7 +2,7 @@ import axios from "axios"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import retryGetEns from "../../lib/retryGetEns"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 /* eslint-disable @next/next/no-img-element */
 const PFP = ({ address, width = 100, height = 100 }: any) => {

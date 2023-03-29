@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FC } from "react"
-import { customLoader } from "../../next.config"
+import customLoader from "../../lib/customLoader"
 
 interface HeaderProps {
   contactHref?: string
