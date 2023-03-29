@@ -55,7 +55,11 @@ function CollectorPage() {
               {ens?.title || truncateEthAddress(collectorIdAsString)}
             </button>
             {anniversary && <div className="text-sm">Joined {anniversary}</div>}
-            {twitter && <div className="text-sm">Twitter: {twitter}</div>}
+            {twitter && (
+              <a href={`https://twitter.com/${twitter}`} target="_blank" rel="noreferrer">
+                <div className="text-sm">Twitter: {twitter}</div>
+              </a>
+            )}
           </div>
         </div>
         {BigNumber.from(balance).gt(0) && (

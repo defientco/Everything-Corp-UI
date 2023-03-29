@@ -28,7 +28,11 @@ const LeaderboardRow = ({ address, numberOwned, rank, twitterHandle }) => {
           {ensName || truncateEthAddress(address)}
         </Link>
       </td>
-      <td className="px-4 py-2 border-b">{twitterHandle}</td>
+      <td className="px-4 py-2 border-b">
+        <a href={`https://twitter.com/${twitterHandle}`} target="_blank" rel="noreferrer">
+          {twitterHandle}
+        </a>
+      </td>
     </tr>
   )
 }
