@@ -1,6 +1,26 @@
-import NextAuth from "next-auth"
+import NextAuth, { Profile, Session } from "next-auth"
+import { JWT } from "next-auth/jwt"
 import TwitterProvider from "next-auth/providers/twitter"
 
+interface IUserToken extends JWT {
+  accessToken?: string
+  id?: string
+  handle?: string
+}
+interface IUserSession extends Session {
+  accessToken?: string
+  user?: {
+    name?: string
+    email?: string
+    image?: string
+    id?: string
+    handle?: string
+  }
+}
+interface IUserProfile extends Profile {
+  id?: string
+  screen_name?: string
+}
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 export default NextAuth({
@@ -71,9 +91,26 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
     // async signIn({ user, account, profile, email, credentials }) { return true },
-    // async redirect({ url, baseUrl }) { return baseUrl },
-    // async session({ session, token, user }) { return session },
-    // async jwt({ token, user, account, profile, isNewUser }) { return token }
+    // async redirect({ url, baseUrl }) {
+    //   return baseUrl
+    // },
+    async session({ session, token }) {
+      const userSession: IUserSession = session
+      userSession.accessToken = token.accessToken as string
+      userSession.user.id = token.id as string
+      userSession.user.handle = token.handle as string
+      return userSession
+    },
+    async jwt({ token, account, profile }) {
+      const userToken: IUserToken = token
+      const userProfile: IUserProfile = profile
+      if (account) {
+        userToken.accessToken = account.access_token
+        userToken.id = userProfile.id
+        userToken.handle = userProfile.screen_name
+      }
+      return token
+    },
   },
 
   // Events are useful for logging

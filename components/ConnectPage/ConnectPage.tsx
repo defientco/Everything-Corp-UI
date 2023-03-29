@@ -12,7 +12,7 @@ import { Button } from "../../shared/Button"
 
 function ConnectPage() {
   const { address } = useAccount()
-  const { data: session } = useSession()
+  const { data: session }: any = useSession()
 
   useEffect(() => {
     const checkRegistered = async () => {
@@ -27,7 +27,7 @@ function ConnectPage() {
         "/api/participants/addNewRecord",
         {
           walletAddress: address,
-          twitterHandle: session.user.name,
+          twitterHandle: session.user.handle,
         },
         {
           headers: {
@@ -42,7 +42,7 @@ function ConnectPage() {
   }, [session, address])
 
   return (
-    <div className="mt-3 flex flex-col">
+    <div className="flex flex-col mt-3">
       {address && <NavBar />}
       <div className="flex flex-col items-center justify-around text-white pt-10 h-[75vh]">
         <span>
