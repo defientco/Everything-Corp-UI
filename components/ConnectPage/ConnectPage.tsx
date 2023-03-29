@@ -12,8 +12,8 @@ import { Button } from "../../shared/Button"
 
 function ConnectPage() {
   const { address } = useAccount()
-  const { data: session } = useSession()
-  console.log(session)
+  const { data: session }: any = useSession()
+
   useEffect(() => {
     const checkRegistered = async () => {
       const registered = await isAddressRegistered(address)
@@ -27,7 +27,7 @@ function ConnectPage() {
         "/api/participants/addNewRecord",
         {
           walletAddress: address,
-          twitterHandle: session.user.name,
+          twitterHandle: session.user.handle,
         },
         {
           headers: {
