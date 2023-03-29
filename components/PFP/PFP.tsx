@@ -1,6 +1,8 @@
 import axios from "axios"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import retryGetEns from "../../lib/retryGetEns"
+import { customLoader } from "../../next.config"
 
 /* eslint-disable @next/next/no-img-element */
 const PFP = ({ address, width = 100, height = 100 }: any) => {
@@ -23,7 +25,16 @@ const PFP = ({ address, width = 100, height = 100 }: any) => {
     init()
   }, [address])
 
-  return <img src={avatar} alt="pfp" width={width} height={height} className="rounded" />
+  return (
+    <Image
+      src={avatar}
+      alt="pfp"
+      width={width}
+      height={height}
+      className="rounded"
+      loader={customLoader}
+    />
+  )
 }
 
 export default PFP

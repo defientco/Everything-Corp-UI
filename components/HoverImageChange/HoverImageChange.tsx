@@ -1,5 +1,6 @@
 import { useState, FC } from "react"
 import Image from "next/image"
+import { customLoader } from "../../next.config"
 
 interface HoverImageChangeProps {
   alt: string
@@ -22,7 +23,13 @@ const HoverImageChange: FC<HoverImageChangeProps> = ({
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setHovered(true)}
     >
-      <Image src={hovered ? hoveredSrc : regSrc} width={width} height={height} alt={alt} />
+      <Image
+        src={hovered ? hoveredSrc : regSrc}
+        width={width}
+        height={height}
+        alt={alt}
+        loader={customLoader}
+      />
     </div>
   )
 }

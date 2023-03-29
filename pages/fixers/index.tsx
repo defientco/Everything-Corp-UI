@@ -1,12 +1,20 @@
 import Image from "next/image"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import { customLoader } from "../../next.config"
 
 const Fixers = () => (
   <div className="h-full overflow-y-auto text-white">
     <Header />
     <div className="object-fill w-full h-full mt-36">
-      <Image src="/fixers.png" layout="responsive" width={1332} height={492} alt="careers" />
+      <Image
+        src="/fixers.png"
+        layout="responsive"
+        width={1332}
+        height={492}
+        alt="careers"
+        loader={customLoader}
+      />
     </div>
     <div className="flex flex-col mx-4 my-4 space-y-8 text-lg indent-8 lg:md:mx-48 lg:md:my-16 lg:md:text-4xl font-aldrich">
       <p>
@@ -36,6 +44,7 @@ const Fixers = () => (
         width={1332}
         height={492}
         alt="fixers2"
+        loader={customLoader}
       />
     </div>
     <Footer />

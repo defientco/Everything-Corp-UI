@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { customLoader } from "../../next.config"
 
 const ImageCard = ({ imageUrl, title }) => (
   <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -10,6 +11,7 @@ const ImageCard = ({ imageUrl, title }) => (
         objectFit="cover"
         objectPosition="center"
         className="rounded-t-lg"
+        loader={customLoader}
       />
     </div>
     <div className="p-4">

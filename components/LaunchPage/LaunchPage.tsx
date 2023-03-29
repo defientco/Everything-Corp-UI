@@ -1,11 +1,12 @@
 import Image from "next/image"
+import { customLoader } from "../../next.config"
 
 const LaunchPage = (props: any) => {
   const { onClick } = props
 
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-3">
-      <Image src="/logo.png" height="100" width="150" alt="logo" />
+      <Image src="/logo.png" height="100" width="150" alt="logo" loader={customLoader} />
       <div>CRE8ORS x ChillRx</div>
       <button
         type="button"

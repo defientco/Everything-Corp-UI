@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FC } from "react"
+import { customLoader } from "../../next.config"
 
 interface HeaderProps {
   contactHref?: string
@@ -16,6 +17,7 @@ const Header: FC<HeaderProps> = ({ contactHref, aboutHref }) => (
           width={175}
           height={50}
           className="cursor-pointer"
+          loader={customLoader}
         />
       </Link>
     </span>
