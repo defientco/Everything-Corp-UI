@@ -77,13 +77,13 @@ const Hacked = () => (
     <div className="absolute inset-0 z-20 w-full h-[calc(100%+550px)] lg:md:h-[calc(100%+1050px)] lg:md:top-[calc(100%+5955px)] top-[calc(100%+1315px)]">
       <Image src="/hacked6.png" loader={customLoader} layout="fill" alt="hacked" />
     </div>
-    <div className="absolute inset-0 z-20 h-[400px] w-[350px] lg:md:ml-[calc(25%+100px)] mt-12 min-w-none min-h-none max-w-none max-h-none lg:md:top-[calc(100%+8155px)] top-[calc(100%+2125px)]">
+    <div className="absolute inset-0 z-20 h-[400px] w-[350px] lg:md:ml-[calc(25%+100px)] mt-12 min-w-none min-h-none max-w-none max-h-none lg:md:top-[calc(100%+8155px)] top-[calc(100vh+1625px)]">
       <Image src="/hacked_contact1.png" loader={customLoader} layout="fill" alt="hacked" />
     </div>
-    <div className="absolute inset-0 z-20 h-[750px] lg:md:w-[800px] w-[350px] lg:md:ml-[calc(25%+30px)] mt-12 min-w-none min-h-none max-w-none max-h-none lg:md:top-[calc(100%+8475px)] top-[calc(100%+2525px)]">
+    <div className="absolute inset-0 z-20 h-[750px] lg:md:w-[800px] w-[350px] lg:md:ml-[calc(25%+30px)] mt-12 min-w-none min-h-none max-w-none max-h-none lg:md:top-[calc(100%+8475px)] top-[calc(100vh+2025px)]">
       <Image src="/hacked_contact2.png" loader={customLoader} layout="fill" alt="hacked" />
     </div>
-    <div className="absolute inset-0 z-20 h-[500px]  lg:md:w-[750px] w-[350px] lg:md:ml-[calc(25%+100px)] lg:md:mt-12 min-w-none min-h-none max-w-none max-h-none lg:md:top-[calc(100%+8055px)] top-[calc(100%+2075px)]">
+    <div className="absolute inset-0 z-20 h-[500px]  lg:md:w-[750px] w-[350px] lg:md:ml-[calc(25%+100px)] lg:md:mt-12 min-w-none min-h-none max-w-none max-h-none lg:md:top-[calc(100%+8055px)] top-[calc(100vh+1555px)]">
       <Image src="/hacked_contact3.png" loader={customLoader} layout="fill" alt="hacked" />
     </div>
   </>
