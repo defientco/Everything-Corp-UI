@@ -8,6 +8,7 @@ import HoverImageChange from "../components/HoverImageChange"
 import Footer from "../components/Footer"
 import Contact from "../components/Contact"
 import customLoader from "../lib/customLoader"
+import Hacked from "../components/Hacked"
 
 const Home: NextPage = () => {
   const Cards = [
@@ -63,61 +64,66 @@ const Home: NextPage = () => {
     <div className="h-full overflow-y-auto text-white bg-black">
       <SeoHead title="Evil Corp" description="Evil Corp" image="/evclogoIcon.png" />
       <Header />
-      <div className="relative w-full h-full mt-24">
-        <Image
-          src="/LANDINGPAGE_BACKGROUND.png"
-          alt="EVC Logo"
-          layout="responsive"
-          width={1920}
-          height={1080}
-          loader={customLoader}
-        />
-      </div>
-      <div className="flex flex-col items-center justify-around gap-4 m-8 cursor-auto lg:md:flex-row">
-        <HoverImageChange
-          hoveredSrc="/PHOTO_RESTORATION_HOVER.png"
-          regSrc="/PHOTO_RESTORATION.png"
-          width={398}
-          height={389}
-          alt="restoration"
-        />
-        <HoverImageChange
-          hoveredSrc="/PHOTO_UBIQUITY_HOVER.png"
-          regSrc="/PHOTO_UBIQUITY.png"
-          width={398}
-          height={389}
-          alt="ubiquity"
-        />
-        <HoverImageChange
-          hoveredSrc="/PHOTO_NEUTRALITY_HOVER.png"
-          regSrc="/PHOTO_NEUTRALITY.png"
-          width={398}
-          height={389}
-          alt="ubiquity"
-        />
-      </div>
-      <div className="flex flex-col items-center justify-around gap-4 m-4 cursor-pointer">
-        {Cards.map((card) => (
-          <div className="w-full h-full" key={card.title}>
-            <Link href={card.link || "#"} scroll={!!card.link}>
-              <Image
-                src={card.image}
-                layout="responsive"
-                width={1398}
-                height={489}
-                alt={card.alt}
-                key={card.title}
-                loader={customLoader}
-              />
-            </Link>
+      <div className="relative ">
+        <div className="relative">
+          <div className="z-0 w-full h-full mt-24">
+            <Image
+              src="/LANDINGPAGE_BACKGROUND.png"
+              alt="EVC Logo"
+              layout="responsive"
+              width={1920}
+              height={1080}
+              loader={customLoader}
+            />
           </div>
-        ))}
+          <Hacked />
+        </div>
+        <div className="flex flex-row items-center justify-around gap-4 m-8 cursor-auto">
+          <HoverImageChange
+            hoveredSrc="/PHOTO_RESTORATION_HOVER.png"
+            regSrc="/PHOTO_RESTORATION.png"
+            width={398}
+            height={389}
+            alt="restoration"
+          />
+          <HoverImageChange
+            hoveredSrc="/PHOTO_UBIQUITY_HOVER.png"
+            regSrc="/PHOTO_UBIQUITY.png"
+            width={398}
+            height={389}
+            alt="ubiquity"
+          />
+          <HoverImageChange
+            hoveredSrc="/PHOTO_NEUTRALITY_HOVER.png"
+            regSrc="/PHOTO_NEUTRALITY.png"
+            width={398}
+            height={389}
+            alt="ubiquity"
+          />
+        </div>
+        <div className="flex flex-col items-center justify-around gap-4 m-4 cursor-pointer">
+          {Cards.map((card) => (
+            <div className="w-full h-full" key={card.title}>
+              <Link href={card.link || "#"} scroll={!!card.link}>
+                <Image
+                  src={card.image}
+                  layout="responsive"
+                  width={1398}
+                  height={489}
+                  alt={card.alt}
+                  key={card.title}
+                  loader={customLoader}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div className="relative w-full lg:h-[2144px] h-[100vh]">
+          <Image src="/about_us.png" layout="fill" alt="aboutUs" id="about" loader={customLoader} />
+        </div>
+        <Contact />
+        <Footer />
       </div>
-      <div className="relative w-full lg:h-[2144px] h-[100vh]">
-        <Image src="/about_us.png" layout="fill" alt="aboutUs" id="about" loader={customLoader} />
-      </div>
-      <Contact />
-      <Footer />
     </div>
   )
 }
