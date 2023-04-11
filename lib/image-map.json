@@ -2,7 +2,7 @@
   "name": "cre8ors-map",
   "areas": [
     {
-      "id": "469f9800-c45a-483f-b13e-bd24f3fb79f4",
+      "id": "469f9800-c45a-483f-b13e-bd24f3fb79f1",
       "title": "color_red",
       "shape": "circle",
       "name": "1",
@@ -11,7 +11,7 @@
       "coords": [229, 174, 56]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c662",
       "title": "runway",
       "shape": "circle",
       "name": "2",
@@ -20,7 +20,7 @@
       "coords": [504, 1167, 126]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c663",
       "title": "coins",
       "shape": "circle",
       "name": "3",
@@ -29,7 +29,7 @@
       "coords": [1114, 1171, 70]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c664",
       "title": "color_and_sound",
       "shape": "circle",
       "name": "4",
@@ -38,7 +38,7 @@
       "coords": [1856, 670, 21]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c665",
       "title": "colors_of_jobs",
       "shape": "circle",
       "name": "5",
@@ -47,7 +47,7 @@
       "coords": [1475, 176, 25]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c666",
       "title": "decree",
       "shape": "circle",
       "name": "6",
@@ -56,7 +56,7 @@
       "coords": [2110, 200, 26]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c667",
       "title": "dna",
       "shape": "circle",
       "name": "7",
@@ -65,7 +65,7 @@
       "coords": [934, 668, 35]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c668",
       "title": "evil",
       "shape": "circle",
       "name": "8",
@@ -74,7 +74,7 @@
       "coords": [188, 495, 34]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c669",
       "title": "fixer",
       "shape": "circle",
       "name": "9",
@@ -83,7 +83,7 @@
       "coords": [1300, 1115, 21]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6610",
       "title": "journal",
       "shape": "circle",
       "name": "10",
@@ -92,7 +92,7 @@
       "coords": [2123, 1023, 24]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6611",
       "title": "quiz",
       "shape": "circle",
       "name": "11",
@@ -101,7 +101,7 @@
       "coords": [1988, 767, 30]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6612",
       "title": "run",
       "shape": "circle",
       "name": "12",
@@ -110,7 +110,7 @@
       "coords": [844, 951, 33]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6613",
       "title": "soot",
       "shape": "circle",
       "name": "13",
