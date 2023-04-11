@@ -7,9 +7,8 @@ const ImageModal = ({ imageUrl, showModal, setShowModal }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log("event.target", event.target)
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setShowModal(!showModal)
+        setShowModal(false)
       }
     }
 
@@ -18,7 +17,7 @@ const ImageModal = ({ imageUrl, showModal, setShowModal }) => {
     return () => {
       window.removeEventListener("mousedown", handleClickOutside)
     }
-  }, [modalRef, setShowModal, showModal])
+  }, [modalRef, setShowModal])
   return (
     showModal && (
       <div className="fixed inset-0 z-10 mt-24 overflow-y-auto">
