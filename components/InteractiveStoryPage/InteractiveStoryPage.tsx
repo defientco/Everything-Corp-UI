@@ -27,7 +27,6 @@ const InteractiveStoryPage = () => {
 
   const handleClick = (area, index, e) => {
     e.preventDefault()
-    console.log(area)
     setImgUrl(PointsToUrl[area.name])
     setShowModal(true)
   }
