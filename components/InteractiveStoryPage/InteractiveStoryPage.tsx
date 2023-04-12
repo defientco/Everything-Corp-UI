@@ -5,6 +5,7 @@ import useWindowSize from "../../lib/useWindowSize"
 import map from "../../lib/image-map.json"
 import ImageModal from "../ImageModal"
 import Header from "../Header"
+import Audio from "../Audio"
 
 const PointsToUrl = {
   1: "/color_red2.png",
@@ -82,6 +83,7 @@ const InteractiveStoryPage = () => {
     <>
       <Header />
       <div className="flex justify-center mt-24">
+        <Audio src="/map_bgm.mp3" />
         <ImageMapper
           src={baseImgUrl}
           map={map}
