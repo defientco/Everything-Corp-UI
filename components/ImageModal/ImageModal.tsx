@@ -1,30 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-
-import { useEffect, useRef } from "react"
+import Image from "next/image"
+import customLoader from "../../lib/customLoader"
 
 const ImageModal = ({ imageUrl, showModal, setShowModal }) => {
-  const modalRef = useRef(null)
+  const handleClick = () => {
+    setShowModal(false)
+  }
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setShowModal(false)
-      }
-    }
-
-    window.addEventListener("mousedown", handleClickOutside)
-
-    return () => {
-      window.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [modalRef, setShowModal])
   return (
     showModal && (
-      <div className="fixed inset-0 z-10 mt-24 overflow-y-auto">
-        <div className="flex items-center justify-center w-full min-h-screen px-4">
-          <div className="relative w-full max-w-xl mx-auto overflow-hidden rounded-lg shadow-lg max-h-2xl bg-none">
-            <img src={imageUrl} alt="Modal" className="object-contain w-full" ref={modalRef} />
-          </div>
+      <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="flex items-center justify-center min-h-screen px-4 mx-auto mt-24">
+          <Image
+            src={imageUrl}
+            alt="Modal"
+            width={900}
+            height={900}
+            loader={customLoader}
+            onClick={handleClick}
+          />
         </div>
       </div>
     )

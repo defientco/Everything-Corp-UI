@@ -50,7 +50,6 @@ const InteractiveStoryPage = () => {
 
   const handleMouseEnter = (area, index, e) => {
     e.preventDefault()
-    console.log("enter", area.name)
     setBaseImgUrl(hoverPointsToUrl[area.name])
   }
 
