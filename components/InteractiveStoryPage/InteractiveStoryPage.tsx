@@ -12,12 +12,12 @@ const PointsToUrl = {
   4: "/color_and_sound2.png",
   5: "/colors_of_jobs2.png",
   6: "/decree2.png",
-  7: "/dna2.png",
+  7: "/DNA2.png",
   8: "/EVIL2.png",
   9: "/fixers_pic2.png",
   10: "/journal1.png",
   11: "/quiz2.png",
-  12: "/run2.png",
+  12: "/RUN2.png",
   13: "/soot2.png",
 }
 const InteractiveStoryPage = () => {
