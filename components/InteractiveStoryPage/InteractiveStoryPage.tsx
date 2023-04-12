@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ImageMapper from "react-img-mapper"
+import Router from "next/router"
 import useWindowSize from "../../lib/useWindowSize"
 import map from "../../lib/image-map.json"
 import ImageModal from "../ImageModal"
@@ -41,7 +42,7 @@ const InteractiveStoryPage = () => {
   const [imgUrl, setImgUrl] = useState("")
   const [baseImgUrl, setBaseImgUrl] = useState("/storytelling_ui.png")
   const { width, height } = useWindowSize()
-
+  const [reload, setReload] = useState(false)
   const handleClick = (area, index, e) => {
     e.preventDefault()
     setImgUrl(PointsToUrl[area.name])
@@ -57,6 +58,26 @@ const InteractiveStoryPage = () => {
     e.preventDefault()
     setBaseImgUrl("/storytelling_ui.png")
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const mapCoordsInfinity = document
+        .getElementsByTagName("map")[0]
+        .areas[0]?.attributes[1]?.nodeValue?.toString()
+        .includes("Infinity")
+
+      if (mapCoordsInfinity || mapCoordsInfinity === undefined) {
+        setReload(true)
+      }
+    }, 1000)
+    return () => !reload && clearInterval(interval)
+  }, [reload])
+
+  useEffect(() => {
+    if (reload) {
+      Router.reload()
+    }
+  }, [reload])
   return (
     <>
       <Header />
