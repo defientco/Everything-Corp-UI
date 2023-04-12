@@ -8,7 +8,7 @@
       "name": "1",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [229, 174, 56]
+      "coords": [229, 174, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c662",
@@ -26,7 +26,7 @@
       "name": "3",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [1114, 1171, 70]
+      "coords": [1114, 1171, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c664",
@@ -35,7 +35,7 @@
       "name": "4",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [1856, 670, 21]
+      "coords": [1856, 670, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c665",
@@ -44,7 +44,7 @@
       "name": "5",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [1475, 176, 25]
+      "coords": [1475, 176, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c666",
@@ -53,7 +53,7 @@
       "name": "6",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [2110, 200, 26]
+      "coords": [2110, 200, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c667",
@@ -62,7 +62,7 @@
       "name": "7",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [934, 668, 35]
+      "coords": [934, 668, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c668",
@@ -71,7 +71,7 @@
       "name": "8",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [188, 495, 34]
+      "coords": [188, 495, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c669",
@@ -80,7 +80,7 @@
       "name": "9",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [1300, 1115, 21]
+      "coords": [1300, 1115, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6610",
@@ -89,7 +89,7 @@
       "name": "10",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [2123, 1023, 24]
+      "coords": [2123, 1023, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6611",
@@ -98,7 +98,7 @@
       "name": "11",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [1988, 767, 30]
+      "coords": [1988, 767, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6612",
@@ -107,7 +107,7 @@
       "name": "12",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [844, 951, 33]
+      "coords": [844, 951, 126]
     },
     {
       "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6613",
@@ -116,7 +116,7 @@
       "name": "13",
       "fillColor": "#eab54d4d",
       "strokeColor": "black",
-      "coords": [825, 1263, 24]
+      "coords": [825, 1263, 126]
     }
   ]
 }

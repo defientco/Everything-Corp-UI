@@ -20,9 +20,26 @@ const PointsToUrl = {
   12: "/RUN2.png",
   13: "/soot2.png",
 }
+
+const hoverPointsToUrl = {
+  1: "/hover_highlights/color_red.png",
+  2: "/hover_highlights/codes.png",
+  3: "/hover_highlights/coins.png",
+  4: "/hover_highlights/color_and_sound.png",
+  5: "/hover_highlights/colors_of_jobs.png",
+  6: "/hover_highlights/decree.png",
+  7: "/hover_highlights/DNA.png",
+  8: "/hover_highlights/EVIL.png",
+  9: "/hover_highlights/fixers_pic.png",
+  10: "/hover_highlights/journal.png",
+  11: "/hover_highlights/quiz.png",
+  12: "/hover_highlights/RUN.png",
+  13: "/hover_highlights/soot.png",
+}
 const InteractiveStoryPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [imgUrl, setImgUrl] = useState("")
+  const [baseImgUrl, setBaseImgUrl] = useState("/storytelling_ui.png")
   const { width, height } = useWindowSize()
 
   const handleClick = (area, index, e) => {
@@ -31,14 +48,26 @@ const InteractiveStoryPage = () => {
     setShowModal(true)
   }
 
+  const handleMouseEnter = (area, index, e) => {
+    e.preventDefault()
+    console.log("enter", area.name)
+    setBaseImgUrl(hoverPointsToUrl[area.name])
+  }
+
+  const handleMouseLeave = (area, index, e) => {
+    e.preventDefault()
+    setBaseImgUrl("/storytelling_ui.png")
+  }
   return (
     <>
       <Header />
       <div className="flex justify-center mt-24">
         <ImageMapper
-          src="/storytelling_ui.png"
+          src={baseImgUrl}
           map={map}
           onClick={(area, index, e) => handleClick(area, index, e)}
+          onMouseEnter={(area, index, e) => handleMouseEnter(area, index, e)}
+          onMouseLeave={(area, index, e) => handleMouseLeave(area, index, e)}
           responsive
           height={height}
           parentWidth={width}
