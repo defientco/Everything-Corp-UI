@@ -11,10 +11,7 @@ const FAQ = () => (
       <div className="absolute w-full h-2/3 z-2">
         <img
           src="/landing2.png"
-          layout="fill"
           alt="landing2"
-          objectFit="cover"
-          loader={customLoader}
         />
       </div>
 
