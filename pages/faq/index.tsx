@@ -1,15 +1,15 @@
-import Image from "next/image"
-import Contact from "../../components/Contact"
-import Footer from "../../components/Footer"
-import Header from "../../components/Header"
-import customLoader from "../../lib/customLoader"
+import Contact from "../../components/Contact";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import customLoader from "../../lib/customLoader";
+
 
 const FAQ = () => (
   <div className="relative z-0 w-full h-screen">
     <Header contactHref="#contact" />
     <div className="relative w-full z-1">
       <div className="absolute w-full h-2/3 z-2">
-        <Image
+        <img
           src="/landing2.png"
           layout="fill"
           alt="landing2"
@@ -17,6 +17,23 @@ const FAQ = () => (
           loader={customLoader}
         />
       </div>
+
+      {/* Add the hacked images */}
+      <div className="absolute top-0 left-0 z-10 flex flex-col space-y-4">
+        <img
+          src="/hacked/hackedImage1.png"
+          alt="Hacked Image 1"
+        />
+        <img
+          src="/hacked/hackedImage2.png"
+          alt="Hacked Image 2"
+        />
+        <img
+          src="/hacked/hackedImage3.png"
+          alt="Hacked Image 3"
+        />
+  </div>
+
       <div className="relative flex flex-col items-center justify-center space-y-16 text-lg text-left text-white lg:md:text-4xl pt-72 z-3 font-aldrich lg:md:mx-48">
         <h1 className="p-8 bg-black border-4 border-white rounded-md font-regular">
           Frequently Asked Questions
