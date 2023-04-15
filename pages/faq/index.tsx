@@ -12,12 +12,13 @@ const FAQ = () => (
       </div>
 
       {/* Add the hacked images */}
-      <div className="absolute top-0 left-0 z-10 flex flex-col space-y-4">
-        <img src="/hacked/hackedImage1.png" alt="Hacked  1" />
-        <img src="/hacked/hackedImage2.png" alt="Hacked  2" />
-        <img src="/hacked/hackedImage3.png" alt="Hacked  3" />
+      <div className="absolute top-1/4 left-1/2 z-10 flex flex-col space-y-4 transform -translate-x-1/2">
+        <img src="/hacked/hackedImage1.png" alt="Hacked 1" />
+        <img src="/hacked/hackedImage2.png" alt="Hacked 2" />
       </div>
-
+      {/* Move hackedImage3.png to fit the contact form */}
+      <img className="absolute bottom-[-0.5] left-1/2 z-10 mb-20 transform -translate-x-1/2" src="/hacked/hackedImage3.png" alt="Hacked 3" />
+      
       <div className="relative flex flex-col items-center justify-center space-y-16 text-lg text-left text-white lg:md:text-4xl pt-72 z-3 font-aldrich lg:md:mx-48">
         <h1 className="p-8 bg-black border-4 border-white rounded-md font-regular">
           Frequently Asked Questions
