@@ -21,7 +21,7 @@ type ITableDatum = {
   status: "Review" | "Accepted" | "Rejected"
 }
 type ITableData = Array<ITableDatum>
-const ApplicantsPage = () => {
+const AdminPage = () => {
   const { data: signer } = useSigner({ chainId: 80001 })
   const { user } = useUserProvider()
   const [data, setData] = useState([])
@@ -127,7 +127,7 @@ const ApplicantsPage = () => {
 
   return (
     user?.issuer && (
-      <div className="flex flex-wrap h-screen bg-gray-100 text-white-900" id="applicants">
+      <div className="flex flex-wrap h-screen bg-gray-100 text-white-900">
         <main className="min-w-full px-4 pt-4 mx-auto sm:px-6 lg:px-8">
           <div className="">
             <h1 className="text-xl font-semibold">Current Allowlist Applicants</h1>
@@ -205,4 +205,4 @@ const ApplicantsPage = () => {
     )
   )
 }
-export default ApplicantsPage
+export default AdminPage
