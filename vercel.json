@@ -6,7 +6,7 @@
     },
     {
       "path": "/api/twitter/getTweets",
-      "schedule": "0 3 */3 * *"
+      "schedule": "0 4 * * *"
     }
   ]
 }
