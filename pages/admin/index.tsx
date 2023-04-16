@@ -1,18 +1,10 @@
-import { useState } from "react"
-import ApplicantsPage from "../../components/ApplicantsPage"
+import AdminPage from "../../components/AdminPage"
 import Auth from "../../components/Auth"
-import Dashboard from "../../components/Dashboard"
-import TwitterDashboard from "../../components/TwitterDashboard"
 
-const Admin = () => {
-  const [screens, setScreens] = useState("applicants")
-  return (
-    <Auth url="/admin">
-      <Dashboard setScreens={setScreens}>
-        {screens === "applicants" && <ApplicantsPage />}
-        {screens === "twitter" && <TwitterDashboard />}
-      </Dashboard>
-    </Auth>
-  )
-}
+const Admin = () => (
+  <Auth url="/admin">
+    <AdminPage />
+  </Auth>
+)
+
 export default Admin
