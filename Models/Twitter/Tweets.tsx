@@ -4,6 +4,7 @@ interface Tweets {
   tweetID: string
   likes: string[]
   retweets: string[]
+  lastProcessed?: Date
 }
 const TweetsSchema = new Schema<Tweets>({
   tweetID: {
@@ -17,6 +18,10 @@ const TweetsSchema = new Schema<Tweets>({
   retweets: {
     type: [String],
     required: [true, "Please add array of retweets"],
+  },
+  lastProcessed: {
+    type: Date,
+    required: [false, "Please add a last processed timestamp"],
   },
 })
 
