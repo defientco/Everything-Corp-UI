@@ -26,7 +26,7 @@ class Twitter {
       }))
       const result = await addToSpaces(dbData)
       await Promise.all(
-        spacesIds.map((spaceId) => updateSpacesStatus({ id: spaceId, status: true })),
+        spacesIds.map((spaceId) => updateSpacesStatus({ id: spaceId, processed: true })),
       )
 
       return result
