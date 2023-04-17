@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 import { createHandler, Get } from "next-api-decorators"
 import { TwitterApi } from "twitter-api-v2"
+import log from "loglevel"
 import { addLikesAndRetweets } from "../../../../helpers/twitter.db"
 import { getAllLikes, getAllRetweets } from "../../../../helpers/twitterHelperFx"
 
@@ -21,7 +22,10 @@ class Tweets {
         end_time: untilDate,
         max_results: count,
       })
-      if (tweets.meta.result_count === 0) return { message: "No tweets found in last 24 hours" }
+      if (tweets.meta.result_count === 0) {
+        log.info("No tweets found in last 24 hours")
+        return { message: "No tweets found in last 24 hours" }
+      }
       const tweetIDs = tweets.data.data.map((tweet) => tweet.id)
       const likes = await Promise.all(
         tweetIDs.map(async (tweetID) => ({
@@ -42,6 +46,7 @@ class Tweets {
       const result = await addLikesAndRetweets(returnData)
       return result
     } catch (err) {
+      log.error(err)
       return { err }
     }
   }

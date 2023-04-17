@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable class-methods-use-this */
 import { createHandler, Get } from "next-api-decorators"
+import log from "loglevel"
 import { getTweetIDsFromDB, addLikesAndRetweets } from "../../../../helpers/twitter.db"
 import { getAllLikes, getAllRetweets } from "../../../../helpers/twitterHelperFx"
 
@@ -10,7 +11,10 @@ class ProcessNewTweets {
     try {
       const tweets = await getTweetIDsFromDB()
       const tweetIDs = tweets.map((tweet) => tweet.tweetID)
-      if (!tweetIDs.length) return { err: "No tweets found to process" }
+      if (!tweetIDs.length) {
+        log.info("No tweets found to process")
+        return { err: "No tweets found to process" }
+      }
       const likes = await Promise.all(
         tweetIDs.map(async (tweetID) => ({
           [tweetID]: await getAllLikes(tweetID),
