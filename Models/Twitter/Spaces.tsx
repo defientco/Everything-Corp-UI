@@ -3,6 +3,7 @@ import { Schema, model, models, Model } from "mongoose"
 interface Spaces {
   spaceId: string
   speakers: string[]
+  participants: string[]
 }
 const SpacesSchema = new Schema<Spaces>({
   spaceId: {
@@ -11,7 +12,11 @@ const SpacesSchema = new Schema<Spaces>({
   },
   speakers: {
     type: [String],
-    required: [true, "Please add array of speakers"],
+    required: [false, "Please add array of speakers"],
+  },
+  participants: {
+    type: [String],
+    required: [false, "Please add array of listeners"],
   },
 })
 
