@@ -21,7 +21,7 @@ const FAQ = () => (
       
       <div className="relative flex flex-col items-center justify-center space-y-16 text-lg text-left text-white lg:md:text-4xl pt-72 z-3 font-aldrich lg:md:mx-48">
         <h1 className="p-8 bg-black border-4 border-white rounded-md font-regular">
-          Frequently Asked Questions
+          Frequently Asked Question
         </h1>
 
         <div className="p-4 mx-8 bg-black border-4 border-white rounded-md font-regular">
