@@ -10,15 +10,15 @@
     },
     {
       "path": "/api/twitter/getScheduledSpaces",
-      "schedule": "0 * */15 * *"
+      "schedule": "0 */15 * * *"
     },
     {
       "path": "/api/twitter/addSpacesData",
-      "schedule": "0 * */15 * *"
+      "schedule": "0 */15 * * *"
     },
     {
       "path": "/api/twitter/getListeners",
-      "schedule": "0 * */15 * *"
+      "schedule": "0 */5 * * *"
     }
   ]
 }
