@@ -10,6 +10,7 @@ const parseLikes = (likes) => {
   const returnData: Array<string> = data.data.map((like) => like.id)
   return returnData
 }
+export const getFutureSpaces = async () => readOnly.v2.spacesByCreators("1214757469785747457")
 const parseRetweets = (retweets) => {
   const { data } = retweets
   const returnData: Array<string> = data.data.map((retweet) => retweet.id)
