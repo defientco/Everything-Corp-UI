@@ -5,7 +5,7 @@ import Tweets from "../Models/Twitter/Tweets"
 export const addToSpaces = async (body: any) => {
   const updateOps = body.map((item: any) => ({
     updateOne: {
-      filter: { spaceID: item.spaceID },
+      filter: { spaceId: item.spaceID },
       update: { $set: item },
       upsert: true,
     },
