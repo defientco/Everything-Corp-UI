@@ -9,15 +9,14 @@ logger.setDefaultLevel("info")
 export const updateSpacesSchedule = async (docs: any) => {
   try {
     await dbConnect()
-    const results = await Promise.all(
-      docs.map(async (item: any) =>
-        SpacesSchedule.updateOne(
-          { spaceId: item.id },
-          { $set: { status: item.status } },
-          { upsert: true },
-        ),
+    const resultPromises = docs.map((doc: any) =>
+      SpacesSchedule.updateOne(
+        { spaceId: doc.spaceId },
+        { $set: { status: doc.status } },
+        { upsert: true },
       ),
     )
+    const results = await Promise.all(resultPromises)
     return { sucess: true, results }
   } catch (error) {
     logger.error(error)
