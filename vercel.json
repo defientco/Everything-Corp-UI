@@ -18,7 +18,7 @@
     },
     {
       "path": "/api/twitter/getListeners",
-      "schedule": "*/5 10-22 * * 1-5"
+      "schedule": "*/5 9-13,18-21 * * 1-5"
     }
   ]
 }
