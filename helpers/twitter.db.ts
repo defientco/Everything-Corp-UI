@@ -6,15 +6,15 @@ import SpacesSchedule from "../Models/Twitter/SpacesSchedule"
 
 const logger = log.getLogger("TwitterDB")
 logger.setDefaultLevel("info")
-export const updateSpacesSchedule = async (body: any) => {
+export const updateSpacesSchedule = async (docs: any) => {
   try {
     await dbConnect()
     const results = await Promise.all(
-      body.map(async (item: any) =>
-        SpacesSchedule.findOneAndUpdate(
+      docs.map(async (item: any) =>
+        SpacesSchedule.updateOne(
           { spaceId: item.id },
-          { $set: { status: item.status, spaceId: item.id } },
-          { upsert: true, new: true },
+          { $set: { status: item.status } },
+          { upsert: true },
         ),
       ),
     )
