@@ -1,8 +1,11 @@
+import * as log from "loglevel"
 import dbConnect from "../utils/db"
 import Spaces from "../Models/Twitter/Spaces"
 import Tweets from "../Models/Twitter/Tweets"
 import SpacesSchedule from "../Models/Twitter/SpacesSchedule"
 
+const logger = log.getLogger("TwitterDB")
+logger.setDefaultLevel("info")
 export const updateSpacesSchedule = async (body: any) => {
   try {
     await dbConnect()
@@ -17,6 +20,7 @@ export const updateSpacesSchedule = async (body: any) => {
     )
     return { sucess: true, results }
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -30,6 +34,7 @@ export const updateSpacesStatus = async (body) => {
     )
     return { sucess: true, result }
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -39,6 +44,7 @@ export const getSpacesSchedule = async () => {
     const result = await SpacesSchedule.find({ status: "live" }).lean()
     return result
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -52,6 +58,7 @@ export const getUnProcessedSpaces = async () => {
     }).lean()
     return result
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -68,6 +75,7 @@ export const addToSpaces = async (body: any) => {
     const result = await Spaces.bulkWrite(updateOps)
     return { sucess: true, result }
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -77,6 +85,7 @@ export const getSpacesInfo = async (spaceId: string) => {
     const result = await Spaces.find({ spaceId })
     return result
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -86,6 +95,7 @@ export const getCountOfSpacesAsSpeaker = async (speakerId: string) => {
     const result = await Spaces.countDocuments({ speakers: speakerId })
     return result
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -97,6 +107,7 @@ export const getLikesAndRetweetCountFromDB = async (tweetId: string) => {
     const retweets = await Tweets.countDocuments({ retweets: tweetId })
     return { likes, retweets }
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -112,6 +123,7 @@ export const getTweetIDsFromDB = async () => {
     const result = await Tweets.find(query).lean()
     return result
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
@@ -128,6 +140,7 @@ export const addLikesAndRetweets = async (body: any) => {
     const result = await Tweets.bulkWrite(updateOps)
     return { sucess: true, result }
   } catch (error) {
+    logger.error(error)
     throw new Error(error)
   }
 }
