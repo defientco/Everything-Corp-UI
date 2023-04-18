@@ -10,9 +10,11 @@ import {
   updateSpacesStatus,
 } from "../../../../helpers/twitter.db"
 
+log.setLevel("info")
 class GetListeners {
   @Get()
   async test() {
+    log.info("Getting listeners")
     const docs = await getSpacesSchedule()
     if (docs.length === 0) {
       log.info("No Live spaces ongoing")

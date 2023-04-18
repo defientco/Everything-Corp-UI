@@ -7,7 +7,7 @@ export const updateSpacesSchedule = async (body: any) => {
   const updateOps = body.map((item: any) => ({
     updateOne: {
       filter: { spaceId: item.id },
-      update: { $set: item },
+      update: { $set: { status: item.status } },
       upsert: true,
     },
   }))
