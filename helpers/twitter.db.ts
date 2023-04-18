@@ -5,10 +5,11 @@ import SpacesSchedule from "../Models/Twitter/SpacesSchedule"
 
 export const updateSpacesSchedule = async (body: any) => {
   const updateOps = body.map((item: any) => ({
-    updateOne: {
+    findOneAndUpdate: {
       filter: { spaceId: item.id },
       update: { $set: { status: item.status } },
       upsert: true,
+      new: true,
     },
   }))
   try {
