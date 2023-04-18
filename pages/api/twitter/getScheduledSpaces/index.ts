@@ -11,12 +11,19 @@ class GetSpacesSchedule {
   async getSpacesSchedule() {
     logger.info("Updating spaces schedule")
     const { data } = await getFutureSpaces()
+    logger.info("Got spaces schedule", data)
     const updateData = data.map((space) => ({
       spaceId: space.id,
       status: space.state,
     }))
-    const result = await updateSpacesSchedule(updateData)
-    return result
+    try {
+      const result = await updateSpacesSchedule(updateData)
+      logger.info("Updated spaces schedule", result)
+      return result
+    } catch (e) {
+      logger.error("Error updating spaces schedule", e)
+      return e
+    }
   }
 }
 

@@ -21,7 +21,7 @@ export const updateSpacesSchedule = async (body: any) => {
     return { sucess: true, results }
   } catch (error) {
     logger.error(error)
-    throw new Error(error)
+    return error
   }
 }
 
