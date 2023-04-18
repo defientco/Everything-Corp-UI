@@ -4,18 +4,18 @@ import Tweets from "../Models/Twitter/Tweets"
 import SpacesSchedule from "../Models/Twitter/SpacesSchedule"
 
 export const updateSpacesSchedule = async (body: any) => {
-  const updateOps = body.map((item: any) => ({
-    findOneAndUpdate: {
-      filter: { spaceId: item.id },
-      update: { $set: { status: item.status } },
-      upsert: true,
-      new: true,
-    },
-  }))
   try {
     await dbConnect()
-    const result = await SpacesSchedule.bulkWrite(updateOps)
-    return { sucess: true, result }
+    const results = await Promise.all(
+      body.map(async (item: any) =>
+        SpacesSchedule.findOneAndUpdate(
+          { spaceId: item.id },
+          { $set: { status: item.status } },
+          { upsert: true, new: true },
+        ),
+      ),
+    )
+    return { sucess: true, results }
   } catch (error) {
     throw new Error(error)
   }
@@ -24,7 +24,10 @@ export const updateSpacesSchedule = async (body: any) => {
 export const updateSpacesStatus = async (body) => {
   try {
     await dbConnect()
-    const result = await SpacesSchedule.updateOne({ spaceId: body.id }, { $set: body })
+    const result = await SpacesSchedule.updateOne(
+      { spaceId: body.id },
+      { $set: { status: body.status } },
+    )
     return { sucess: true, result }
   } catch (error) {
     throw new Error(error)
