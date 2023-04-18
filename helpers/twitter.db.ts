@@ -13,7 +13,7 @@ export const updateSpacesSchedule = async (body: any) => {
       body.map(async (item: any) =>
         SpacesSchedule.findOneAndUpdate(
           { spaceId: item.id },
-          { $set: { status: item.status } },
+          { $set: { status: item.status, spaceId: item.id } },
           { upsert: true, new: true },
         ),
       ),
