@@ -29,7 +29,7 @@ export const updateSpacesStatus = async (body) => {
     await dbConnect()
     const result = await SpacesSchedule.updateOne(
       { spaceId: body.id },
-      { $set: { status: body.status } },
+      { $set: { processed: body.processed } },
     )
     return { sucess: true, result }
   } catch (error) {
@@ -65,7 +65,7 @@ export const addToSpaces = async (body: any) => {
   const updateOps = body.map((item: any) => ({
     updateOne: {
       filter: { spaceId: item.spaceID },
-      update: { $set: item },
+      update: { $set: { speakers: item.speakers } },
       upsert: true,
     },
   }))
