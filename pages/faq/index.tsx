@@ -10,17 +10,17 @@ const FAQ = () => (
     <div className="absolute w-full z-10 flex flex-col justify-center items-center ">
       <img
         src="/hacked/hackedImage1.png"
-        className="w-[700px] md:w-[1100px] absolute top-[440px] md:top-[480px]"
+        className="w-[700px] md:w-[1100px] absolute top-[300px] md:top-[500px]"
         alt="Hacked 1"
       />
       <img
         src="/hacked/hackedImage2.png"
-        className="w-[560px] md:w-[1050px] absolute top-[1000px] md:top-[1450px]"
+        className="w-[560px] md:w-[1050px] absolute top-[800px] md:top-[1450px]"
         alt="Hacked 2"
       />
       <img 
         src="/hacked/hackedImage3.png" 
-        className="absolute md:top-[300px] top-[1300px]"
+        className="absolute md:top-[300px] top-[1150px]"
         alt="Hacked 3" />
     </div>
 
