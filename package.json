@@ -28,7 +28,11 @@
     "ethers": "^5.0.0",
     "express": "^4.18.2",
     "framer-motion": "^9.0.2",
+<<<<<<< HEAD
     "magic-sdk": "^16.2.0",
+=======
+    "loglevel": "^1.8.1",
+>>>>>>> a3ad70eadab0bf34424d4581ff83e50e161ebf4f
     "mongodb": "^4.12.1",
     "mongoose": "^6.8.0",
     "next": "^12.2.2",
@@ -40,6 +44,8 @@
     "react-img-mapper": "^1.5.0",
     "react-table": "^7.8.0",
     "react-toastify": "^9.1.1",
+    "twitter-api-v2": "^1.14.2",
+    "twspaces": "^1.3.1",
     "wagmi": "^0.8.10"
   },
   "devDependencies": {

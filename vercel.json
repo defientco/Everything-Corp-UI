@@ -1,0 +1,24 @@
+{
+  "crons": [
+    {
+      "path": "/api/twitter/processDailyTweets",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/twitter/getTweets",
+      "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/twitter/getScheduledSpaces",
+      "schedule": "*/15 10-22 * * *"
+    },
+    {
+      "path": "/api/twitter/addSpacesData",
+      "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/twitter/getListeners",
+      "schedule": "*/5 9-13,18-21 * * 1-5"
+    }
+  ]
+}
