@@ -1,16 +1,17 @@
 /* eslint-disable class-methods-use-this */
 import { createHandler, Get } from "next-api-decorators"
 import { TwitterApi } from "twitter-api-v2"
-import log from "loglevel"
 import {
   addToSpaces,
   getUnProcessedSpaces,
   updateSpacesStatus,
 } from "../../../../helpers/twitter.db"
 
+const getLogger = require("../../../../utils/db/getLogger.ts")
+
 const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN)
 const { readOnly } = client
-
+const log = getLogger("Add Spaces Data")
 class Twitter {
   @Get()
   async getTweets() {
@@ -31,9 +32,10 @@ class Twitter {
         speakers: space.speaker_ids || [],
       }))
       const result = await addToSpaces(dbData)
-      await Promise.all(
-        spacesIds.map((spaceId) => updateSpacesStatus({ id: spaceId, processed: true })),
+      const promises = spacesIds.map(async (spaceId) =>
+        updateSpacesStatus({ spaceId, processed: true }),
       )
+      await Promise.all(promises)
       return result
     } catch (e) {
       log.error(e)

@@ -1,11 +1,10 @@
 /* eslint-disable class-methods-use-this */
 import { createHandler, Get } from "next-api-decorators"
-import * as log from "loglevel"
 import { updateSpacesSchedule } from "../../../../helpers/twitter.db"
 import { getFutureSpaces } from "../../../../helpers/twitterHelperFx"
+import getLogger from "../../../../utils/getLogger"
 
-const logger = log.getLogger("GetSpacesSchedule")
-logger.setDefaultLevel("info")
+const logger = getLogger("Get Spaces Schedule")
 class GetSpacesSchedule {
   @Get()
   async getSpacesSchedule() {

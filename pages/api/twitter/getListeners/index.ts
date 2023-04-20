@@ -2,15 +2,15 @@
 import { createHandler, Get } from "next-api-decorators"
 import { findSpaceById } from "twspaces"
 import _ from "lodash"
-import log from "loglevel"
 import {
   addToSpaces,
   getSpacesInfo,
   getSpacesSchedule,
   updateSpacesStatus,
 } from "../../../../helpers/twitter.db"
+import getLogger from "../../../../utils/getLogger"
 
-log.setLevel("info")
+const log = getLogger("Get Listeners")
 class GetListeners {
   @Get()
   async test() {
@@ -21,6 +21,7 @@ class GetListeners {
       return { message: "No Live spaces ongoing" }
     }
     const spaces = docs.map((doc) => doc.spaceId)
+    if (spaces.length > 1) log.warn("More than one space is live")
     const spaceId = spaces[0]
     const spaceDocs = await getSpacesInfo(spaceId)
     const alreadyAdded = spaceDocs.map((doc) => doc.participants).flat()
@@ -30,7 +31,7 @@ class GetListeners {
       log.info("Space is ended")
       log.info(`Updating space status to ended for space: ${spaceId}`)
 
-      await updateSpacesStatus({ id: spaceId, status: "ended" })
+      await updateSpacesStatus({ spaceId, status: "ended" })
     }
     if (state !== "Running") {
       log.info("Space is not live")
@@ -41,7 +42,7 @@ class GetListeners {
     try {
       const result = await addToSpaces([
         {
-          spaceID: spaceId,
+          spaceId,
           participants: _.uniq([...listeners, ...alreadyAdded]),
         },
       ])
