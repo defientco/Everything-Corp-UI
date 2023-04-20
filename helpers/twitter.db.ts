@@ -34,7 +34,7 @@ export const updateSpacesStatus = async (body: {
     logger.info("Updating space status for space: ", body.spaceId)
     logger.debug("Incoming data: ", body)
     const doc = await SpacesSchedule.findOne({ spaceId: body.spaceId })
-    if (!doc.isNew) {
+    if (doc) {
       doc.processed = body?.processed || false
       doc.status = body?.status || doc.status
       await doc.save()
@@ -82,7 +82,7 @@ export const addToSpaces = async (body: SpacesData[]) => {
     await dbConnect()
     const promises = body.map(async (item: SpacesData) => {
       const doc = await Spaces.findOne({ spaceId: item.spaceId })
-      if (!doc.isNew) {
+      if (doc) {
         doc.participants = item.participants || doc.participants || []
         doc.speakers = item.speakers || doc.speakers || []
         await doc.save()
