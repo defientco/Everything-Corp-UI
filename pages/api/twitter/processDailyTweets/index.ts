@@ -2,9 +2,9 @@
 /* eslint-disable class-methods-use-this */
 import { createHandler, Get } from "next-api-decorators"
 import { TwitterApi } from "twitter-api-v2"
-import log from "loglevel"
 import { addLikesAndRetweets } from "../../../../helpers/twitter.db"
 import { getAllLikes, getAllRetweets } from "../../../../helpers/twitterHelperFx"
+import getLogger from "../../../../utils/getLogger"
 
 const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN)
 const { readOnly } = client
@@ -13,6 +13,7 @@ const count = 100 // number of tweets to retrieve per request (max 100)
 const untilDate = new Date(Date.now() - 10 * 1000).toISOString() // get current date in YYYY-MM-DD format
 const sinceDate = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() // get date 24 hours ago in YYYY-MM-DD format
 
+const log = getLogger("Process Daily Tweets")
 class Tweets {
   @Get()
   async getTweets() {

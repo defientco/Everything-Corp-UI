@@ -1,10 +1,11 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable class-methods-use-this */
 import { createHandler, Get } from "next-api-decorators"
-import log from "loglevel"
 import { getTweetIDsFromDB, addLikesAndRetweets } from "../../../../helpers/twitter.db"
 import { getAllLikes, getAllRetweets } from "../../../../helpers/twitterHelperFx"
+import getLogger from "../../../../utils/getLogger"
 
+const log = getLogger("Get Tweets")
 class ProcessNewTweets {
   @Get()
   async getTweets() {
