@@ -7,7 +7,7 @@ import {
   updateSpacesStatus,
 } from "../../../../helpers/twitter.db"
 
-const getLogger = require("../../../../utils/db/getLogger.ts")
+import getLogger from "../../../../utils/getLogger"
 
 const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN)
 const { readOnly } = client
