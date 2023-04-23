@@ -1,5 +1,5 @@
 import { TwitterApi } from "twitter-api-v2"
-
+import getLogger from "../utils/getLogger"
 /* eslint-disable no-await-in-loop */
 const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN)
 const CHILLPILL = "1214757469785747457"
@@ -11,7 +11,15 @@ const parseLikes = (likes) => {
   const returnData: Array<string> = data.data.map((like) => like.id)
   return returnData
 }
-export const getFutureSpaces = async () => readOnly.v2.spacesByCreators(CHILLPILL)
+export const getFutureSpaces = async () => {
+  const logger = getLogger("Get Future Spaces")
+  try {
+    return readOnly.v2.spacesByCreators(CHILLPILL)
+  } catch (e) {
+    logger.error(e)
+    return e.message
+  }
+}
 const parseRetweets = (retweets) => {
   const { data } = retweets
   const returnData: Array<string> = data.data.map((retweet) => retweet.id)

@@ -9,7 +9,8 @@ class GetSpacesSchedule {
   @Get()
   async getSpacesSchedule() {
     logger.info("Updating spaces schedule")
-    const { data } = await getFutureSpaces()
+    const { data, meta } = await getFutureSpaces()
+    if (meta.result_count === 0) return { message: "No scheduled spaces found" }
     logger.info("Got spaces schedule", data)
     const updateData = data.map((space) => ({
       spaceId: space.id,
