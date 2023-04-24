@@ -40,3 +40,6 @@ utils/db/serviceAccountKey.json
 
 # ENV
 .env
+
+# yarn
+.yarn
