@@ -2,7 +2,7 @@ import { TwitterApi } from "twitter-api-v2"
 import getLogger from "../utils/getLogger"
 /* eslint-disable no-await-in-loop */
 const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN)
-const CHILLPILL = "1549552848907644928"
+const CHILLPILL = "1214757469785747457"
 const { readOnly } = client
 const getLikes = async (tweetID) => readOnly.v2.tweetLikedBy(tweetID, { asPaginator: true })
 const getRetweets = async (tweetID) => readOnly.v2.tweetRetweetedBy(tweetID, { asPaginator: true })
