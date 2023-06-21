@@ -6,7 +6,7 @@ import customLoader from "../../lib/customLoader"
 
 const FAQ = () => (
   <div className="relative z-0 w-full h-screen">
-    <Header contactHref="#contact" />
+    <Header />
     <div className="relative w-full z-1">
       <div className="absolute w-full h-2/3 z-2">
         <Image
