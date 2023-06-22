@@ -6,7 +6,7 @@ import BackgroundLayout from "./BackgroundLayout"
 
 const layoutContainers = {
   base: BaseLayout,
-  background: BackgroundLayout
+  background: BackgroundLayout,
 }
 
 interface ILayoutFactory extends ILayout {

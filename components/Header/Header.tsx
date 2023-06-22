@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import customLoader from "../../lib/customLoader"
 import { useMediaQuery } from "usehooks-ts"
+import customLoader from "../../lib/customLoader"
 
 const Header = () => {
   const isMobile = useMediaQuery("(max-width: 768px)")

@@ -1,4 +1,4 @@
-import { useMeasure, useWindowSize } from "react-use"
+import { useMeasure } from "react-use"
 import { useMediaQuery } from "usehooks-ts"
 import Layout from "../Layout"
 import Media from "../../shared/Media"
@@ -38,9 +38,11 @@ const FixersPage = () => {
 
   return (
     <Layout type="base">
-      <div className="pb-[150px]" ref={containerRef}
+      <div
+        className="pb-[150px]"
+        ref={containerRef}
         style={{
-          width: isResponsive ? '100vw' : '1065px'
+          width: isResponsive ? "100vw" : "1065px",
         }}
       >
         <div className="relative z-[2] p-4">
@@ -49,7 +51,7 @@ const FixersPage = () => {
             type="image"
             containerClasses="rounded-[10px] overflow-hidden"
             containerStyle={{
-              height: `${isResponsive ? ((width - 32) / 1065 * 1041) : 1041}px`,
+              height: `${isResponsive ? ((width - 32) / 1065) * 1041 : 1041}px`,
               width: `${isResponsive ? width - 32 : 1065}px`,
             }}
           />
@@ -59,7 +61,14 @@ const FixersPage = () => {
                 shadow-[0_0_34px_45px_rgba(0,0,0)]"
             ref={sectionRef}
             style={{
-              top: `${isResponsive ? isMobile ? ((width - 32) / 1065) * 1041 * 0.8 : ((width - 32) / 1065) * 1041 * 0.7 : 1041 * 0.7}px`,
+              top: `${
+                // eslint-disable-next-line no-nested-ternary
+                isResponsive
+                  ? isMobile
+                    ? ((width - 32) / 1065) * 1041 * 0.8
+                    : ((width - 32) / 1065) * 1041 * 0.7
+                  : 1041 * 0.7
+              }px`,
             }}
           >
             <div className="relative">
@@ -84,16 +93,18 @@ const FixersPage = () => {
                   {!isMobile ? section.desktop : section.mobile}
                 </pre>
               ))}
-              <div className="absolute w-[100%] text-center text-white font-aldrich
+              <div
+                className="absolute w-[100%] text-center text-white font-aldrich
                drop-shadow-[2px_6px_2px_#000]"
-               style={{
-                top: isResponsive ? `-${300 / 1065 * (width - 32)}px` : '-300px',
-                fontSize: isLg
-                  ? isMobile
-                    ? `${(52 / 320) * (width - 32)}px`
-                    : `${(129 / 1065) * (width - 32)}px`
-                  : "129px",
-               }}
+                style={{
+                  top: isResponsive ? `-${(300 / 1065) * (width - 32)}px` : "-300px",
+                  // eslint-disable-next-line no-nested-ternary
+                  fontSize: isLg
+                    ? isMobile
+                      ? `${(52 / 320) * (width - 32)}px`
+                      : `${(129 / 1065) * (width - 32)}px`
+                    : "129px",
+                }}
               >
                 The Fixers
               </div>
@@ -107,7 +118,13 @@ const FixersPage = () => {
             containerClasses="rounded-[10px] overflow-hidden z-[1]"
             containerStyle={{
               marginTop: `${
-                height - (isResponsive ? isMobile ? ((width - 32) / 1065) * 1043 * 0.25 - 40 : ((width - 32) / 1043) * 1041 * 0.3 - 40 : 1043 * 0.3 - 80)
+                height -
+                // eslint-disable-next-line no-nested-ternary
+                (isResponsive
+                  ? isMobile
+                    ? ((width - 32) / 1065) * 1043 * 0.25 - 40
+                    : ((width - 32) / 1043) * 1041 * 0.3 - 40
+                  : 1043 * 0.3 - 80)
               }px`,
               height: `${isResponsive ? ((width - 32) / 1065) * 1043 : 1043}px`,
               width: `${isResponsive ? width - 32 : 1065}px`,
