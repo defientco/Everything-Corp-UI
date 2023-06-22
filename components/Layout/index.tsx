@@ -2,9 +2,11 @@ import { useEffect } from "react"
 import BaseLayout from "./BaseLayout"
 import { ILayout } from "./types"
 import { useTheme } from "../../providers/ThemeProvider"
+import BackgroundLayout from "./BackgroundLayout"
 
 const layoutContainers = {
   base: BaseLayout,
+  background: BackgroundLayout
 }
 
 interface ILayoutFactory extends ILayout {

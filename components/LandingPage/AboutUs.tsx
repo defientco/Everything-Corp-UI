@@ -1,6 +1,5 @@
 import { ReactNode, useState } from "react"
-import { useMedia } from "react-use"
-import { useWindowSize } from "usehooks-ts"
+import { useMediaQuery, useWindowSize } from "usehooks-ts"
 import { Button } from "../../shared/Button"
 import Media from "../../shared/Media"
 
@@ -14,8 +13,8 @@ const AboutUs = () => {
   const [isCollaped, setIsCollapsed] = useState(true)
   const { width } = useWindowSize()
 
-  const isMobile = useMedia("(max-width: 768px)")
-  const isXl = useMedia("(max-width: 1150px)")
+  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isXl = useMediaQuery("(max-width: 1150px)")
 
   const sections: SectionData[] = [
     {
