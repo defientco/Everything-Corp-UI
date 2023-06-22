@@ -29,10 +29,10 @@ const FixersPage = () => {
   }
 
   const prefixs = {
-      "fixers_first" : <span style={spanStyle}>We are proud</span>,
-      "fixers_second" : <span style={spanStyle}>They are a team</span>,
-      "fixers_third": <span style={spanStyle}>The Fixers are dedicated</span>,
-      "fixers_fourth" : <span style={spanStyle}>We belive that work </span>,
+    fixers_first: <span style={spanStyle}>We are proud</span>,
+    fixers_second: <span style={spanStyle}>They are a team</span>,
+    fixers_third: <span style={spanStyle}>The Fixers are dedicated</span>,
+    fixers_fourth: <span style={spanStyle}>We belive that work </span>,
   }
 
   return (
