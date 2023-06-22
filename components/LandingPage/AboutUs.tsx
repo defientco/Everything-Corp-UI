@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react"
-import { useMediaQuery, useWindowSize } from "usehooks-ts"
+import { useMediaQuery } from "usehooks-ts"
+import { useMeasure } from "react-use"
 import { Button } from "../../shared/Button"
 import Media from "../../shared/Media"
 
@@ -11,10 +12,10 @@ interface SectionData {
 
 const AboutUs = () => {
   const [isCollaped, setIsCollapsed] = useState(true)
-  const { width } = useWindowSize()
+  const [containerRef, { width }] = useMeasure()
 
   const isMobile = useMediaQuery("(max-width: 768px)")
-  const isXl = useMediaQuery("(max-width: 1150px)")
+  const isResponsive = useMediaQuery("(max-width: 1105px)")
 
   const sections: SectionData[] = [
     {
@@ -211,23 +212,21 @@ const AboutUs = () => {
 
   return (
     <div
-      className={`relative rounded-[10px] md:rounded-[42px] bg-white pt-[30px] md:pt-[100px]
-            p-2 samsungS8:p-4 md:p-20 
-            mt-[50px] md:mt-[100px] overflow-hidden ${
+      className={`relative rounded-[10px] md:rounded-[42px] bg-white
+            p-2 samsungS8:p-4 md:px-20 md:pt-10 md:pb-20 
+            mt-[30px] md:mt-[70px] overflow-hidden ${
               isCollaped ? "h-[300px] md:h-[780px] xl:h-[900px]" : "h-full"
             }
             transition ease-in-out duration-[1000ms]`}
-      style={{
-        width: `${isXl ? `${width - 32}px` : "100%"}`,
-      }}
+      ref={containerRef}
     >
       {!isCollaped && (
-        <div className="absolute right-[20px] top-[20px]">
+        <div className="absolute right-2 top-2 sm:right-4 md:right-10 sm:top-4 md:top-10">
           <Button
             id="about-us-close-btn"
             onClick={() => setIsCollapsed(true)}
-            className="md:px-[28px] md:py-[11px] px-[18px] py-[7px]
-                    md:text-[16px] md:text-[16px] text-[10px]"
+            className="md:!px-[17px] md:!py-[1px] sm:!px-[10px] sm:!py-[5px] !px-[5px] !py-[0px]
+                    md:text-[16px] md:text-[32px] text-[15px]"
           >
             X
           </Button>
@@ -242,7 +241,7 @@ const AboutUs = () => {
           <Button
             id="about-us-read-more-btn"
             className="capitalize font-aldrich
-                    md:px-[28px] md:py-[11px] px-[20px] py-[7.8px]
+                    md:!px-[28px] md:!py-[11px] !px-[20px] !py-[7.8px]
                     md:text-[16px] md:text-[16px] text-[12px]"
             onClick={() => setIsCollapsed(false)}
           >
@@ -258,7 +257,15 @@ const AboutUs = () => {
           <div
             key={section.id}
             className="font-aldrich 
-                        text-[8.5px] samsungS8:text-[10px] md:text-[20px] xl:text-[28px] font-[400] pb-[15px] md:pb-[30px]"
+                        font-[400] pb-[15px] md:pb-[30px]"
+            style={{
+              // eslint-disable-next-line no-nested-ternary
+              fontSize: isResponsive
+                ? isMobile
+                  ? `${(33 / 1086) * width}px`
+                  : `${(32 / 1086) * width}px`
+                : "28px",
+            }}
           >
             {isMobile ? section.mobile : section.desktop}
           </div>

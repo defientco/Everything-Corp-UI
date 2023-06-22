@@ -9,7 +9,7 @@ function BaseLayout({ children }: ILayout) {
     <div className="h-screen text-black bg-[black]">
       <SeoHead title="Evil Corp" description="Evil Corp" image="/evclogoIcon.png" />
       <Header />
-      <div className="relative z-[2] flex justify-center pt-[180px] bg-black">
+      <div className="relative z-[2] flex justify-center pt-[100px] md:pt-[180px] bg-black">
         <div className="max-w-[1280px]">
           {children}
           <Footer />

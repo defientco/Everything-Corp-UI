@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode, useState } from "react"
 import Media from "../../shared/Media"
 
 interface ImageCardProps {
@@ -8,6 +8,7 @@ interface ImageCardProps {
   containerClassName?: string
   textClassName?: string
   text?: ReactNode
+  revealText?: ReactNode
 }
 
 const ImageCard = ({
@@ -17,26 +18,36 @@ const ImageCard = ({
   containerClassName,
   textClassName,
   text,
-}: ImageCardProps) => (
-  <div className="relative">
+  revealText,
+}: ImageCardProps) => {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
     <div
-      className={`${
-        textClassName || ""
-      } absolute z-[2] w-[100%] h-[100%] flex justify-center items-center
-                text-[white] text-center leading-[34px] font-[400] font-[aldrich]
-                text-[10px] samsungS8:text-[15px] sm:text-[20px]`}
+      className="relative cursor-pointer"
+      onMouseOver={() => setIsHovered(true)}
+      onMouseOut={() => setIsHovered(false)}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
     >
-      {text || ""}
+      <div
+        className={`absolute z-[2] w-full h-full flex justify-center items-center
+                  text-[white] text-center leading-[34px] font-[400] font-[aldrich]
+                  text-[10px] samsungS8:text-[15px] sm:text-[20px] ${textClassName || ""} `}
+      >
+        {revealText ? !isHovered && (text || "") : text}
+        {(isHovered && revealText) || ""}
+      </div>
+      <Media
+        link={link}
+        type="image"
+        containerClasses={containerClassName}
+        containerStyle={{
+          height: `${width * ratio}px`,
+        }}
+      />
     </div>
-    <Media
-      link={link}
-      type="image"
-      containerClasses={containerClassName}
-      containerStyle={{
-        height: `${width * ratio}px`,
-      }}
-    />
-  </div>
-)
+  )
+}
 
 export default ImageCard

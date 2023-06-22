@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { DetailedHTMLProps, VideoHTMLAttributes } from 'react'
+import { DetailedHTMLProps, VideoHTMLAttributes, useEffect, useRef } from 'react'
 
 interface IMedia {
   type: 'video' | 'image'
@@ -21,6 +21,13 @@ function Media({
   containerClasses,
   containerStyle
 }: IMedia) {
+  const videoRef = useRef<any>()
+  useEffect(() => {
+    if(videoProps?.autoPlay) {
+      videoRef.current.muted = false
+    }
+  }, [videoRef, videoProps])
+
   return (
     <div
       className={`relative ${containerClasses || ''}`}
@@ -31,6 +38,7 @@ function Media({
           muted
           className={`${className || ''}`}
           {...videoProps}
+          ref={videoRef}
         >
           <source src={link}></source>
         </video>
