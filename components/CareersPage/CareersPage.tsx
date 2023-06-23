@@ -21,6 +21,8 @@ const CareersPage = () => {
   const isLg = useMediaQuery("(max-width: 1024px)")
   const isResponsive = useMediaQuery("(max-width: 1065px)")
 
+  const paddingX = 64
+
   return (
     <Layout type="base">
       <div
@@ -30,18 +32,24 @@ const CareersPage = () => {
           width: isResponsive ? "100vw" : "1065px",
         }}
       >
-        <div className="relative z-[2] p-4">
+        <div
+          className="relative z-[2]"
+          style={{
+            paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
+            paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
+          }}
+        >
           <Media
             link="/Careers/front.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden"
             containerStyle={{
-              height: `${isResponsive ? ((width - 32) / 1067) * 1043 : 1043}px`,
-              width: `${isResponsive ? width - 32 : 1067}px`,
+              height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
+              width: `${isResponsive ? width - paddingX : 1067}px`,
             }}
           />
           <div
-            className="absolute px-4 left-0 bg-[black] 
+            className="absolute md:w-[100%] bg-[black] 
                 py-[40px] md:py-[80px]
                 shadow-[0_0_34px_45px_rgba(0,0,0)]"
             ref={sectionRef}
@@ -50,8 +58,8 @@ const CareersPage = () => {
                 // eslint-disable-next-line no-nested-ternary
                 isResponsive
                   ? isMobile
-                    ? ((width - 32) / 1067) * 1043 * 0.9
-                    : ((width - 32) / 1067) * 1043 * 0.75
+                    ? ((width - paddingX) / 1067) * 1043 * 0.9
+                    : ((width - paddingX) / 1067) * 1043 * 0.75
                   : 1043 * 0.75
               }px`,
             }}
@@ -65,8 +73,8 @@ const CareersPage = () => {
                       // eslint-disable-next-line no-nested-ternary
                       fontSize: isLg
                         ? isMobile
-                          ? `${(17 / 320) * (width - 32)}px`
-                          : `${(35 / 1067) * (width - 32)}px`
+                          ? `${(17 / 320) * (width - paddingX)}px`
+                          : `${(35 / 1067) * (width - paddingX)}px`
                         : "35px",
                     }}
                   >
@@ -82,8 +90,8 @@ const CareersPage = () => {
                       // eslint-disable-next-line no-nested-ternary
                       fontSize: isLg
                         ? isMobile
-                          ? `${(14 / 320) * (width - 32)}px`
-                          : `${(32 / 1067) * (width - 32)}px`
+                          ? `${(14 / 320) * (width - paddingX)}px`
+                          : `${(32 / 1067) * (width - paddingX)}px`
                         : "32px",
                     }}
                   >
@@ -95,12 +103,12 @@ const CareersPage = () => {
                 className="absolute w-[100%] text-center text-white font-aldrich
                drop-shadow-[2px_6px_2px_#000] leading-[100%]"
                 style={{
-                  top: isResponsive ? `-${(300 / 1067) * (width - 32)}px` : "-300px",
+                  top: isResponsive ? `-${(300 / 1067) * (width - paddingX)}px` : "-300px",
                   // eslint-disable-next-line no-nested-ternary
                   fontSize: isLg
                     ? isMobile
-                      ? `${(43 / 319) * (width - 32)}px`
-                      : `${(129 / 1067) * (width - 32)}px`
+                      ? `${(43 / 319) * (width - paddingX)}px`
+                      : `${(129 / 1067) * (width - paddingX)}px`
                     : "129px",
                 }}
               >
@@ -109,7 +117,12 @@ const CareersPage = () => {
             </div>
           </div>
         </div>
-        <div className="p-4">
+        <div
+          style={{
+            paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
+            paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
+          }}
+        >
           <Media
             link="/Careers/back.svg"
             type="image"
@@ -120,12 +133,12 @@ const CareersPage = () => {
                 // eslint-disable-next-line no-nested-ternary
                 (isResponsive
                   ? isMobile
-                    ? ((width - 32) / 1067) * 1043 * 0.1 - 40
-                    : ((width - 32) / 1067) * 1043 * 0.25 - 40
+                    ? ((width - paddingX) / 1067) * 1043 * 0.1 - 40
+                    : ((width - paddingX) / 1067) * 1043 * 0.25 - 40
                   : 1043 * 0.25 - 80)
               }px`,
-              height: `${isResponsive ? ((width - 32) / 1067) * 1043 : 1043}px`,
-              width: `${isResponsive ? width - 32 : 1067}px`,
+              height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
+              width: `${isResponsive ? width - paddingX : 1067}px`,
             }}
           />
         </div>
