@@ -15,8 +15,7 @@ export const UserProvider = ({ children }) => {
       e.preventDefault()
 
       const didToken = await magic.auth.loginWithMagicLink({
-        email,
-        redirectURI: new URL(url, window.location.origin).href,
+        email
       })
 
       // Send this token to our validation endpoint
