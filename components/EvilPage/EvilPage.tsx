@@ -31,6 +31,20 @@ const EvilPage = () => {
       : "40px",
   }
 
+  const dynamicFontSize = (
+    mFontSize: number,
+    dFontSize: number,
+    mContainerWidth: number,
+    dContainerWidth: number,
+  ) => {
+    if (isLg) {
+      if (isMobile) return `${(mFontSize / mContainerWidth) * (width - paddingX)}px`
+      return `${(dFontSize / dContainerWidth) * (width - paddingX)}px`
+    }
+
+    return `${dFontSize}px`
+  }
+
   const prefixs = {
     evil_first: <span style={spanStyle}>Everything Corp</span>,
     evil_second: <span style={spanStyle}>Industrialization and Practical</span>,
@@ -39,13 +53,7 @@ const EvilPage = () => {
 
   return (
     <Layout type="base">
-      <div
-        className="pb-[150px]"
-        ref={containerRef}
-        style={{
-          width: isResponsive ? "100vw" : "1065px",
-        }}
-      >
+      <div ref={containerRef} className="w-[100vw] xl1065:w-[1065px] pb-[150px]">
         <div
           className="relative z-[2]"
           style={{
@@ -54,6 +62,7 @@ const EvilPage = () => {
           }}
         >
           <Media
+            id="home_evil"
             link="/Evil/front.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden"
@@ -87,14 +96,7 @@ const EvilPage = () => {
                                   [&>span]:text-[36px] [&>span]:xl:text-[40px]
                                   leading-[108.8%]
                               "
-                  style={{
-                    // eslint-disable-next-line no-nested-ternary
-                    fontSize: isLg
-                      ? isMobile
-                        ? `${(14 / 320) * (width - paddingX)}px`
-                        : `${(32 / 1065) * (width - paddingX)}px`
-                      : "32px",
-                  }}
+                  style={{ fontSize: dynamicFontSize(14, 32, 320, 1065) }}
                 >
                   {!isMobile ? prefixs[section.id] : ""}
                   {!isMobile ? section.desktop : section.mobile}
@@ -105,12 +107,7 @@ const EvilPage = () => {
                drop-shadow-[2px_6px_2px_#000] leading-[100%]"
                 style={{
                   top: isResponsive ? `-${(300 / 1065) * (width - paddingX)}px` : "-300px",
-                  // eslint-disable-next-line no-nested-ternary
-                  fontSize: isLg
-                    ? isMobile
-                      ? `${(23 / 321) * (width - paddingX)}px`
-                      : `${(79 / 1065) * (width - paddingX)}px`
-                    : "79px",
+                  fontSize: dynamicFontSize(23, 79, 321, 1065),
                 }}
               >
                 Economic & Vocational
@@ -120,13 +117,9 @@ const EvilPage = () => {
             </div>
           </div>
         </div>
-        <div
-          style={{
-            paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
-            paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
-          }}
-        >
+        <div className="px-[32px] md:px-[0px]">
           <Media
+            id="desktop_home_evil"
             link="/Evil/factory.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden z-[1]"

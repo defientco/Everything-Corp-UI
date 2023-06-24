@@ -55,6 +55,7 @@ const FixersPage = () => {
           }}
         >
           <Media
+            id="fixers_first"
             link="/Fixers/front.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden"
@@ -126,6 +127,7 @@ const FixersPage = () => {
           }}
         >
           <Media
+            id="fixers_second"
             link="/Fixers/back.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden z-[1]"

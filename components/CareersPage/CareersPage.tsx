@@ -23,23 +23,26 @@ const CareersPage = () => {
 
   const paddingX = 64
 
+  const dynamicFontSize = (
+    mFontSize: number,
+    dFontSize: number,
+    mContainerWidth: number,
+    dContainerWidth: number,
+  ) => {
+    if (isLg) {
+      if (isMobile) return `${(mFontSize / mContainerWidth) * (width - paddingX)}px`
+      return `${(dFontSize / dContainerWidth) * (width - paddingX)}px`
+    }
+
+    return `${dFontSize}px`
+  }
+
   return (
     <Layout type="base">
-      <div
-        className="pb-[150px]"
-        ref={containerRef}
-        style={{
-          width: isResponsive ? "100vw" : "1065px",
-        }}
-      >
-        <div
-          className="relative z-[2]"
-          style={{
-            paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
-            paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
-          }}
-        >
+      <div className="pb-[150px] w-[100vw] xl1065:w-[1065px]" ref={containerRef}>
+        <div className="relative z-[2] px-[32px] md:px-[0px]">
           <Media
+            id="home_career"
             link="/Careers/front.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden"
@@ -69,14 +72,7 @@ const CareersPage = () => {
                 <div key={section.id}>
                   <div
                     className="font-aldrich text-white uppercase underline"
-                    style={{
-                      // eslint-disable-next-line no-nested-ternary
-                      fontSize: isLg
-                        ? isMobile
-                          ? `${(17 / 320) * (width - paddingX)}px`
-                          : `${(35 / 1067) * (width - paddingX)}px`
-                        : "35px",
-                    }}
+                    style={{ fontSize: dynamicFontSize(17, 35, 320, 1067) }}
                   >
                     {section.title}
                   </div>
@@ -86,14 +82,7 @@ const CareersPage = () => {
                                     [&>span]:text-[36px] [&>span]:xl:text-[40px]
                                     leading-[108.8%]
                                 "
-                    style={{
-                      // eslint-disable-next-line no-nested-ternary
-                      fontSize: isLg
-                        ? isMobile
-                          ? `${(14 / 320) * (width - paddingX)}px`
-                          : `${(32 / 1067) * (width - paddingX)}px`
-                        : "32px",
-                    }}
+                    style={{ fontSize: dynamicFontSize(14, 32, 320, 1067) }}
                   >
                     {!isMobile ? section.desktop : section.mobile}
                   </pre>
@@ -105,11 +94,7 @@ const CareersPage = () => {
                 style={{
                   top: isResponsive ? `-${(300 / 1067) * (width - paddingX)}px` : "-300px",
                   // eslint-disable-next-line no-nested-ternary
-                  fontSize: isLg
-                    ? isMobile
-                      ? `${(43 / 319) * (width - paddingX)}px`
-                      : `${(129 / 1067) * (width - paddingX)}px`
-                    : "129px",
+                  fontSize: dynamicFontSize(43, 129, 319, 1067),
                 }}
               >
                 Careers
@@ -117,13 +102,9 @@ const CareersPage = () => {
             </div>
           </div>
         </div>
-        <div
-          style={{
-            paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
-            paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
-          }}
-        >
+        <div className="px-[32px] md:px-[0px]">
           <Media
+            id="desktop_home_career"
             link="/Careers/back.svg"
             type="image"
             containerClasses="rounded-[10px] overflow-hidden z-[1]"

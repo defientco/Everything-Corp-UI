@@ -46,7 +46,7 @@ const Pagination = ({
         aria-label="Pagination"
       >
         <PageButton
-          id="pagenation_first"
+          id="pagination_first"
           className="rounded-l-md"
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}

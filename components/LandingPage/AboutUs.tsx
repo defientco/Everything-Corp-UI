@@ -273,6 +273,7 @@ const AboutUs = () => {
       </div>
       <div className="flex gap-2 md:gap-10 pt-[10px] md:pt-[30px]">
         <Media
+          id="about_us_logo"
           link="/Home/big_logo.svg"
           containerClasses="xl:w-[165px] xl:h-[178px]
                     md:w-[118px] md:h-[127px]
@@ -285,6 +286,7 @@ const AboutUs = () => {
             Earnest Cain, CEO
           </div>
           <Media
+            id="about_us_sign"
             link="/Home/sign.svg"
             type="image"
             containerClasses="xl:w-[511px] xl:h-[147px]

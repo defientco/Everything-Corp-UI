@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react"
 import Media from "../../shared/Media"
 
 interface ImageCardProps {
+  id: string
   width: number
   ratio: number
   link: string
@@ -12,6 +13,7 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({
+  id,
   width,
   ratio,
   link,
@@ -39,6 +41,7 @@ const ImageCard = ({
         {(isHovered && revealText) || ""}
       </div>
       <Media
+        id={id}
         link={link}
         type="image"
         containerClasses={containerClassName}

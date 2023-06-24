@@ -19,15 +19,21 @@ const FaqPage = () => {
   const isResponsive = useMediaQuery("(max-width: 1280px)")
   const isMobile = useMediaQuery("(max-width: 768px)")
 
+  const dynamicFontSize = (mFontSize: number, dFontSize: number, containerWidth: number) => {
+    if (isResponsive) {
+      if (isMobile) return `${(mFontSize / containerWidth) * width}px`
+      return `${(dFontSize / containerWidth) * width}px`
+    }
+
+    return `${dFontSize}px`
+  }
+
   return (
     <Layout type="background">
       <div
         className="font-aldrich text-white px-2 xs:px-8 text-center md:px-20 md:text-left pb-[30px] md:pb-[50px]
-      drop-shadow-[2px_6px_2px_#000]"
-        style={{
-          fontSize: isResponsive ? `${(107 / 1280) * width}px` : "107px",
-          width: isResponsive ? "100vw" : "1280px",
-        }}
+        drop-shadow-[2px_6px_2px_#000] w-[100vw] xl1280:w-[1280px]"
+        style={{ fontSize: dynamicFontSize(107, 107, 1280) }}
         ref={titleRef}
       >
         FAQ
@@ -39,27 +45,13 @@ const FaqPage = () => {
         >
           <pre
             className="leading-[146.3%] underline font-aldrich"
-            style={{
-              // eslint-disable-next-line no-nested-ternary
-              fontSize: isResponsive
-                ? isMobile
-                  ? `${(42 / 1065) * width}px`
-                  : `${(40 / 1065) * width}px`
-                : "40px",
-            }}
+            style={{ fontSize: dynamicFontSize(42, 40, 1065) }}
           >
             {`Q: ${isMobile ? section.mobile_question : section.desktop_question}`}
           </pre>
           <pre
             className="text-[28.5px] font-aldrich"
-            style={{
-              // eslint-disable-next-line no-nested-ternary
-              fontSize: isResponsive
-                ? isMobile
-                  ? `${(42 / 1065) * width}px`
-                  : `${(33 / 1065) * width}px`
-                : "33px",
-            }}
+            style={{ fontSize: dynamicFontSize(42, 33, 1065) }}
           >{`A: ${isMobile ? section.mobile_content : section.desktop_content}`}</pre>
         </div>
       ))}

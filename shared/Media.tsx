@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { DetailedHTMLProps, VideoHTMLAttributes, useEffect, useRef } from 'react'
-import customLoader from '../lib/customLoader'
 
 interface IMedia {
+  id: string
   type: 'video' | 'image'
   link?: string
   containerStyle?: any
@@ -15,6 +15,7 @@ interface IMedia {
 }
 
 function Media({
+  id,
   type,
   link,
   className,
@@ -22,14 +23,18 @@ function Media({
   containerClasses,
   containerStyle
 }: IMedia) {
-  const videoRef = useRef<any>()
-
   useEffect(() => {
-    if(videoProps?.autoPlay && videoRef.current) {
-      videoRef.current.muted = false
-      videoRef.current.autoPlay = true
+    if (id) {
+      const videoRef: any = document.getElementById(id)
+      if(videoRef) {
+        try {
+          videoRef.muted = false  
+        } catch(err) {
+          console.log(err)
+        }
+      }
     }
-  }, [videoRef,  videoProps])
+  }, [id])
   
   return (
     <div
@@ -39,17 +44,15 @@ function Media({
       {type === 'video' && link && (
         <video
           muted
+          id={id}
           className={`${className || ''}`}
           {...videoProps}
-          ref={videoRef}
           onLoadedData={() => {
-            if(videoProps?.autoPlay) {
-              videoRef.current.muted = false
-              videoRef.current.autoPlay = true
-            }
+           
           }}
-          src={link}
-        />
+        >
+          <source src={link}/>
+        </video>
       )}
       {type === 'image' && link && (
         <Image 

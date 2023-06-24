@@ -2,8 +2,6 @@ import { useMeasure } from "react-use"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
-import Image from "next/image"
-import { useMediaQuery } from "usehooks-ts"
 import Media from "../../shared/Media"
 import Layout from "../Layout"
 import ImageCard from "./ImageCard"
@@ -14,8 +12,6 @@ const LandingPage = () => {
   const [tinyRef, tinySize] = useMeasure()
   const [mediumRef, mediumSize] = useMeasure()
   const router = useRouter()
-
-  const isResponsive = useMediaQuery("(max-width: 1100px)")
 
   useEffect(() => {
     if (
@@ -32,16 +28,18 @@ const LandingPage = () => {
     <Layout type="base">
       <div ref={containerRef} className="p-[32px] w-[100vw] xs:w-full pb-20">
         <Media
+          id="home_video"
           link="/Home/video.mp4"
           type="video"
+          className="rounded-[10px] overflow-hidden"
           videoProps={{
             autoPlay: true,
           }}
-          className="rounded-[10px] overflow-hidden"
         />
 
         <div className="relative overflow-hidden">
           <ImageCard
+            id="home_quiz"
             link="/Home/quiz.svg"
             containerClassName="rounded-[10px] overflow-hidden mt-[30px] md:mt-[70px]"
             width={containerSize.width}
@@ -49,27 +47,15 @@ const LandingPage = () => {
             text="Everything Corp Personality Test"
             textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
           />
-          <div
-            className="absolute left-0 top-0 z-[5]"
-            style={{
-              top: isResponsive
-                ? `-${((containerSize.width - 64) / 1086) * 1150 * 0.18}px`
-                : `-${1150 * 0.21}px`,
-              left: isResponsive
-                ? `-${((containerSize.width - 64) / 1086) * 1939 * 0.19}px`
-                : `-${1939 * 0.19}px`,
-              width: isResponsive ? `${((containerSize.width - 64) / 1086) * 1939}px` : `${1939}px`,
-              height: isResponsive
-                ? `${((containerSize.width - 64) / 1086) * 1150}px`
-                : `${1150}px`,
-            }}
-          >
-            <Image
-              src="/Home/letter.png"
-              width={isResponsive ? ((containerSize.width - 64) / 1086) * 1939 : 1939}
-              height={isResponsive ? ((containerSize.width - 64) / 1086) * 1150 : 1150}
-              alt="not found image"
-              className="absolute"
+          <div className="absolute left-0 top-[30px] md:top-[70px] z-[10] w-[100%]">
+            <Media
+              id="letter_img"
+              link="/Home/letter.svg"
+              type="image"
+              containerClasses="rounded-[10px] overflow-hidden"
+              containerStyle={{
+                height: `${(containerSize.width * 356) / 1065}px`,
+              }}
             />
           </div>
         </div>
@@ -77,6 +63,7 @@ const LandingPage = () => {
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
           <div className="col-1" ref={tinyRef}>
             <ImageCard
+              id="home_restoration"
               link="/Home/restoration.svg"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
@@ -104,6 +91,7 @@ const LandingPage = () => {
           </div>
           <div className="col-1">
             <ImageCard
+              id="home_ubiquity"
               link="/Home/ubiquity.svg"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
@@ -133,6 +121,7 @@ const LandingPage = () => {
           </div>
           <div className="col-1">
             <ImageCard
+              id="home_neutrality"
               link="/Home/neutrality.svg"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
@@ -166,6 +155,7 @@ const LandingPage = () => {
         <Link href="/evil">
           <div>
             <ImageCard
+              id="home_economic"
               link="/Home/economic.svg"
               containerClassName="rounded-[10px] overflow-hidden mt-[5px] md:mt-[10px]"
               width={containerSize.width}
@@ -186,6 +176,7 @@ const LandingPage = () => {
             <Link href="/fixers">
               <div>
                 <ImageCard
+                  id="home_fixers"
                   link="/Home/fixers.svg"
                   containerClassName="rounded-[10px] overflow-hidden"
                   width={mediumSize.width}
@@ -200,6 +191,7 @@ const LandingPage = () => {
             <Link href="/careers">
               <div>
                 <ImageCard
+                  id="home_careers"
                   link="/Home/careers.svg"
                   containerClassName="rounded-[10px] overflow-hidden"
                   width={mediumSize.width}
