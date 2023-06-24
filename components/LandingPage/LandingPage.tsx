@@ -1,5 +1,9 @@
 import { useMeasure } from "react-use"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
+import Image from "next/image"
+import { useMediaQuery } from "usehooks-ts"
 import Media from "../../shared/Media"
 import Layout from "../Layout"
 import ImageCard from "./ImageCard"
@@ -9,10 +13,24 @@ const LandingPage = () => {
   const [containerRef, containerSize] = useMeasure()
   const [tinyRef, tinySize] = useMeasure()
   const [mediumRef, mediumSize] = useMeasure()
+  const router = useRouter()
+
+  const isResponsive = useMediaQuery("(max-width: 1100px)")
+
+  useEffect(() => {
+    if (
+      router.query.about === "other" &&
+      containerSize.height &&
+      tinySize.height &&
+      mediumSize.height
+    ) {
+      window.scrollTo({ top: containerSize.height, behavior: "smooth" })
+    }
+  }, [router.query, containerSize, tinySize, mediumSize])
 
   return (
     <Layout type="base">
-      <div ref={containerRef} className="p-4 w-[100vw] xs:w-full pb-20">
+      <div ref={containerRef} className="p-[32px] w-[100vw] xs:w-full pb-20">
         <Media
           link="/Home/video.mp4"
           type="video"
@@ -22,14 +40,39 @@ const LandingPage = () => {
           className="rounded-[10px] overflow-hidden"
         />
 
-        <ImageCard
-          link="/Home/quiz.svg"
-          containerClassName="rounded-[10px] overflow-hidden mt-[30px] md:mt-[70px]"
-          width={containerSize.width}
-          ratio={356 / 1065}
-          text="Take The Deciannual Quiz"
-          textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
-        />
+        <div className="relative overflow-hidden">
+          <ImageCard
+            link="/Home/quiz.svg"
+            containerClassName="rounded-[10px] overflow-hidden mt-[30px] md:mt-[70px]"
+            width={containerSize.width}
+            ratio={356 / 1065}
+            text="Everything Corp Personality Test"
+            textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
+          />
+          <div
+            className="absolute left-0 top-0 z-[5]"
+            style={{
+              top: isResponsive
+                ? `-${((containerSize.width - 64) / 1086) * 1150 * 0.18}px`
+                : `-${1150 * 0.21}px`,
+              left: isResponsive
+                ? `-${((containerSize.width - 64) / 1086) * 1939 * 0.19}px`
+                : `-${1939 * 0.19}px`,
+              width: isResponsive ? `${((containerSize.width - 64) / 1086) * 1939}px` : `${1939}px`,
+              height: isResponsive
+                ? `${((containerSize.width - 64) / 1086) * 1150}px`
+                : `${1150}px`,
+            }}
+          >
+            <Image
+              src="/Home/letter.png"
+              width={isResponsive ? ((containerSize.width - 64) / 1086) * 1939 : 1939}
+              height={isResponsive ? ((containerSize.width - 64) / 1086) * 1150 : 1150}
+              alt="not found image"
+              className="absolute"
+            />
+          </div>
+        </div>
 
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
           <div className="col-1" ref={tinyRef}>
@@ -120,22 +163,24 @@ const LandingPage = () => {
             />
           </div>
         </div>
-
-        <ImageCard
-          link="/Home/economic.svg"
-          containerClassName="rounded-[10px] overflow-hidden mt-[5px] md:mt-[10px]"
-          width={containerSize.width}
-          ratio={356 / 1065}
-          textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
-          text={
-            <>
-              Economic & Vocational
-              <br />
-              Improvement League
-            </>
-          }
-        />
-
+        <Link href="/evil">
+          <div>
+            <ImageCard
+              link="/Home/economic.svg"
+              containerClassName="rounded-[10px] overflow-hidden mt-[5px] md:mt-[10px]"
+              width={containerSize.width}
+              ratio={356 / 1065}
+              textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)] leading-[80%] md:leading-[100%]"
+              text={
+                <>
+                  Economic & Vocational
+                  <br />
+                  Improvement League
+                </>
+              }
+            />
+          </div>
+        </Link>
         <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
           <div className="col-1" ref={mediumRef}>
             <Link href="/fixers">

@@ -38,6 +38,9 @@ const Header = () => {
             <Button
               id="header_about_us_btn"
               className="bg-[white] text-[black] w-[105px] h-[47px] !p-0 rounded-[8px] text-[16px]"
+              onClick={() => {
+                router.push("/")
+              }}
             >
               About Us
             </Button>

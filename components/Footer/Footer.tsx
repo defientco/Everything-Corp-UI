@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useMediaQuery } from "usehooks-ts"
 
 const Footer = () => {
+  const router = useRouter()
   const isMobile = useMediaQuery("(max-width: 768px)")
-
   return (
     <footer className="p-4">
       <div className="container flex items-end justify-between max-w-[1280px] p-4 m-auto md:p-6">
@@ -19,7 +20,14 @@ const Footer = () => {
           </div>
         </Link>
         <div className="text-white flex gap-10 font-aldrich text-[14px] samsungS8:text-[20px]">
-          <Link href="/">About</Link>
+          <Link
+            href={{
+              pathname: "/",
+              query: { about: router.pathname === "/" ? "self" : "other" },
+            }}
+          >
+            About
+          </Link>
           <Link href="/faq">FAQ</Link>
         </div>
       </div>

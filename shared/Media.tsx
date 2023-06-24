@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { DetailedHTMLProps, VideoHTMLAttributes, useEffect, useRef } from 'react'
+import customLoader from '../lib/customLoader'
 
 interface IMedia {
   type: 'video' | 'image'
@@ -22,12 +23,14 @@ function Media({
   containerStyle
 }: IMedia) {
   const videoRef = useRef<any>()
-  useEffect(() => {
-    if(videoProps?.autoPlay) {
-      videoRef.current.muted = false
-    }
-  }, [videoRef, videoProps])
 
+  useEffect(() => {
+    if(videoProps?.autoPlay && videoRef.current) {
+      videoRef.current.muted = false
+      videoRef.current.autoPlay = true
+    }
+  }, [videoRef,  videoProps])
+  
   return (
     <div
       className={`relative ${containerClasses || ''}`}
@@ -39,16 +42,23 @@ function Media({
           className={`${className || ''}`}
           {...videoProps}
           ref={videoRef}
-        >
-          <source src={link}></source>
-        </video>
+          onLoadedData={() => {
+            if(videoProps?.autoPlay) {
+              videoRef.current.muted = false
+              videoRef.current.autoPlay = true
+            }
+          }}
+          src={link}
+        />
       )}
       {type === 'image' && link && (
         <Image 
-            className='absolute w-[100%] h-[100%]'
-            src={link}
-            layout='fill'
-            alt='not found image'
+          className='absolute w-[100%] h-[100%]'
+          src={link}
+          layout='fill'
+          alt='not found image'
+          placeholder='blur'
+          blurDataURL={link}
         />
       )}
     </div>
