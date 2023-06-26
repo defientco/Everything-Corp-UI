@@ -23,23 +23,24 @@ function Media({
   containerClasses,
   containerStyle
 }: IMedia) {
+  const videoRef = useRef<any>()
   useEffect(() => {
-    if (id) {
-      const videoRef: any = document.getElementById(id)
-      if(videoRef) {
-        try {
-          videoRef.muted = false  
-        } catch(err) {
-          console.log(err)
-        }
-      }
+    if(videoProps?.autoPlay) {
+      videoRef.current.muted = false
     }
-  }, [id])
+  }, [videoRef, videoProps])
+
+  const videoAutoPlay = () => {
+    if(videoProps?.autoPlay && videoRef.current) {
+      videoRef.current.muted = false
+    }
+  }
   
   return (
     <div
       className={`relative ${containerClasses || ''}`}
       style={containerStyle || {}}
+      onClick={videoAutoPlay}
     >
       {type === 'video' && link && (
         <video
@@ -50,6 +51,7 @@ function Media({
           onLoadedData={() => {
            
           }}
+          ref={videoRef}
         >
           <source src={link}/>
         </video>
