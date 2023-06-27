@@ -13,20 +13,16 @@ const LandingPage = () => {
   const [mediumRef, mediumSize] = useMeasure()
   const router = useRouter()
 
-  const shouldBeScroll = useCallback(() => {
-    if (
-      router.query.about === "other" &&
-      containerSize.height &&
-      tinySize.height &&
-      mediumSize.height
-    ) {
-      window.scrollTo({ top: containerSize.height, behavior: "smooth" })
-    }
-  }, [router.query, containerSize, tinySize, mediumSize])
+  const shouldScroll =
+    router.query.about === "other" && containerSize.height && tinySize.height && mediumSize.height
+
+  const scrollTopBottom = useCallback(() => {
+    if (shouldScroll) window.scrollTo({ top: containerSize.height, behavior: "smooth" })
+  }, [shouldScroll, containerSize.height])
 
   useEffect(() => {
-    shouldBeScroll()
-  }, [shouldBeScroll])
+    scrollTopBottom()
+  }, [scrollTopBottom])
 
   return (
     <Layout type="base">
