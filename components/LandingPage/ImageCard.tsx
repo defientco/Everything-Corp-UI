@@ -34,8 +34,11 @@ const ImageCard = ({
     >
       <div
         className={`absolute z-[2] w-full h-full flex justify-center items-center
+                  rounded-[10px]
                   text-[white] text-center leading-[34px] font-[400] font-[aldrich]
-                  text-[10px] samsungS8:text-[15px] sm:text-[20px] ${textClassName || ""} `}
+                  text-[10px] samsungS8:text-[15px] sm:text-[20px] ${textClassName || ""} ${
+          revealText && isHovered ? "backdrop-blur-[3.5px]" : ""
+        }`}
       >
         {revealText ? !isHovered && (text || "") : text}
         {(isHovered && revealText) || ""}
@@ -44,7 +47,9 @@ const ImageCard = ({
         id={id}
         link={link}
         type="image"
-        containerClasses={containerClassName}
+        containerClasses={`${
+          revealText && isHovered ? "opacity-[0.3]" : "opacity-[1]"
+        } ${containerClassName}`}
         containerStyle={{
           height: `${width * ratio}px`,
         }}

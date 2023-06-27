@@ -37,28 +37,30 @@ const LandingPage = () => {
           }}
         />
 
-        <div className="relative overflow-hidden">
-          <ImageCard
-            id="home_quiz"
-            link="/Home/quiz.svg"
-            containerClassName="rounded-[10px] overflow-hidden mt-[30px] md:mt-[70px]"
-            width={containerSize.width}
-            ratio={356 / 1065}
-            text="Everything Corp Personality Test"
-            textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
-          />
-          <div className="absolute left-0 top-[30px] md:top-[70px] z-[10] w-[100%]">
-            <Media
-              id="letter_img"
-              link="/Home/letter.svg"
-              type="image"
-              containerClasses="rounded-[10px] overflow-hidden"
-              containerStyle={{
-                height: `${(containerSize.width * 356) / 1065}px`,
-              }}
+        <Link href="/quiz">
+          <div className="relative hover:scale-[1.025] transition duration-[200ms]">
+            <ImageCard
+              id="home_quiz"
+              link="/Home/quiz.svg"
+              containerClassName="rounded-[10px] overflow-hidden mt-[30px] md:mt-[70px]"
+              width={containerSize.width}
+              ratio={356 / 1065}
+              text="Everything Corp Personality Test"
+              textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
             />
+            <div className="absolute left-0 md:top-[0px] z-[10] w-[100%] pointer-events-none">
+              <Media
+                id="letter_img"
+                link="/Home/letter.svg"
+                type="image"
+                containerClasses="rounded-[10px] overflow-hidden"
+                containerStyle={{
+                  height: `${(containerSize.width * 356) / 1065}px`,
+                }}
+              />
+            </div>
           </div>
-        </div>
+        </Link>
 
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
           <div className="col-1" ref={tinyRef}>
@@ -153,7 +155,7 @@ const LandingPage = () => {
           </div>
         </div>
         <Link href="/evil">
-          <div>
+          <div className="hover:scale-[1.025] transition duration-[200ms]">
             <ImageCard
               id="home_economic"
               link="/Home/economic.svg"
@@ -172,7 +174,7 @@ const LandingPage = () => {
           </div>
         </Link>
         <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
-          <div className="col-1" ref={mediumRef}>
+          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]" ref={mediumRef}>
             <Link href="/fixers">
               <div>
                 <ImageCard
@@ -187,7 +189,7 @@ const LandingPage = () => {
               </div>
             </Link>
           </div>
-          <div className="col-1">
+          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
             <Link href="/careers">
               <div>
                 <ImageCard

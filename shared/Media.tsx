@@ -33,6 +33,7 @@ function Media({
   const videoAutoPlay = () => {
     if(videoProps?.autoPlay && videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted
+      videoRef.current.play()
     }
   }
   
@@ -63,12 +64,11 @@ function Media({
           layout='fill'
           alt='not found image'
           placeholder='blur'
-          blurDataURL={link}
+          blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcMXP2OQAGOQKc/DqDigAAAABJRU5ErkJggg=='}
           unoptimized
         />
       )}
     </div>
   )
 }
-
 export default Media
