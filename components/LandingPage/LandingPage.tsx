@@ -1,7 +1,7 @@
 import { useMeasure } from "react-use"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import Media from "../../shared/Media"
 import Layout from "../Layout"
 import ImageCard from "./ImageCard"
@@ -13,7 +13,7 @@ const LandingPage = () => {
   const [mediumRef, mediumSize] = useMeasure()
   const router = useRouter()
 
-  useEffect(() => {
+  const shouldBeScroll = useCallback(() => {
     if (
       router.query.about === "other" &&
       containerSize.height &&
@@ -23,6 +23,10 @@ const LandingPage = () => {
       window.scrollTo({ top: containerSize.height, behavior: "smooth" })
     }
   }, [router.query, containerSize, tinySize, mediumSize])
+
+  useEffect(() => {
+    shouldBeScroll()
+  }, [shouldBeScroll])
 
   return (
     <Layout type="base">
