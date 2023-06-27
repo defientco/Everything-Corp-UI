@@ -32,9 +32,6 @@ const LandingPage = () => {
           link="/Home/video.mp4"
           type="video"
           className="rounded-[10px] overflow-hidden"
-          videoProps={{
-            autoPlay: true,
-          }}
         />
 
         <Link href="/quiz">

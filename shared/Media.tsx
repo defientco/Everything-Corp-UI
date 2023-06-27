@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { DetailedHTMLProps, VideoHTMLAttributes, useEffect, useRef } from 'react'
+import { useState } from 'react'
 
 interface IMedia {
   id: string
@@ -24,15 +25,11 @@ function Media({
   containerStyle
 }: IMedia) {
   const videoRef = useRef<any>()
-  useEffect(() => {
-    if(videoProps?.autoPlay) {
-      videoRef.current.muted = !videoRef.current.muted
-    }
-  }, [videoRef, videoProps])
+  const [loaded, setLoaded] = useState(false)
 
   const videoAutoPlay = () => {
-    if(videoProps?.autoPlay && videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
+    if(videoRef.current) {
+      videoRef.current.muted = loaded ? !videoRef.current.muted : false
       videoRef.current.play()
     }
   }
@@ -46,11 +43,15 @@ function Media({
       {type === 'video' && link && (
         <video
           muted
+          autoPlay
           id={id}
           className={`${className || ''}`}
           {...videoProps}
           onLoadedData={() => {
-           
+           setLoaded(true)
+          }}
+          onLoadedMetadata={() => {
+            setLoaded(true)
           }}
           ref={videoRef}
         >
