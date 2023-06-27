@@ -31,7 +31,7 @@ const LandingPage = () => {
           id="home_video"
           link="/Home/video.mp4"
           type="video"
-          className="rounded-[10px] overflow-hidden"
+          className="rounded-[10px] overflow-hidden mb-[30px] md:mb-[70px]"
         />
 
         <Link href="/quiz">
@@ -39,13 +39,13 @@ const LandingPage = () => {
             <ImageCard
               id="home_quiz"
               link="/Home/quiz.svg"
-              containerClassName="rounded-[10px] overflow-hidden mt-[30px] md:mt-[70px]"
+              containerClassName="rounded-[10px] overflow-hidden "
               width={containerSize.width}
               ratio={356 / 1065}
               text="Everything Corp Personality Test"
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
             />
-            <div className="absolute left-0 md:top-[0px] z-[10] w-[100%] pointer-events-none">
+            <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
               <Media
                 id="letter_img"
                 link="/Home/letter.svg"
