@@ -32,6 +32,7 @@ function Media({
 
   const videoAutoPlay = () => {
     if(videoProps?.autoPlay && videoRef.current) {
+      videoRef.current.play()
       videoRef.current.muted = false
     }
   }
@@ -64,6 +65,7 @@ function Media({
           alt='not found image'
           placeholder='blur'
           blurDataURL={link}
+          unoptimized
         />
       )}
     </div>
