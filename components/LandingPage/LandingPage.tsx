@@ -60,7 +60,7 @@ const LandingPage = () => {
         </Link>
 
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
-          <div className="col-1" ref={tinyRef}>
+          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]" ref={tinyRef}>
             <ImageCard
               id="home_restoration"
               link="/Home/restoration.svg"
@@ -88,7 +88,7 @@ const LandingPage = () => {
               }
             />
           </div>
-          <div className="col-1">
+          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
             <ImageCard
               id="home_ubiquity"
               link="/Home/ubiquity.svg"
@@ -118,7 +118,7 @@ const LandingPage = () => {
               }
             />
           </div>
-          <div className="col-1">
+          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
             <ImageCard
               id="home_neutrality"
               link="/Home/neutrality.svg"
