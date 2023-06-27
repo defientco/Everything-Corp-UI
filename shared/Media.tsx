@@ -26,14 +26,13 @@ function Media({
   const videoRef = useRef<any>()
   useEffect(() => {
     if(videoProps?.autoPlay) {
-      videoRef.current.muted = false
+      videoRef.current.muted = !videoRef.current.muted
     }
   }, [videoRef, videoProps])
 
   const videoAutoPlay = () => {
     if(videoProps?.autoPlay && videoRef.current) {
-      videoRef.current.play()
-      videoRef.current.muted = false
+      videoRef.current.muted = !videoRef.current.muted
     }
   }
   
