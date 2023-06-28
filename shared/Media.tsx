@@ -30,11 +30,10 @@ function Media({
   height
 }: IMedia) {
   const videoRef = useRef<any>()
-  const [loaded, setLoaded] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
 
   const videoAutoPlay = () => {
-    setIsMuted(loaded ? !isMuted : false)
+    setIsMuted(!isMuted)
     videoRef.current.play()
   }
   
@@ -51,12 +50,6 @@ function Media({
             id={id}
             className={`${className || ''}`}
             {...videoProps}
-            onLoadedData={() => {
-            setLoaded(true)
-            }}
-            onLoadedMetadata={() => {
-              setLoaded(true)
-            }}
             ref={videoRef}
           >
             <source src={link}/>
