@@ -45,17 +45,19 @@ const LandingPage = () => {
               text="Everything Corp Personality Test"
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
             />
-            <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
-              <Media
-                id="letter_img"
-                link="/Home/letter.png"
-                type="image"
-                containerClasses="rounded-[10px] overflow-hidden"
-                containerStyle={{
-                  height: `${(containerSize.width * 356) / 1065}px`,
-                }}
-              />
-            </div>
+            {containerSize.width && (
+              <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
+                <Media
+                  id="letter_img"
+                  link="/Home/letter.png"
+                  type="image"
+                  containerClasses="rounded-[10px] overflow-hidden"
+                  containerStyle={{
+                    height: `${(containerSize.width * 356) / 1065}px`,
+                  }}
+                />
+              </div>
+            )}
           </div>
         </Link>
 
@@ -152,11 +154,11 @@ const LandingPage = () => {
           </div>
         </div>
         <Link href="/evil">
-          <div className="hover:scale-[1.025] transition duration-[100ms]">
+          <div className="hover:scale-[1.025] transition duration-[100ms] mt-[5px] md:mt-[10px]">
             <ImageCard
               id="home_economic"
               link="/Home/economic.png"
-              containerClassName="rounded-[10px] overflow-hidden mt-[5px] md:mt-[10px]"
+              containerClassName="rounded-[10px] overflow-hidden"
               width={containerSize.width}
               ratio={356 / 1065}
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)] leading-[80%] md:leading-[100%]"

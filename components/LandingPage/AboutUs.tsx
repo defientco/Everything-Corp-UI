@@ -252,25 +252,27 @@ const AboutUs = () => {
       <div className="font-aldrich text-[20px] md:text-[48px] xl:text-[54px] font-[400] pb-[20px] md:pb-[40px]">
         About Us
       </div>
-      <div className="">
-        {sections.map((section: SectionData) => (
-          <div
-            key={section.id}
-            className="font-aldrich 
+      {width && (
+        <div className="">
+          {sections.map((section: SectionData) => (
+            <div
+              key={section.id}
+              className="font-aldrich 
                         font-[400] pb-[15px] md:pb-[30px]"
-            style={{
-              // eslint-disable-next-line no-nested-ternary
-              fontSize: isResponsive
-                ? isMobile
-                  ? `${(33 / 1086) * width}px`
-                  : `${(32 / 1086) * width}px`
-                : "28px",
-            }}
-          >
-            {isMobile ? section.mobile : section.desktop}
-          </div>
-        ))}
-      </div>
+              style={{
+                // eslint-disable-next-line no-nested-ternary
+                fontSize: isResponsive
+                  ? isMobile
+                    ? `${(33 / 1086) * width}px`
+                    : `${(32 / 1086) * width}px`
+                  : "28px",
+              }}
+            >
+              {isMobile ? section.mobile : section.desktop}
+            </div>
+          ))}
+        </div>
+      )}
       <div className="flex gap-2 md:gap-10 pt-[10px] md:pt-[30px]">
         <Media
           id="about_us_logo"
