@@ -31,6 +31,9 @@ const ImageCard = ({
       onMouseOut={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      style={{
+        height: `${width * ratio}px`,
+      }}
     >
       <div
         className={`absolute z-[2] w-full h-full flex justify-center items-center

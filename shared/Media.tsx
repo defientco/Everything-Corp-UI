@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { DetailedHTMLProps, VideoHTMLAttributes, useEffect, useRef } from 'react'
+import { DetailedHTMLProps, VideoHTMLAttributes, useRef } from 'react'
 import { useState } from 'react'
 
 interface IMedia {
@@ -75,7 +75,7 @@ function Media({
           placeholder='blur'
           blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8LwkAAh0BGumlBj4AAAAASUVORK5CYII='
           priority
-          draggable={false}
+          quality={70}
         />
       )}
     </div>
