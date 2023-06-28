@@ -7,7 +7,7 @@ import Layout from "../Layout"
 import ImageCard from "./ImageCard"
 import AboutUs from "./AboutUs"
 
-import QuizImg from '../../public/Home/quiz.svg'
+import QuizImg from "../../public/Home/quiz.svg"
 
 const LandingPage = () => {
   const [containerRef, containerSize] = useMeasure()
