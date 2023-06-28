@@ -31,7 +31,7 @@ const LandingPage = () => {
           id="home_video"
           link="/Home/video.mp4"
           type="video"
-          className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px]"
+          className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full"
         />
 
         <Link href="/quiz">
