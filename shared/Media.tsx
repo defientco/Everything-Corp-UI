@@ -60,12 +60,12 @@ function Media({
       )}
       {type === 'image' && link && (
         <Image 
-          className='absolute w-[100%] h-[100%]'
+          // className='absolute w-[100%] h-[100%]'
           src={link}
           layout='fill'
           alt='not found image'
           placeholder='blur'
-          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcMXP2OQAGOQKc/DqDigAAAABJRU5ErkJggg=='
+          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8LwkAAh0BGumlBj4AAAAASUVORK5CYII='
           unoptimized
         />
       )}
