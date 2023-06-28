@@ -13,6 +13,8 @@ interface IMedia {
     VideoHTMLAttributes<HTMLVideoElement>,
     HTMLVideoElement
   >
+  width?: number
+  height?: number
 }
 
 function Media({
@@ -22,7 +24,9 @@ function Media({
   className,
   videoProps,
   containerClasses,
-  containerStyle
+  containerStyle,
+  width,
+  height
 }: IMedia) {
   const videoRef = useRef<any>()
   const [loaded, setLoaded] = useState(false)
@@ -61,7 +65,12 @@ function Media({
       {type === 'image' && link && (
         <Image 
           src={link}
-          layout='fill'
+          {...((!width && !height) ? {
+            layout: 'fill'
+          }: {
+            width,
+            height
+          })}
           alt='not found image'
           placeholder='blur'
           blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8LwkAAh0BGumlBj4AAAAASUVORK5CYII='

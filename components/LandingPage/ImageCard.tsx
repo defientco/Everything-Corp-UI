@@ -53,6 +53,8 @@ const ImageCard = ({
         containerStyle={{
           height: `${width * ratio}px`,
         }}
+        width={width}
+        height={width * ratio}
       />
     </div>
   )

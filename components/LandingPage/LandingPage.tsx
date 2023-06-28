@@ -35,7 +35,7 @@ const LandingPage = () => {
         />
 
         <Link href="/quiz">
-          <div className="relative hover:scale-[1.025] transition duration-[200ms]">
+          <div className="relative hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_quiz"
               link="/Home/quiz.svg"
@@ -60,7 +60,7 @@ const LandingPage = () => {
         </Link>
 
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]" ref={tinyRef}>
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={tinyRef}>
             <ImageCard
               id="home_restoration"
               link="/Home/restoration.svg"
@@ -88,7 +88,7 @@ const LandingPage = () => {
               }
             />
           </div>
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_ubiquity"
               link="/Home/ubiquity.svg"
@@ -118,7 +118,7 @@ const LandingPage = () => {
               }
             />
           </div>
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_neutrality"
               link="/Home/neutrality.svg"
@@ -152,7 +152,7 @@ const LandingPage = () => {
           </div>
         </div>
         <Link href="/evil">
-          <div className="hover:scale-[1.025] transition duration-[200ms]">
+          <div className="hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_economic"
               link="/Home/economic.svg"
@@ -171,7 +171,7 @@ const LandingPage = () => {
           </div>
         </Link>
         <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]" ref={mediumRef}>
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={mediumRef}>
             <Link href="/fixers">
               <div>
                 <ImageCard
@@ -186,7 +186,7 @@ const LandingPage = () => {
               </div>
             </Link>
           </div>
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <Link href="/careers">
               <div>
                 <ImageCard
