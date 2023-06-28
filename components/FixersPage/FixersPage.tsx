@@ -41,7 +41,7 @@ const FixersPage = () => {
   return (
     <Layout type="base">
       <div
-        className="pb-[150px]"
+        className="pb-[150px] pt-[32px]"
         ref={containerRef}
         style={{
           width: isResponsive ? "100vw" : "1065px",

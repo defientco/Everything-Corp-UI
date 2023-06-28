@@ -31,7 +31,7 @@ const LandingPage = () => {
           id="home_video"
           link="/Home/video.mp4"
           type="video"
-          className="rounded-[10px] overflow-hidden mb-[30px] md:mb-[70px]"
+          className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px]"
         />
 
         <Link href="/quiz">
@@ -70,7 +70,7 @@ const LandingPage = () => {
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
               text="Restoration."
               revealText={
-                <div className="text-[5px] samsungS8:text-[6px] xs:text-[9px] md:text-[11px] lg:text-[20px] leading-[103.8%]">
+                <div className="text-[4px] samsungS8:text-[5px] xs:text-[6px] sm:text-[9px] md:text-[11px] lg:text-[20px] leading-[103.8%]">
                   We &apos;re a dynamic force for
                   <br />
                   economic stimulation and growth
@@ -98,7 +98,7 @@ const LandingPage = () => {
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
               text="Ubiquity."
               revealText={
-                <div className="text-[5px] samsungS8:text-[6px] xs:text-[9px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
+                <div className="text-[4px] samsungS8:text-[5px] xs:text-[5px] sm:text-[10px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
                   With a presence that extends
                   <br />
                   across borders, The Fixers are an
@@ -128,7 +128,7 @@ const LandingPage = () => {
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
               text="Neutrality."
               revealText={
-                <div className="text-[5px] samsungS8:text-[6px] xs:text-[9px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
+                <div className="text-[4px] xs:text-[5px] sm:text-[9px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
                   We prioritize profitability,
                   <br />
                   recognizing that our success is

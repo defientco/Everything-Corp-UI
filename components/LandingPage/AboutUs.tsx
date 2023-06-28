@@ -214,7 +214,7 @@ const AboutUs = () => {
     <div
       className={`relative rounded-[10px] md:rounded-[42px] bg-white
             p-2 samsungS8:p-4 md:px-20 md:pt-10 md:pb-20 
-            mt-[30px] md:mt-[70px] overflow-hidden ${
+            mt-[20px] xs:mt-[30px] md:mt-[50px] overflow-hidden ${
               isCollaped ? "h-[300px] md:h-[780px] xl:h-[900px]" : "h-full"
             }
             transition ease-in-out duration-[1000ms]`}

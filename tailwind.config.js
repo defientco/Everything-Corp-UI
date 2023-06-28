@@ -15,7 +15,7 @@ module.exports = {
       screens: {
         "ios" : '320px',
         "samsungS8": "360px",
-        "xs": '390px',
+        "xs": '393px',
         "sm": "640px",
         "md": "768px",
         "lg": "1024px",
