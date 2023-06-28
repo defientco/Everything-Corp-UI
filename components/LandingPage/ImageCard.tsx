@@ -33,6 +33,7 @@ const ImageCard = ({
       onBlur={() => setIsHovered(false)}
       style={{
         height: `${width * ratio}px`,
+        visibility: width ? "visible" : "hidden",
       }}
     >
       <div

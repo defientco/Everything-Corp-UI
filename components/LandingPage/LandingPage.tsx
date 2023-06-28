@@ -7,8 +7,6 @@ import Layout from "../Layout"
 import ImageCard from "./ImageCard"
 import AboutUs from "./AboutUs"
 
-import QuizImg from "../../public/Home/quiz.svg"
-
 const LandingPage = () => {
   const [containerRef, containerSize] = useMeasure()
   const [tinyRef, tinySize] = useMeasure()
@@ -31,7 +29,7 @@ const LandingPage = () => {
       <div ref={containerRef} className="p-[32px] w-[100vw] xs:w-full pb-20">
         <Media
           id="home_video"
-          link={QuizImg.src}
+          link="/Home/video.mp4"
           type="video"
           className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px]"
         />
@@ -40,7 +38,7 @@ const LandingPage = () => {
           <div className="relative hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_quiz"
-              link="/Home/quiz.svg"
+              link="/Home/quiz.png"
               containerClassName="rounded-[10px] overflow-hidden "
               width={containerSize.width}
               ratio={356 / 1065}
@@ -50,7 +48,7 @@ const LandingPage = () => {
             <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
               <Media
                 id="letter_img"
-                link="/Home/letter.svg"
+                link="/Home/letter.png"
                 type="image"
                 containerClasses="rounded-[10px] overflow-hidden"
                 containerStyle={{
@@ -65,7 +63,7 @@ const LandingPage = () => {
           <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={tinyRef}>
             <ImageCard
               id="home_restoration"
-              link="/Home/restoration.svg"
+              link="/Home/restoration.png"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
               ratio={344 / 345}
@@ -93,7 +91,7 @@ const LandingPage = () => {
           <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_ubiquity"
-              link="/Home/ubiquity.svg"
+              link="/Home/ubiquity.png"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
               ratio={344 / 345}
@@ -123,7 +121,7 @@ const LandingPage = () => {
           <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_neutrality"
-              link="/Home/neutrality.svg"
+              link="/Home/neutrality.png"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
               ratio={344 / 345}
@@ -157,7 +155,7 @@ const LandingPage = () => {
           <div className="hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_economic"
-              link="/Home/economic.svg"
+              link="/Home/economic.png"
               containerClassName="rounded-[10px] overflow-hidden mt-[5px] md:mt-[10px]"
               width={containerSize.width}
               ratio={356 / 1065}
@@ -178,7 +176,7 @@ const LandingPage = () => {
               <div>
                 <ImageCard
                   id="home_fixers"
-                  link="/Home/fixers.svg"
+                  link="/Home/fixers.png"
                   containerClassName="rounded-[10px] overflow-hidden"
                   width={mediumSize.width}
                   ratio={344 / 539}
@@ -193,7 +191,7 @@ const LandingPage = () => {
               <div>
                 <ImageCard
                   id="home_careers"
-                  link="/Home/careers.svg"
+                  link="/Home/careers.png"
                   containerClassName="rounded-[10px] overflow-hidden"
                   width={mediumSize.width}
                   ratio={344 / 539}
