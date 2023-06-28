@@ -60,7 +60,6 @@ function Media({
       )}
       {type === 'image' && link && (
         <Image 
-          // className='absolute w-[100%] h-[100%]'
           src={link}
           layout='fill'
           alt='not found image'
