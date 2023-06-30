@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { DetailedHTMLProps, VideoHTMLAttributes, useEffect, useRef } from 'react'
+import { DetailedHTMLProps, VideoHTMLAttributes, useRef } from 'react'
 import { useState } from 'react'
+import Icon from './Icon'
 
 interface IMedia {
   id: string
@@ -13,6 +14,8 @@ interface IMedia {
     VideoHTMLAttributes<HTMLVideoElement>,
     HTMLVideoElement
   >
+  width?: number
+  height?: number
 }
 
 function Media({
@@ -22,51 +25,57 @@ function Media({
   className,
   videoProps,
   containerClasses,
-  containerStyle
+  containerStyle,
+  width,
+  height
 }: IMedia) {
   const videoRef = useRef<any>()
-  const [loaded, setLoaded] = useState(false)
+  const [isMuted, setIsMuted] = useState(true)
 
   const videoAutoPlay = () => {
-    if(videoRef.current) {
-      videoRef.current.muted = loaded ? !videoRef.current.muted : false
-      videoRef.current.play()
-    }
+    setIsMuted(!isMuted)
+    videoRef.current.play()
   }
   
   return (
     <div
       className={`relative ${containerClasses || ''}`}
       style={containerStyle || {}}
-      onClick={videoAutoPlay}
     >
       {type === 'video' && link && (
-        <video
-          muted
-          autoPlay
-          id={id}
-          className={`${className || ''}`}
-          {...videoProps}
-          onLoadedData={() => {
-           setLoaded(true)
-          }}
-          onLoadedMetadata={() => {
-            setLoaded(true)
-          }}
-          ref={videoRef}
-        >
-          <source src={link}/>
-        </video>
+        <>
+          <video
+            muted={isMuted}
+            autoPlay
+            id={id}
+            className={`${className || ''}`}
+            {...videoProps}
+            ref={videoRef}
+          >
+            <source src={link}/>
+          </video>
+          <div className='absolute left-0 top-0 w-[100%] h-[100%] z-[2] rounded-[10px]
+            flex justify-end items-end p-[20px]'
+          >
+            <button type='button' onClick={videoAutoPlay} className='bg-black rounded-full p-[10px]'>
+              { isMuted ? <Icon name='unmuted' raw color='white'/> : <Icon name='muted' raw color='white'/> } 
+            </button>         
+          </div>
+        </>
       )}
       {type === 'image' && link && (
         <Image 
-          className='absolute w-[100%] h-[100%]'
           src={link}
-          layout='fill'
+          {...((!width && !height) ? {
+            layout: 'fill'
+          }: {
+            width,
+            height
+          })}
           alt='not found image'
           placeholder='blur'
-          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcMXP2OQAGOQKc/DqDigAAAABJRU5ErkJggg=='
-          unoptimized
+          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8LwkAAh0BGumlBj4AAAAASUVORK5CYII='
+          priority
         />
       )}
     </div>

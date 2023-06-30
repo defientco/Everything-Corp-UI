@@ -53,7 +53,7 @@ const EvilPage = () => {
 
   return (
     <Layout type="base">
-      <div ref={containerRef} className="w-[100vw] xl1065:w-[1065px] pb-[150px]">
+      <div ref={containerRef} className="w-[100vw] xl1065:w-[1065px] pb-[150px] pt-[32px]">
         <div
           className="relative z-[2]"
           style={{

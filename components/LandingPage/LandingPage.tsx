@@ -31,46 +31,48 @@ const LandingPage = () => {
           id="home_video"
           link="/Home/video.mp4"
           type="video"
-          className="rounded-[10px] overflow-hidden mb-[30px] md:mb-[70px]"
+          className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full"
         />
 
         <Link href="/quiz">
-          <div className="relative hover:scale-[1.025] transition duration-[200ms]">
+          <div className="relative hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_quiz"
-              link="/Home/quiz.svg"
+              link="/Home/quiz.png"
               containerClassName="rounded-[10px] overflow-hidden "
               width={containerSize.width}
               ratio={356 / 1065}
               text="Everything Corp Personality Test"
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
             />
-            <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
-              <Media
-                id="letter_img"
-                link="/Home/letter.svg"
-                type="image"
-                containerClasses="rounded-[10px] overflow-hidden"
-                containerStyle={{
-                  height: `${(containerSize.width * 356) / 1065}px`,
-                }}
-              />
-            </div>
+            {containerSize.width && (
+              <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
+                <Media
+                  id="letter_img"
+                  link="/Home/letter.png"
+                  type="image"
+                  containerClasses="rounded-[10px] overflow-hidden"
+                  containerStyle={{
+                    height: `${(containerSize.width * 356) / 1065}px`,
+                  }}
+                />
+              </div>
+            )}
           </div>
         </Link>
 
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]" ref={tinyRef}>
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={tinyRef}>
             <ImageCard
               id="home_restoration"
-              link="/Home/restoration.svg"
+              link="/Home/restoration.png"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
               ratio={344 / 345}
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
               text="Restoration."
               revealText={
-                <div className="text-[5px] samsungS8:text-[6px] xs:text-[9px] md:text-[11px] lg:text-[20px] leading-[103.8%]">
+                <div className="text-[4px] samsungS8:text-[5px] xs:text-[6px] sm:text-[9px] md:text-[11px] lg:text-[20px] leading-[103.8%]">
                   We &apos;re a dynamic force for
                   <br />
                   economic stimulation and growth
@@ -88,17 +90,17 @@ const LandingPage = () => {
               }
             />
           </div>
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_ubiquity"
-              link="/Home/ubiquity.svg"
+              link="/Home/ubiquity.png"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
               ratio={344 / 345}
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
               text="Ubiquity."
               revealText={
-                <div className="text-[5px] samsungS8:text-[6px] xs:text-[9px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
+                <div className="text-[4px] samsungS8:text-[5px] xs:text-[5px] sm:text-[10px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
                   With a presence that extends
                   <br />
                   across borders, The Fixers are an
@@ -118,17 +120,17 @@ const LandingPage = () => {
               }
             />
           </div>
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_neutrality"
-              link="/Home/neutrality.svg"
+              link="/Home/neutrality.png"
               containerClassName="rounded-[10px] overflow-hidden"
               width={tinySize.width}
               ratio={344 / 345}
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)"
               text="Neutrality."
               revealText={
-                <div className="text-[5px] samsungS8:text-[6px] xs:text-[9px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
+                <div className="text-[4px] xs:text-[5px] sm:text-[9px] md:text-[12px] lg:text-[18px] leading-[103.8%]">
                   We prioritize profitability,
                   <br />
                   recognizing that our success is
@@ -152,11 +154,11 @@ const LandingPage = () => {
           </div>
         </div>
         <Link href="/evil">
-          <div className="hover:scale-[1.025] transition duration-[200ms]">
+          <div className="hover:scale-[1.025] transition duration-[100ms] mt-[5px] md:mt-[10px]">
             <ImageCard
               id="home_economic"
-              link="/Home/economic.svg"
-              containerClassName="rounded-[10px] overflow-hidden mt-[5px] md:mt-[10px]"
+              link="/Home/economic.png"
+              containerClassName="rounded-[10px] overflow-hidden"
               width={containerSize.width}
               ratio={356 / 1065}
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)] leading-[80%] md:leading-[100%]"
@@ -171,12 +173,12 @@ const LandingPage = () => {
           </div>
         </Link>
         <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]" ref={mediumRef}>
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={mediumRef}>
             <Link href="/fixers">
               <div>
                 <ImageCard
                   id="home_fixers"
-                  link="/Home/fixers.svg"
+                  link="/Home/fixers.png"
                   containerClassName="rounded-[10px] overflow-hidden"
                   width={mediumSize.width}
                   ratio={344 / 539}
@@ -186,12 +188,12 @@ const LandingPage = () => {
               </div>
             </Link>
           </div>
-          <div className="col-1 hover:scale-[1.025] transition duration-[200ms]">
+          <div className="col-1 hover:scale-[1.025] transition duration-[100ms]">
             <Link href="/careers">
               <div>
                 <ImageCard
                   id="home_careers"
-                  link="/Home/careers.svg"
+                  link="/Home/careers.png"
                   containerClassName="rounded-[10px] overflow-hidden"
                   width={mediumSize.width}
                   ratio={344 / 539}
