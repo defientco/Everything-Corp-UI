@@ -5,7 +5,7 @@ const QuizPage = () => {
   const router = useRouter()
 
   const onSubmit = ({ responseId }: any) => {
-    router.push(`https://cre8ors.com/quiz/success?responseId=${responseId}`)
+    router.push(`https://cre8ors.com/status?responseId=${responseId}`)
   }
 
   return (
