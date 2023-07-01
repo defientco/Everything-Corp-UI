@@ -1,5 +1,5 @@
 import { createHandler, Post, Body } from "next-api-decorators"
-import { log } from "console"
+import { error } from "console"
 import { addAllowListApplicant } from "../../../../helpers/db"
 import { ApplicantDTO } from "../../../../DTO/applicant.dto"
 
@@ -14,7 +14,7 @@ const getResponse = async (responseId) => {
 const idToKey = {
   "7Q1OU08DnwDd": "walletAddress",
   ht0M1DEcNdDa: "reason",
-  "4OB9BFA7WtRq": "twitterHandler",
+  "4OB9BFA7WtRq": "twitterHandle",
   gRvt5M4h61ag: "outcomeChoice",
 }
 
@@ -36,7 +36,6 @@ class TypeformResponseHandler {
     const response = await getResponse(responseId)
     const data = await response.json()
     if (!data?.items[0]?.answers) return new Error("No response found")
-
     const responsesOfInterest = data?.items[0].answers.filter((item) =>
       fieldsOfInterest.includes(item.field.id),
     )
@@ -46,12 +45,13 @@ class TypeformResponseHandler {
       const field = responsesOfInterest[i]
       responseData[idToKey[field.field.id]] = field?.choice?.label || field.text
     }
-
     const cre8or = parseCre8orType(data?.items[0]?.outcome)
     responseData.creatorType = cre8or
-
-    const res = await addAllowListApplicant(responseData as ApplicantDTO)
-    log(res)
+    try {
+      await addAllowListApplicant(responseData as ApplicantDTO)
+    } catch (e) {
+      error("Something went wrong: ", e.message)
+    }
 
     return responseData
   }
