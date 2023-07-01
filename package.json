@@ -20,6 +20,7 @@
     "@thirdweb-dev/sdk": "^3.6.7",
     "@typeform/embed-react": "^2.11.0",
     "@types/mongoose": "^5.11.97",
+    "@vercel/analytics": "^1.0.1",
     "axios": "^1.2.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
