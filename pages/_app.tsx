@@ -7,6 +7,7 @@ import { publicProvider } from "wagmi/providers/public"
 import { ToastContainer } from "react-toastify"
 import { SessionProvider } from "next-auth/react"
 import "react-toastify/dist/ReactToastify.css"
+import { Analytics } from "@vercel/analytics/react"
 import { Cre8orsProvider } from "../providers/Crea8orsProvider"
 import { UserProvider } from "../providers/UserProvider"
 
@@ -40,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Cre8orsProvider>
               <Component {...pageProps} />
               <ToastContainer />
+              <Analytics />
             </Cre8orsProvider>
           </UserProvider>
         </SessionProvider>
