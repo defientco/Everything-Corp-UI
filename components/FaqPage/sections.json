@@ -1,0 +1,37 @@
+[
+  {
+    "id": "faq_first",
+    "desktop_question": "Will your company hurt our town's economy?",
+    "mobile_question": "Will your company hurt our town's economy?",
+    "desktop_content": "No, We are here to make everything better.",
+    "mobile_content": "No, We are here to make everything better."
+  },
+  {
+    "id": "faq_second",
+    "desktop_question": "What are your company's plans to minimize any\nnegative environmental impact?",
+    "mobile_question": "What are your company's plans to minimize\nany negative environmental impact?",
+    "desktop_content": "The environment is here for us to use in the fullest extent of\nour abilities. There is no such thing as “negative” impact. Only impact.",
+    "mobile_content": "The environment is here for us to use in the\nfullest extent of our abilities. There is no such\nthing as “negative” impact. Only impact."
+  },
+  {
+    "id": "faq_third",
+    "desktop_question": "How will your company contribute to the economic\ndevelopment of our town and surrounding areas?",
+    "mobile_question": "How will your company contribute to the\neconomic development of our town and\nsurrounding areas?",
+    "desktop_content": "Each location varies. We have been in operation for\ngenerations and have plenty of confidential community-specific\nplans.",
+    "mobile_content": "Each location varies. We have been in\noperation for generations and have plenty of\nconfidential community-specific plans."
+  },
+  {
+    "id": "faq_fourth",
+    "desktop_question": "How will your company ensure that it is complying\nwith local laws and regulations?",
+    "mobile_question": "How will your company ensure that it is\ncomplying with local laws and regulations?",
+    "desktop_content": "It’s possible that laws or regulations are violated because the\nnecessary measures of creating a thriving community are not\nalways conventional. Our success requires your trust.",
+    "mobile_content": "It’s possible that laws or regulations are\nviolated because the necessary measures of\ncreating a thriving community are not always\nconventional. Our success requires your trust."
+  },
+  {
+    "id": "faq_fifth",
+    "desktop_question": "Will your company create jobs for locals and help\nour town grow?",
+    "mobile_question": "Will your company create jobs for locals\nand help our town grow?",
+    "desktop_content": "Everything Corp has many plans for the future. The success\nof these future plans are secure so long as they are concealed\nfrom the particular location they are impacting.",
+    "mobile_content": "Everything Corp has many plans for the\nfuture. The success of these future plans are\nsecure so long as they are concealed from the\nparticular location they are impacting."
+  }
+]
