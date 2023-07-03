@@ -54,20 +54,56 @@ const FixersPage = () => {
             paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
           }}
         >
-          <Media
-            id="fixers_first"
-            link="/Fixers/front.svg"
-            type="image"
-            containerClasses="rounded-[10px] overflow-hidden"
-            containerStyle={{
-              height: `${isResponsive ? ((width - paddingX) / 1065) * 1041 : 1041}px`,
-              width: `${isResponsive ? width - paddingX : 1065}px`,
-            }}
-          />
+          <div className="relative overflow-hidden z-[1]">
+            <Media
+              id="fixers_first"
+              link="/Fixers/front.svg"
+              type="image"
+              containerClasses="rounded-[10px] overflow-hidden"
+              containerStyle={{
+                height: `${isResponsive ? ((width - paddingX) / 1065) * 1041 : 1041}px`,
+                width: `${isResponsive ? width - paddingX : 1065}px`,
+              }}
+            />
+            <div className="absolute left-0 top-0 w-[100%] h-[100%] z-[3]">
+              {Array(3)
+                .fill(null)
+                .map((_, index) => (
+                  <Media
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
+                    id={`fixers_first_hacked_${index}`}
+                    link="/Fixers/front_hacked.png"
+                    type="image"
+                    containerClasses="rounded-[10px] overflow-hidden"
+                    containerStyle={{
+                      height: `${isResponsive ? ((width - paddingX) / 1065) * 704 : 704}px`,
+                      width: `${isResponsive ? width - paddingX : 1065}px`,
+                    }}
+                  />
+                ))}
+            </div>
+            <div
+              className="absolute w-[100%] text-center text-white font-aldrich
+               drop-shadow-[2px_6px_2px_#000] z-4"
+              style={{
+                top: isResponsive ? `${(500 / 1065) * (width - paddingX)}px` : "500px",
+                // eslint-disable-next-line no-nested-ternary
+                fontSize: isLg
+                  ? isMobile
+                    ? `${(52 / 320) * (width - paddingX)}px`
+                    : `${(129 / 1065) * (width - paddingX)}px`
+                  : "129px",
+              }}
+            >
+              The Fixers
+            </div>
+          </div>
+
           <div
             className="absolute md:w-[100%] bg-[black]
                 py-[40px] md:py-[80px]
-                shadow-[0_0_34px_45px_rgba(0,0,0)]"
+                shadow-[0_0_34px_45px_rgba(0,0,0)] z-[2]"
             ref={sectionRef}
             style={{
               top: `${
@@ -81,46 +117,62 @@ const FixersPage = () => {
             }}
           >
             <div className="relative">
-              {sections.map((section: SectionData) => (
-                <pre
-                  key={section.id}
-                  className="font-aldrich 
-                                  text-[white] pb-[30px]
-                                  [&>span]:text-[36px] [&>span]:xl:text-[40px]
-                                  leading-[108.8%]
-                              "
-                  style={{
-                    // eslint-disable-next-line no-nested-ternary
-                    fontSize: isLg
-                      ? isMobile
-                        ? `${(14 / 320) * (width - paddingX)}px`
-                        : `${(32 / 1065) * (width - paddingX)}px`
-                      : "32px",
-                  }}
-                >
-                  {!isMobile ? prefixs[section.id] : ""}
-                  {!isMobile ? section.desktop : section.mobile}
-                </pre>
-              ))}
               <div
-                className="absolute w-[100%] text-center text-white font-aldrich
-               drop-shadow-[2px_6px_2px_#000]"
+                className="relative overflow-hidden"
                 style={{
-                  top: isResponsive ? `-${(300 / 1065) * (width - paddingX)}px` : "-300px",
-                  // eslint-disable-next-line no-nested-ternary
-                  fontSize: isLg
-                    ? isMobile
-                      ? `${(52 / 320) * (width - paddingX)}px`
-                      : `${(129 / 1065) * (width - paddingX)}px`
-                    : "129px",
+                  paddingTop: `${
+                    // eslint-disable-next-line no-nested-ternary
+                    isResponsive ? ((width - paddingX) / 1065) * 50 : 50
+                  }px`,
+                  paddingBottom: `${
+                    // eslint-disable-next-line no-nested-ternary
+                    isResponsive ? ((width - paddingX) / 1065) * 90 : 90
+                  }px`,
                 }}
               >
-                The Fixers
+                {sections.map((section: SectionData) => (
+                  <pre
+                    key={section.id}
+                    className="font-aldrich 
+                                    text-[white] pb-[30px]
+                                    [&>span]:text-[36px] [&>span]:xl:text-[40px]
+                                    leading-[108.8%]
+                                "
+                    style={{
+                      // eslint-disable-next-line no-nested-ternary
+                      fontSize: isLg
+                        ? isMobile
+                          ? `${(14 / 320) * (width - paddingX)}px`
+                          : `${(32 / 1065) * (width - paddingX)}px`
+                        : "32px",
+                    }}
+                  >
+                    {!isMobile ? prefixs[section.id] : ""}
+                    {!isMobile ? section.desktop : section.mobile}
+                  </pre>
+                ))}
+                <div className="absolute left-0 top-0 w-full h-full z-[4]">
+                  {sections.map((section: SectionData) => (
+                    <Media
+                      key={`${section.id}_hacked`}
+                      id={`${section.id}_hacked`}
+                      link="/Fixers/letter_hacked.png"
+                      type="image"
+                      containerClasses="rounded-[10px] overflow-hidden mb-3"
+                      containerStyle={{
+                        height: `${isResponsive ? ((width - paddingX) / 1065) * 725 : 725}px`,
+                        width: `${isResponsive ? width - paddingX : 1065}px`,
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div
+          className="relative overflow-hidden"
           style={{
             paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
             paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
@@ -145,6 +197,33 @@ const FixersPage = () => {
               width: `${isResponsive ? width - paddingX : 1065}px`,
             }}
           />
+          <div
+            className="absolute left-0 bottom-0"
+            style={{
+              paddingLeft: isMobile ? `${paddingX / 2}px` : "0px",
+              paddingRight: isMobile ? `${paddingX / 2}px` : "0px",
+            }}
+          >
+            <Media
+              id="fixers_back_hacked"
+              link="/Fixers/back_hacked.png"
+              type="image"
+              containerClasses="rounded-[10px] overflow-hidden z-[1]"
+              containerStyle={{
+                marginTop: `${
+                  height -
+                  // eslint-disable-next-line no-nested-ternary
+                  (isResponsive
+                    ? isMobile
+                      ? ((width - paddingX) / 1065) * 1043 * 0.25 - 40
+                      : ((width - paddingX) / 1043) * 1041 * 0.3 - 40
+                    : 1043 * 0.3 - 80)
+                }px`,
+                height: `${isResponsive ? ((width - paddingX) / 1065) * 1043 : 1043}px`,
+                width: `${isResponsive ? width - paddingX : 1065}px`,
+              }}
+            />
+          </div>
         </div>
       </div>
     </Layout>
