@@ -41,16 +41,30 @@ const CareersPage = () => {
     <Layout type="base">
       <div className="pb-[150px] w-[100vw] xl1065:w-[1065px]" ref={containerRef}>
         <div className="relative z-[2] px-[32px] md:px-[0px]">
-          <Media
-            id="home_career"
-            link="/Careers/front.svg"
-            type="image"
-            containerClasses="rounded-[10px] overflow-hidden"
-            containerStyle={{
-              height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
-              width: `${isResponsive ? width - paddingX : 1067}px`,
-            }}
-          />
+          <div className="relative w-full h-full overflow-hidden">
+            <Media
+              id="home_career"
+              link="/Careers/front.svg"
+              type="image"
+              containerClasses="rounded-[10px] overflow-hidden"
+              containerStyle={{
+                height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
+                width: `${isResponsive ? width - paddingX : 1067}px`,
+              }}
+            />
+            <div className="absolute top-0 left-0 w-[100%] h-[100%] z-[4]">
+              <Media
+                id="home_front_hacked"
+                link="/Careers/front_hacked.png"
+                type="image"
+                containerClasses="rounded-[10px] overflow-hidden"
+                containerStyle={{
+                  height: `${isResponsive ? ((width - paddingX) / 1067) * 770 : 770}px`,
+                  width: `${isResponsive ? width - paddingX : 1067}px`,
+                }}
+              />
+            </div>
+          </div>
           <div
             className="absolute md:w-[100%] bg-[black] 
                 py-[40px] md:py-[80px]
@@ -102,7 +116,7 @@ const CareersPage = () => {
             </div>
           </div>
         </div>
-        <div className="px-[32px] md:px-[0px]">
+        <div className="px-[32px] md:px-[0px] h-full relative h-full">
           <Media
             id="desktop_home_career"
             link="/Careers/back.svg"
@@ -120,6 +134,17 @@ const CareersPage = () => {
               }px`,
               height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
               width: `${isResponsive ? width - paddingX : 1067}px`,
+            }}
+          />
+          <Media
+            id="home_back_hacked"
+            link="/Careers/back_hacked.png"
+            type="image"
+            containerClasses="rounded-[10px] overflow-hidden !absolute !bottom-0 left-0 z-[4]"
+            containerStyle={{
+              height: `${isResponsive ? ((width - paddingX) / 1067) * 770 : 770}px`,
+              width: `${isResponsive ? width - paddingX : 1067}px`,
+              left: `${isResponsive ? "32px" : "0px"}`,
             }}
           />
         </div>
