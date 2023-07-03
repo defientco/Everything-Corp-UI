@@ -25,12 +25,14 @@ class Mint {
       const contractAddress = process.env.NEXT_PUBLIC_ALLOWLIST_CONTRACT_ADDRESS
       const document = {
         ...body,
+        typeformResponses: [{ id: body.currentResponseId, timestamp: body.timestamp }],
       }
       const result = await getAllowListApplicant(body.walletAddress)
       if (result) {
         await updateAllowListApplicantResponseIds(body.walletAddress, {
           creatorType: body.creatorType,
-          responseId: body.responseId,
+          responseId: body.currentResponseId,
+          timestamp: body.timestamp,
         })
       } else {
         await addAllowListApplicant(document)

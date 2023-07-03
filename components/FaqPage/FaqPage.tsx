@@ -1,62 +1,19 @@
-import { useMediaQuery } from "usehooks-ts"
-import { useMeasure } from "react-use"
-import Layout from "../Layout"
-import data from "./sections.json"
+import BackToRoadmapButton from "../BackToRoadmapButton"
+import faq from "../../lib/faq.json"
 
-interface SectionData {
-  id: string
-  mobile_question: string
-  desktop_question: string
-  desktop_content: string
-  mobile_content: string
-}
-
-const FaqPage = () => {
-  const sections: SectionData[] = data as SectionData[]
-
-  const [titleRef, { width }] = useMeasure()
-
-  const isResponsive = useMediaQuery("(max-width: 1280px)")
-  const isMobile = useMediaQuery("(max-width: 768px)")
-
-  const dynamicFontSize = (mFontSize: number, dFontSize: number, containerWidth: number) => {
-    if (isResponsive) {
-      if (isMobile) return `${(mFontSize / containerWidth) * width}px`
-      return `${(dFontSize / containerWidth) * width}px`
-    }
-
-    return `${dFontSize}px`
-  }
-
-  return (
-    <Layout type="background">
-      <div
-        className="font-aldrich text-white px-2 xs:px-8 text-center md:px-20 md:text-left pb-[30px] md:pb-[50px]
-        drop-shadow-[2px_6px_2px_#000] w-[100vw] xl1280:w-[1280px]"
-        style={{ fontSize: dynamicFontSize(107, 107, 1280) }}
-        ref={titleRef}
-      >
-        FAQ
-      </div>
-      {sections.map((section: SectionData) => (
-        <div
-          key={section.id}
-          className="font-aldrich text-white pb-[20px] md:pb-[50px] px-2 xs:px-8 md:px-20"
-        >
-          <pre
-            className="leading-[146.3%] underline font-aldrich"
-            style={{ fontSize: dynamicFontSize(42, 40, 1065) }}
-          >
-            {`Q: ${isMobile ? section.mobile_question : section.desktop_question}`}
-          </pre>
-          <pre
-            className="text-[28.5px] font-aldrich"
-            style={{ fontSize: dynamicFontSize(42, 33, 1065) }}
-          >{`A: ${isMobile ? section.mobile_content : section.desktop_content}`}</pre>
+const FaqPage = () => (
+  <div className="w-[100vw] h-[100vh] flex flex-col items-center justify-center">
+    <BackToRoadmapButton textColor="#000000" />
+    <div className="w-[50vw] flex flex-col gap-3">
+      <div className="text-4xl">The Basics</div>
+      {faq.map((item) => (
+        <div key={item.title}>
+          <div className="text-xl font-bold">{item.title}</div>
+          <div className="text-md">{item.description}</div>
         </div>
       ))}
-    </Layout>
-  )
-}
+    </div>
+  </div>
+)
 
 export default FaqPage

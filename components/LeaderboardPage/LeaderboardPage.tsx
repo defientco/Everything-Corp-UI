@@ -33,7 +33,7 @@ const LeaderboardPage = () => {
     <div className="w-full max-w-2xl mx-auto pt-11">
       <div className="flex justify-end mr-3">
         <Link href="/connect">
-          <Button id="connect_btn">Connect</Button>
+          <Button>Connect</Button>
         </Link>
       </div>
       <h1 className="text-center text-2xl font-bold text-white mb-6">CRE8ORS Leaderboard</h1>
