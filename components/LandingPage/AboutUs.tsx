@@ -298,11 +298,12 @@ const AboutUs = () => {
             />
           </div>
         </div>
-        <div className="absolute left-0 top-0
+        <div
+          className="absolute left-0 top-0
           pointer-events-none"
           style={{
             width: `${width}px`,
-            height: `100%`
+            height: `100%`,
           }}
         >
           <Media
@@ -313,7 +314,6 @@ const AboutUs = () => {
           />
         </div>
       </div>
-      
     </div>
   )
 }

@@ -83,18 +83,19 @@ const LandingPage = () => {
         </Link>
 
         <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px] relative">
-          <div className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none"
+          <div
+            className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none"
             style={{
-              paddingTop: `${containerSize.width / 1065 * 48}px`
+              paddingTop: `${(containerSize.width / 1065) * 48}px`,
             }}
           >
-            <Media 
+            <Media
               id="3_card_hacked"
               link="/Home/3_card_hacked.png"
               type="image"
               containerClasses="w-[100%] h-[100%]"
               width={containerSize.width}
-              height={containerSize.width / 1065 * 268}
+              height={(containerSize.width / 1065) * 268}
             />
           </div>
           <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={tinyRef}>
@@ -219,7 +220,7 @@ const LandingPage = () => {
 
         <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px] relative">
           <div className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none">
-            <Media 
+            <Media
               id="2_card_hacked"
               link="/Home/2_card_hacked.png"
               type="image"
