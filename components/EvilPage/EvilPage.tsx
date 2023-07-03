@@ -52,7 +52,7 @@ const EvilPage = () => {
   }
 
   return (
-    <div className="relative w-full h-[100%] bg-[red]">
+    <div className="relative w-full h-[100%] bg-[red] overflow-hidden">
       <div className="absolute z-[10] left-0 top-0 w-[100vw] flex justify-center">
         <Media
           id="top_evil_hacked"
