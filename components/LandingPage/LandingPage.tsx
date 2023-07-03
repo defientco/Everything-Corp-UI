@@ -29,7 +29,7 @@ const LandingPage = () => {
       <div ref={containerRef} className="p-[32px] w-[100vw] xs:w-full pb-20">
         <Media
           id="home_video"
-          link="/Home/video.mp4"
+          link="/Home/new_video.mp4"
           type="video"
           className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full"
         />
