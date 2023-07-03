@@ -52,8 +52,8 @@ const EvilPage = () => {
   }
 
   return (
-    <div className="relative">
-      <div className="fixed z-[10] left-0 top-0 w-[100vw] flex justify-center">
+    <div className="relative w-full h-[100%] bg-[red]">
+      <div className="absolute z-[10] left-0 top-0 w-[100vw] flex justify-center">
         <Media
           id="top_evil_hacked"
           link="/Evil/edge_hacked.png"
@@ -64,6 +64,36 @@ const EvilPage = () => {
             width: `${isResponsive ? width - paddingX : 1065}px`,
           }}
         />
+      </div>
+      <div className="absolute z-[11] left-0 bottom-0 w-[100vw] flex justify-center">
+        <Media
+          id="bottom_evil_hacked"
+          link="/Evil/edge_hacked.png"
+          type="image"
+          containerClasses="rounded-[10px] overflow-hidden z-[1]"
+          containerStyle={{
+            height: `${isResponsive ? ((width - paddingX) / 1065) * 593 : 593}px`,
+            width: `${isResponsive ? width - paddingX : 1065}px`,
+          }}
+        />
+      </div>
+      <div className="absolute z-[12] left-0 top-0 w-[100vw] flex flex-col items-center pt-[92px] md:pt-[152px]">
+        {Array(10)
+          .fill(null)
+          .map((_, i) => (
+            <Media
+              id={`content_hacked_${i}`}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`content_hacked_${i}`}
+              link="/Evil/content_hacked.png"
+              type="image"
+              containerClasses="rounded-[10px] overflow-hidden z-[1] mb-[2rem]"
+              containerStyle={{
+                height: `${isResponsive ? ((width - paddingX) / 1065) * 289 : 289}px`,
+                width: `${isResponsive ? width - paddingX : 1065}px`,
+              }}
+            />
+          ))}
       </div>
       <Layout type="base">
         <div ref={containerRef} className="w-[100vw] xl1065:w-[1065px] pb-[150px] pt-[32px]">
