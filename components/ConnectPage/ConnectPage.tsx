@@ -60,7 +60,7 @@ function ConnectPage() {
               }
             }}
           >
-            <Button onClick={(e) => e.preventDefault()}>
+            <Button onClick={(e) => e.preventDefault()} id="twitter_btn">
               {session?.user ? "Sign out" : "Twitter Sign in"}
             </Button>
           </a>
@@ -69,7 +69,7 @@ function ConnectPage() {
         {!address && <ConnectButton />}
         {session?.user && (
           <Link href="/leaderboard">
-            <Button>Leaderboard</Button>
+            <Button id="leaderboard_btn">Leaderboard</Button>
           </Link>
         )}
       </div>

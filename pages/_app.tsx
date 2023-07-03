@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { Analytics } from "@vercel/analytics/react"
 import { Cre8orsProvider } from "../providers/Crea8orsProvider"
 import { UserProvider } from "../providers/UserProvider"
+import { ThemeProvider } from "../providers/ThemeProvider"
 
 const { chains, provider, webSocketProvider } = configureChains(
   allChains.filter(
@@ -36,15 +37,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider modalSize="compact" chains={chains}>
-        <SessionProvider>
-          <UserProvider>
-            <Cre8orsProvider>
-              <Component {...pageProps} />
-              <ToastContainer />
-              <Analytics />
-            </Cre8orsProvider>
-          </UserProvider>
-        </SessionProvider>
+        <ThemeProvider>
+          <SessionProvider>
+            <UserProvider>
+              <Cre8orsProvider>
+                <Component {...pageProps} />
+                <ToastContainer />
+                <Analytics />
+              </Cre8orsProvider>
+            </UserProvider>
+          </SessionProvider>
+        </ThemeProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   )
