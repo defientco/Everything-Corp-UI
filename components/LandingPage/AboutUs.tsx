@@ -219,37 +219,8 @@ const AboutUs = () => {
             transition ease-in-out duration-[1000ms]`}
       ref={containerRef}
     >
-      {!isCollaped && (
-        <div className="absolute right-2 top-2 sm:right-4 md:right-10 sm:top-4 md:top-10">
-          <Button
-            id="about-us-close-btn"
-            onClick={() => setIsCollapsed(true)}
-            className="md:!px-[17px] md:!py-[1px] sm:!px-[10px] sm:!py-[5px] !px-[5px] !py-[0px]
-                    md:text-[16px] md:text-[32px] text-[15px]"
-          >
-            X
-          </Button>
-        </div>
-      )}
-      {isCollaped && (
-        <div
-          className="absolute bottom-0 left-0 h-[150px] md:h-[390px]
-                w-[100%] bg-gradient-to-t from-[white] via-[#ffffffde] to-[#ffffff45]
-                flex items-end justify-center pb-[50px] md:pb-[140px]"
-        >
-          <Button
-            id="about-us-read-more-btn"
-            className="capitalize font-aldrich
-                    md:!px-[28px] md:!py-[11px] !px-[20px] !py-[7.8px]
-                    md:text-[16px] md:text-[16px] text-[12px]"
-            onClick={() => setIsCollapsed(false)}
-          >
-            Read More
-          </Button>
-        </div>
-      )}
-      <div className="relative pointer-events-none p-2 samsungS8:p-4 md:px-20 md:pt-10 md:pb-20">
-        <div className="font-aldrich text-[20px] md:text-[48px] xl:text-[54px] font-[400] pb-[20px] md:pb-[40px]">
+      <div className="relative p-2 samsungS8:p-4 md:px-20 md:pt-10 md:pb-20">
+        <div className="font-aldrich text-[20px] md:text-[48px] xl:text-[54px] font-[400] pb-[20px] md:pb-[40px] relative z-[1]">
           About Us
         </div>
         {width && (
@@ -273,7 +244,7 @@ const AboutUs = () => {
             ))}
           </div>
         )}
-        <div className="flex gap-2 md:gap-10 pt-[10px] md:pt-[30px]">
+        <div className="flex gap-2 md:gap-10 pt-[10px] md:pt-[30px] relative z-[1]]">
           <Media
             id="about_us_logo"
             link="/Home/big_logo.svg"
@@ -298,8 +269,37 @@ const AboutUs = () => {
             />
           </div>
         </div>
+        {!isCollaped && (
+          <div className="absolute right-2 top-[10px] sm:right-4 md:right-10 md:top-[30px] z-[2]">
+            <Button
+              id="about-us-close-btn"
+              onClick={() => setIsCollapsed(true)}
+              className="md:!px-[17px] md:!py-[1px] sm:!px-[10px] sm:!py-[5px] !px-[5px] !py-[0px]
+                      md:text-[16px] md:text-[32px] text-[15px]"
+            >
+              X
+            </Button>
+          </div>
+        )}
+        {isCollaped && (
+          <div
+            className="absolute top-0 md:top-[390px] xl:top-[510px] left-0 h-[150px] md:h-[390px]
+                w-[100%] bg-gradient-to-t from-[white] via-[#ffffffde] to-[#ffffff45]
+                flex items-end justify-center pb-[50px] md:pb-[140px] z-[3]"
+          >
+            <Button
+              id="about-us-read-more-btn"
+              className="capitalize font-aldrich
+                      md:!px-[28px] md:!py-[11px] !px-[20px] !py-[7.8px]
+                      md:text-[16px] md:text-[16px] text-[12px]"
+              onClick={() => setIsCollapsed(false)}
+            >
+              Read More
+            </Button>
+          </div>
+        )}
         <div
-          className="absolute left-0 top-0
+          className="absolute left-0 top-0 z-[4]
           pointer-events-none"
           style={{
             width: `${width}px`,
@@ -310,7 +310,8 @@ const AboutUs = () => {
             id="about_us_hacked"
             link="/Home/about_us_hacked.png"
             type="image"
-            containerClasses="w-[100%] h-[100%]"
+            containerClasses="w-[100%] h-[100%] pointer-events-none"
+            className="pointer-events-none"
           />
         </div>
       </div>

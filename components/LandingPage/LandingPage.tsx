@@ -82,7 +82,31 @@ const LandingPage = () => {
           </div>
         </Link>
 
-        <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px] relative">
+        <Link href="https://everything-corp-git-sameer-interactivemap-defient-team.vercel.app/mysteries">
+          <div className="relative hover:scale-[1.025] transition duration-[100ms] mt-[25px] mb-[25px]">
+            <ImageCard
+              id="home_secret"
+              link="/Home/secret.png"
+              containerClassName="rounded-[10px] overflow-hidden "
+              width={containerSize.width}
+              ratio={356 / 1065}
+              text="Secrets Unveiled"
+              textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
+            />
+            {containerSize.width && (
+              <div className="absolute left-0 top-[0px] z-[11] w-[100%] h-[100%] pointer-events-none">
+                <Media
+                  id="secret_hacked"
+                  link="/Home/secret_hacked.png"
+                  type="image"
+                  containerClasses="rounded-[10px] overflow-hidden w-[100%] h-[100%]"
+                />
+              </div>
+            )}
+          </div>
+        </Link>
+
+        <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] relative">
           <div
             className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none"
             style={{

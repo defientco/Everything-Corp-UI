@@ -32,23 +32,6 @@ const FaqPage = () => {
 
   return (
     <div className="relative overflow-hidden" ref={containerRef}>
-      <div className="absolute w-full top-0 left-0 z-[10] pt-[50px] md:pt-[100px]">
-        {Array(10)
-          .fill(null)
-          .map((_, i) => (
-            <Media
-              id={`faq_hacked_${i}`}
-              // eslint-disable-next-line react/no-array-index-key
-              key={`faq_hacked_${i}`}
-              link="/Faq/faq_hacked.png"
-              type="image"
-              containerStyle={{
-                height: `${(containerSize.width / 1480) * 894}px`,
-                width: `${containerSize.width}px`,
-              }}
-            />
-          ))}
-      </div>
       <Layout type="background">
         <div
           className="font-aldrich text-white px-2 xs:px-8 text-center md:px-20 md:text-left pb-[30px] md:pb-[50px]
@@ -75,6 +58,23 @@ const FaqPage = () => {
             >{`A: ${isMobile ? section.mobile_content : section.desktop_content}`}</pre>
           </div>
         ))}
+        <div className="absolute w-full top-0 left-0 z-[10] pt-[50px] md:pt-[100px]">
+          {Array(10)
+            .fill(null)
+            .map((_, i) => (
+              <Media
+                id={`faq_hacked_${i}`}
+                // eslint-disable-next-line react/no-array-index-key
+                key={`faq_hacked_${i}`}
+                link="/Faq/faq_hacked.png"
+                type="image"
+                containerStyle={{
+                  height: `${(containerSize.width / 1480) * 894}px`,
+                  width: `${containerSize.width}px`,
+                }}
+              />
+            ))}
+        </div>
       </Layout>
     </div>
   )

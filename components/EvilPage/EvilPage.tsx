@@ -52,8 +52,8 @@ const EvilPage = () => {
   }
 
   return (
-    <div className="relative w-full h-[100%] bg-[red] overflow-hidden">
-      <div className="absolute z-[10] left-0 top-0 w-[100vw] flex justify-center">
+    <div className="relative w-full overflow-hidden">
+      <div className="absolute z-[51] left-0 top-0 w-[100vw] flex justify-center">
         <Media
           id="top_evil_hacked"
           link="/Evil/edge_hacked.png"
@@ -65,7 +65,7 @@ const EvilPage = () => {
           }}
         />
       </div>
-      <div className="absolute z-[11] left-0 bottom-0 w-[100vw] flex justify-center">
+      <div className="absolute z-[51] left-0 bottom-0 w-[100vw] flex justify-center">
         <Media
           id="bottom_evil_hacked"
           link="/Evil/edge_hacked.png"
@@ -77,7 +77,7 @@ const EvilPage = () => {
           }}
         />
       </div>
-      <div className="absolute z-[12] left-0 top-0 w-[100vw] flex flex-col items-center pt-[92px] md:pt-[152px]">
+      <div className="absolute z-[53] left-0 top-0 w-[100vw] flex flex-col items-center pt-[92px] md:pt-[152px]">
         {Array(10)
           .fill(null)
           .map((_, i) => (
