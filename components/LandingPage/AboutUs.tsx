@@ -283,7 +283,7 @@ const AboutUs = () => {
         )}
         {isCollaped && (
           <div
-            className="absolute top-0 md:top-[390px] xl:top-[510px] left-0 h-[150px] md:h-[390px]
+            className="absolute top-[150px] md:top-[390px] xl:top-[510px] left-0 h-[150px] md:h-[390px]
                 w-[100%] bg-gradient-to-t from-[white] via-[#ffffffde] to-[#ffffff45]
                 flex items-end justify-center pb-[50px] md:pb-[140px] z-[3]"
           >
