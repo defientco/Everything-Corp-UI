@@ -34,7 +34,7 @@ const LandingPage = () => {
           className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full"
         />
 
-        <Link href="https://everything-corp-git-test-defient-team.vercel.app/quiz">
+        <Link href="/quiz">
           <div className="relative hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_quiz"
