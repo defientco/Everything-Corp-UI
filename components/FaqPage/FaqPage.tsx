@@ -66,7 +66,7 @@ const FaqPage = () => {
                 id={`faq_hacked_${i}`}
                 // eslint-disable-next-line react/no-array-index-key
                 key={`faq_hacked_${i}`}
-                link="/Faq/faq_hacked.png"
+                link="/FAQ/faq_hacked.png"
                 type="image"
                 containerStyle={{
                   height: `${(containerSize.width / 1480) * 894}px`,
