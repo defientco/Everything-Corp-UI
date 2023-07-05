@@ -8,8 +8,7 @@ const Header = () => {
 
   return (
     <nav className="fixed top-0 z-50 ">
-      <div className="w-screen h-[50px] bg-[#6d1010]" />
-      <div className="flex justify-center items-center w-screen px-2 md:px-8 font-aldrich">
+      <div className="flex justify-center items-center w-screen p-2 md:p-8 font-aldrich">
         <div className="w-[1080px] flex justify-center">
           <Link href="/">
             <div>
