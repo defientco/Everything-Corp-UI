@@ -5,7 +5,7 @@ import { useMediaQuery } from "usehooks-ts"
 const Footer = () => {
   const isMobile = useMediaQuery("(max-width: 768px)")
   return (
-    <footer className="p-4">
+    <footer>
       <div className="container flex items-end justify-between max-w-[1280px] p-4 m-auto md:p-6">
         <Link href="/">
           <div>

@@ -40,20 +40,44 @@ const CareersPage = () => {
   return (
     <Layout type="base">
       <div className="pb-[150px] w-[100vw] xl1065:w-[1065px]" ref={containerRef}>
-        <div className="relative z-[2] px-[32px] md:px-[0px]">
-          <Media
-            id="home_career"
-            link="/Careers/front.svg"
-            type="image"
-            containerClasses="rounded-[10px] overflow-hidden"
-            containerStyle={{
-              height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
-              width: `${isResponsive ? width - paddingX : 1067}px`,
-            }}
-          />
+        <div className="relative z-[2] px-[32px] md:px-[0px] z-[3]">
+          <div className="relative h-full overflow-hidden">
+            <Media
+              id="home_career"
+              link="/Careers/front.svg"
+              type="image"
+              containerClasses="rounded-[10px] overflow-hidden"
+              containerStyle={{
+                height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
+                width: `${isResponsive ? width - paddingX : 1067}px`,
+              }}
+            />
+            <div className="absolute top-0 left-0 h-[100%] z-[4]">
+              <Media
+                id="home_front_hacked"
+                link="/Careers/front_hacked.png"
+                type="image"
+                containerClasses="rounded-[10px] overflow-hidden"
+                containerStyle={{
+                  height: `${isResponsive ? ((width - paddingX) / 1067) * 770 : 770}px`,
+                  width: `${isResponsive ? width - paddingX : 1067}px`,
+                }}
+              />
+            </div>
+            <div
+              className="absolute w-[100%] text-center text-white font-aldrich
+               drop-shadow-[2px_6px_2px_#000] leading-[100%]"
+              style={{
+                top: isResponsive ? `${(550 / 1067) * (width - paddingX)}px` : "550px",
+                // eslint-disable-next-line no-nested-ternary
+                fontSize: dynamicFontSize(43, 129, 319, 1067),
+              }}
+            >
+              Careers
+            </div>
+          </div>
           <div
             className="absolute md:w-[100%] bg-[black] 
-                py-[40px] md:py-[80px]
                 shadow-[0_0_34px_45px_rgba(0,0,0)]"
             ref={sectionRef}
             style={{
@@ -68,41 +92,51 @@ const CareersPage = () => {
             }}
           >
             <div className="relative">
-              {sections.map((section: SectionData) => (
-                <div key={section.id}>
-                  <div
-                    className="font-aldrich text-white uppercase underline"
-                    style={{ fontSize: dynamicFontSize(17, 35, 320, 1067) }}
-                  >
-                    {section.title}
+              <div className="relative overflow-hidden py-[40px] md:py-[80px]">
+                {sections.map((section: SectionData) => (
+                  <div key={section.id}>
+                    <div
+                      className="font-aldrich text-white uppercase underline"
+                      style={{ fontSize: dynamicFontSize(17, 35, 320, 1067) }}
+                    >
+                      {section.title}
+                    </div>
+                    <pre
+                      className="font-aldrich 
+                                      text-[white] pb-[30px]
+                                      [&>span]:text-[36px] [&>span]:xl:text-[40px]
+                                      leading-[108.8%]
+                                  "
+                      style={{ fontSize: dynamicFontSize(14, 32, 320, 1067) }}
+                    >
+                      {!isMobile ? section.desktop : section.mobile}
+                    </pre>
                   </div>
-                  <pre
-                    className="font-aldrich 
-                                    text-[white] pb-[30px]
-                                    [&>span]:text-[36px] [&>span]:xl:text-[40px]
-                                    leading-[108.8%]
-                                "
-                    style={{ fontSize: dynamicFontSize(14, 32, 320, 1067) }}
-                  >
-                    {!isMobile ? section.desktop : section.mobile}
-                  </pre>
+                ))}
+                <div className="absolute left-0 top-0 w-full h-full z-[4]">
+                  {Array(20)
+                    .fill(20)
+                    .map((_, i) => (
+                      <Media
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={`${i}_content_hacked`}
+                        id={`${i}_content_hacked`}
+                        link="/Careers/content_hacked.png"
+                        type="image"
+                        containerClasses="rounded-[10px] overflow-hidden mb-3"
+                        containerStyle={{
+                          height: `${isResponsive ? ((width - paddingX) / 1065) * 231 : 231}px`,
+                          width: `${isResponsive ? width - paddingX : 1065}px`,
+                        }}
+                      />
+                    ))}
                 </div>
-              ))}
-              <div
-                className="absolute w-[100%] text-center text-white font-aldrich
-               drop-shadow-[2px_6px_2px_#000] leading-[100%]"
-                style={{
-                  top: isResponsive ? `-${(300 / 1067) * (width - paddingX)}px` : "-300px",
-                  // eslint-disable-next-line no-nested-ternary
-                  fontSize: dynamicFontSize(43, 129, 319, 1067),
-                }}
-              >
-                Careers
               </div>
             </div>
           </div>
         </div>
-        <div className="px-[32px] md:px-[0px]">
+
+        <div className="px-[32px] md:px-[0px] h-full relative h-full z-[2]">
           <Media
             id="desktop_home_career"
             link="/Careers/back.svg"
@@ -114,12 +148,23 @@ const CareersPage = () => {
                 // eslint-disable-next-line no-nested-ternary
                 (isResponsive
                   ? isMobile
-                    ? ((width - paddingX) / 1067) * 1043 * 0.1 - 40
-                    : ((width - paddingX) / 1067) * 1043 * 0.25 - 40
-                  : 1043 * 0.25 - 80)
+                    ? ((width - paddingX) / 1067) * 1043 * 0.35 - 40
+                    : ((width - paddingX) / 1067) * 1043 * 0.5 - 40
+                  : 1043 * 0.55 - 80)
               }px`,
               height: `${isResponsive ? ((width - paddingX) / 1067) * 1043 : 1043}px`,
               width: `${isResponsive ? width - paddingX : 1067}px`,
+            }}
+          />
+          <Media
+            id="home_back_hacked"
+            link="/Careers/back_hacked.png"
+            type="image"
+            containerClasses="rounded-[10px] overflow-hidden !absolute !bottom-0 left-0 z-[4]"
+            containerStyle={{
+              height: `${isResponsive ? ((width - paddingX) / 1067) * 740 : 740}px`,
+              width: `${isResponsive ? width - paddingX : 1067}px`,
+              left: `${isResponsive ? "32px" : "0px"}`,
             }}
           />
         </div>

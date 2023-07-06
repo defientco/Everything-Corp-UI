@@ -213,88 +213,105 @@ const AboutUs = () => {
   return (
     <div
       className={`relative rounded-[10px] md:rounded-[42px] bg-white
-            p-2 samsungS8:p-4 md:px-20 md:pt-10 md:pb-20 
             mt-[20px] xs:mt-[30px] md:mt-[50px] overflow-hidden ${
               isCollaped ? "h-[300px] md:h-[780px] xl:h-[900px]" : "h-full"
             }
             transition ease-in-out duration-[1000ms]`}
       ref={containerRef}
     >
-      {!isCollaped && (
-        <div className="absolute right-2 top-2 sm:right-4 md:right-10 sm:top-4 md:top-10">
-          <Button
-            id="about-us-close-btn"
-            onClick={() => setIsCollapsed(true)}
-            className="md:!px-[17px] md:!py-[1px] sm:!px-[10px] sm:!py-[5px] !px-[5px] !py-[0px]
-                    md:text-[16px] md:text-[32px] text-[15px]"
-          >
-            X
-          </Button>
+      <div className="relative p-2 samsungS8:p-4 md:px-20 md:pt-10 md:pb-20">
+        <div className="font-aldrich text-[20px] md:text-[48px] xl:text-[54px] font-[400] pb-[20px] md:pb-[40px] relative z-[1]">
+          About Us
         </div>
-      )}
-      {isCollaped && (
-        <div
-          className="absolute bottom-0 left-0 h-[150px] md:h-[390px]
-                w-[100%] bg-gradient-to-t from-[white] via-[#ffffffde] to-[#ffffff45]
-                flex items-end justify-center pb-[50px] md:pb-[140px]"
-        >
-          <Button
-            id="about-us-read-more-btn"
-            className="capitalize font-aldrich
-                    md:!px-[28px] md:!py-[11px] !px-[20px] !py-[7.8px]
-                    md:text-[16px] md:text-[16px] text-[12px]"
-            onClick={() => setIsCollapsed(false)}
-          >
-            Read More
-          </Button>
-        </div>
-      )}
-      <div className="font-aldrich text-[20px] md:text-[48px] xl:text-[54px] font-[400] pb-[20px] md:pb-[40px]">
-        About Us
-      </div>
-      {width && (
-        <div className="">
-          {sections.map((section: SectionData) => (
-            <div
-              key={section.id}
-              className="font-aldrich 
-                        font-[400] pb-[15px] md:pb-[30px]"
-              style={{
-                // eslint-disable-next-line no-nested-ternary
-                fontSize: isResponsive
-                  ? isMobile
-                    ? `${(33 / 1086) * width}px`
-                    : `${(32 / 1086) * width}px`
-                  : "28px",
-              }}
-            >
-              {isMobile ? section.mobile : section.desktop}
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="flex gap-2 md:gap-10 pt-[10px] md:pt-[30px]">
-        <Media
-          id="about_us_logo"
-          link="/Home/big_logo.svg"
-          containerClasses="xl:w-[165px] xl:h-[178px]
-                    md:w-[118px] md:h-[127px]
-                    samsungS8:w-[59px] samsungS8:h-[66.5px]
-                    w-[50px] h-[54px]"
-          type="image"
-        />
-        <div>
-          <div className="font-aldrich text-[8.5px] samsungS8:text-[10px] md:text-[20px] xl:text-[28px]">
-            Earnest Cain, CEO
+        {width && (
+          <div className="">
+            {sections.map((section: SectionData) => (
+              <div
+                key={section.id}
+                className="font-aldrich 
+                          font-[400] pb-[15px] md:pb-[30px]"
+                style={{
+                  // eslint-disable-next-line no-nested-ternary
+                  fontSize: isResponsive
+                    ? isMobile
+                      ? `${(33 / 1086) * width}px`
+                      : `${(32 / 1086) * width}px`
+                    : "28px",
+                }}
+              >
+                {isMobile ? section.mobile : section.desktop}
+              </div>
+            ))}
           </div>
+        )}
+        <div className="flex gap-2 md:gap-10 pt-[10px] md:pt-[30px] relative z-[1]]">
           <Media
-            id="about_us_sign"
-            link="/Home/sign.svg"
+            id="about_us_logo"
+            link="/Home/big_logo.svg"
+            containerClasses="xl:w-[165px] xl:h-[178px]
+                      md:w-[118px] md:h-[127px]
+                      samsungS8:w-[59px] samsungS8:h-[66.5px]
+                      w-[50px] h-[54px]"
             type="image"
-            containerClasses="xl:w-[511px] xl:h-[147px]
-                        md:w-[365px] md:h-[105px]
-                        samsungS8:w-[182.5px] samsungS8:h-[52.5px]
-                        w-[155px] h-[44.5px]"
+          />
+          <div>
+            <div className="font-aldrich text-[8.5px] samsungS8:text-[10px] md:text-[20px] xl:text-[28px]">
+              Earnest Cain, CEO
+            </div>
+            <Media
+              id="about_us_sign"
+              link="/Home/sign.svg"
+              type="image"
+              containerClasses="xl:w-[511px] xl:h-[147px]
+                          md:w-[365px] md:h-[105px]
+                          samsungS8:w-[182.5px] samsungS8:h-[52.5px]
+                          w-[155px] h-[44.5px]"
+            />
+          </div>
+        </div>
+        {!isCollaped && (
+          <div className="absolute right-2 top-[10px] sm:right-4 md:right-10 md:top-[30px] z-[2]">
+            <Button
+              id="about-us-close-btn"
+              onClick={() => setIsCollapsed(true)}
+              className="md:!px-[17px] md:!py-[1px] sm:!px-[10px] sm:!py-[5px] !px-[5px] !py-[0px]
+                      md:text-[16px] md:text-[32px] text-[15px]"
+            >
+              X
+            </Button>
+          </div>
+        )}
+        {isCollaped && (
+          <div
+            className="absolute top-[150px] md:top-[390px] xl:top-[510px] left-0 h-[150px] md:h-[390px]
+                w-[100%] bg-gradient-to-t from-[white] via-[#ffffffde] to-[#ffffff45]
+                flex items-end justify-center pb-[50px] md:pb-[140px] z-[3]"
+          >
+            <Button
+              id="about-us-read-more-btn"
+              className="capitalize font-aldrich
+                      md:!px-[28px] md:!py-[11px] !px-[20px] !py-[7.8px]
+                      md:text-[16px] md:text-[16px] text-[12px]"
+              onClick={() => setIsCollapsed(false)}
+            >
+              Read More
+            </Button>
+          </div>
+        )}
+        <div
+          className="absolute left-0 top-0 z-[4]
+          pointer-events-none"
+          style={{
+            width: `${width}px`,
+            height: `100%`,
+          }}
+        >
+          <Media
+            id="about_us_hacked"
+            link="/Home/about_us_hacked.png"
+            type="image"
+            containerClasses="w-[100%] h-[100%] pointer-events-none"
+            className="pointer-events-none"
           />
         </div>
       </div>
