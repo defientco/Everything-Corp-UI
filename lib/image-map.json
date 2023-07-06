@@ -2,29 +2,150 @@
   "name": "cre8ors-map",
   "areas": [
     {
-      "id": "469f9800-c45a-483f-b13e-bd24f3fb79f4",
-      "title": "the start",
-      "shape": "rect",
+      "id": "469f9800-c45a-483f-b13e-bd24f3fb79f1",
+      "title": "color_red",
+      "shape": "poly",
       "name": "1",
-      "fillColor": "#eab54d4d",
-      "strokeColor": "black",
-      "coords": [998, 470, 548, 284],
-      "polygon": [
-        [998, 470],
-        [470, 548],
-        [548, 284],
-        [284, 998],
-        [11.606965174129343, 438.3084577114427]
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [109, 201, 224, 177, 366, 160, 389, 304, 404, 423, 284, 432, 167, 460]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c662",
+      "title": "runway",
+      "shape": "poly",
+      "name": "2",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        299, 1149, 464, 1152, 468, 1100, 661, 1075, 716, 1241, 517, 1288, 663, 1382, 436, 1421, 374,
+        1335, 319, 1333, 286, 1291
       ]
     },
     {
-      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c66c",
-      "title": "the challenge",
-      "shape": "rect",
-      "name": "2",
-      "fillColor": "#eab54d4d",
-      "strokeColor": "black",
-      "coords": [1178, 1193, 595, 1381]
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c663",
+      "title": "coins",
+      "shape": "poly",
+      "name": "3",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [992, 1158, 1234, 1158, 1248, 1325, 1253, 1432, 1131, 1444, 1054, 1438, 992, 1432]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c664",
+      "title": "color_and_sound",
+      "shape": "poly",
+      "name": "4",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        1648, 631, 1896, 689, 1811, 1084, 1777, 1035, 1695, 1048, 1661, 1054, 1565, 1029, 1405, 969,
+        1447, 832, 1482, 682, 1490, 648
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c665",
+      "title": "colors_of_jobs",
+      "shape": "poly",
+      "name": "5",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        1456, 169, 1612, 156, 1768, 156, 1922, 160, 1915, 323, 1922, 415, 1915, 550, 1901, 631,
+        1819, 629, 1729, 624, 1638, 624, 1578, 620, 1520, 627, 1469, 624
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c666",
+      "title": "decree",
+      "shape": "poly",
+      "name": "6",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        1943, 227, 2106, 190, 2296, 192, 2302, 378, 2328, 556, 2356, 642, 2268, 656, 2191, 689,
+        2134, 684, 2078, 684, 2025, 684, 1977, 665
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c667",
+      "title": "dna",
+      "shape": "poly",
+      "name": "7",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        898, 674, 1216, 652, 1360, 693, 1383, 1035, 1103, 1067, 1071, 909, 936, 920, 902, 915
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c668",
+      "title": "evil",
+      "shape": "poly",
+      "name": "8",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        165, 479, 346, 492, 669, 522, 656, 729, 618, 753, 581, 766, 560, 774, 511, 751, 466, 746,
+        449, 776, 428, 802, 419, 832, 376, 932, 321, 917, 265, 907, 220, 907, 160, 898, 148, 761
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c669",
+      "title": "fixer",
+      "shape": "poly",
+      "name": "9",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [1285, 1096, 1650, 1062, 1785, 1079, 1832, 1442, 1349, 1500]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6610",
+      "title": "journal",
+      "shape": "poly",
+      "name": "10",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        1894, 1010, 2163, 1002, 2200, 1025, 2204, 1128, 2234, 1551, 1945, 1560, 1922, 1534, 1868,
+        1539, 1839, 1515, 1862, 1060
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6611",
+      "title": "quiz",
+      "shape": "poly",
+      "name": "11",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        1879, 774, 2007, 761, 2159, 753, 2168, 962, 2099, 975, 2022, 969, 1971, 979, 1911, 979,
+        1894, 979
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6612",
+      "title": "run",
+      "shape": "poly",
+      "name": "12",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        686, 968, 1054, 923, 1095, 1147, 1000, 1149, 981, 1156, 979, 1190, 898, 1199, 821, 1211,
+        723, 1214
+      ]
+    },
+    {
+      "id": "1db62daa-22a4-4b02-b5c0-fffdcf77c6613",
+      "title": "soot",
+      "shape": "poly",
+      "name": "13",
+      "fillColor": "transparent",
+      "strokeColor": "transparent",
+      "coords": [
+        712, 1301, 842, 1263, 949, 1222, 979, 1265, 979, 1320, 979, 1387, 983, 1425, 998, 1447,
+        1037, 1449, 1056, 1496, 1000, 1515, 900, 1560, 840, 1575, 802, 1577
+      ]
     }
   ]
 }
