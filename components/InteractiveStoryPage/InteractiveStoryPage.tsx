@@ -93,20 +93,24 @@ const InteractiveStoryPage = () => {
         className="flex flex-col items-center justify-center !h-screen !w-screen overflow-hidden"
         ref={containerRef}
       >
-        <Audio src="/map_bgm.mp3" />
-        <ImageMapper
-          src={baseImgUrl}
-          map={map}
-          onClick={(area, index, e) => handleClick(area, index, e)}
-          onMouseEnter={(area, index, e) => handleMouseEnter(area, index, e)}
-          onMouseLeave={(area, index, e) => handleMouseLeave(area, index, e)}
-          responsive
-          parentWidth={
-            width > height
-              ? ((height - hearderSizes.height - footerSizes.height - 64) / 2534) * 2420
-              : width - 32
-          }
-        />
+        <div className="relative">
+          <div className="absolute z-[10] top-2 right-2 md:top-4 md:right-4">
+            <Audio src="/map_bgm.mp3" />
+          </div>
+          <ImageMapper
+            src={baseImgUrl}
+            map={map}
+            onClick={(area, index, e) => handleClick(area, index, e)}
+            onMouseEnter={(area, index, e) => handleMouseEnter(area, index, e)}
+            onMouseLeave={(area, index, e) => handleMouseLeave(area, index, e)}
+            responsive
+            parentWidth={
+              width > height
+                ? ((height - hearderSizes.height - footerSizes.height - 64) / 2534) * 2420
+                : width - 32
+            }
+          />
+        </div>
         {showModal && (
           <ImageModal
             imageUrl={imgUrl}

@@ -34,7 +34,7 @@ const Audio = ({ src, loop = true }) => {
   return (
     <>
       <button
-        className="fixed z-50 p-2 text-gray-700 bg-gray-200 rounded-full top-28 right-4 focus:outline-none hover:bg-gray-300"
+        className="p-2 text-gray-700 bg-gray-200 rounded-full top-28 right-4 focus:outline-none hover:bg-gray-300"
         onClick={toggleMute}
         type="button"
       >
