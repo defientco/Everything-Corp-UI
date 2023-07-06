@@ -29,7 +29,6 @@ const InteractiveStoryPage = () => {
 
   const [containerRef, { width, height }] = useMeasure()
   const [headerRef, hearderSizes] = useMeasure()
-  const [footerRef, footerSizes] = useMeasure()
 
   const handleClick = (area, index, e) => {
     e.preventDefault()
@@ -41,10 +40,10 @@ const InteractiveStoryPage = () => {
     <div>
       <Header headerRef={headerRef} />
       <div
-        className="flex flex-col items-center justify-center !h-screen !w-screen overflow-hidden"
+        className="flex flex-col justify-center items-center !h-screen !w-screen"
         ref={containerRef}
       >
-        <div className="relative">
+        <div className="relative mt-[64px] md:mt-[110px]">
           <div className="absolute z-[10] top-2 right-2 md:top-4 md:right-4">
             <Audio src="/map_bgm.mp3" />
           </div>
@@ -54,9 +53,7 @@ const InteractiveStoryPage = () => {
             onClick={(area, index, e) => handleClick(area, index, e)}
             responsive
             parentWidth={
-              width > height
-                ? ((height - hearderSizes.height - footerSizes.height - 64) / 2534) * 2420
-                : width - 32
+              width > height ? ((height - hearderSizes.height) / 2534) * 2420 : width - 32
             }
           />
         </div>
@@ -70,11 +67,10 @@ const InteractiveStoryPage = () => {
           />
         )}
       </div>
-      <div ref={footerRef} className="fixed bottom-0 left-0 flex justify-center w-full">
+      <div className="flex justify-center">
         <div
-          className="relative"
           style={{
-            width: `${((height - hearderSizes.height - footerSizes.height - 64) / 2534) * 2420}px`,
+            width: `${((height - hearderSizes.height) / 2534) * 2420}px`,
           }}
         >
           <Footer />
