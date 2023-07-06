@@ -18,17 +18,15 @@ const ImageModal: FC<ImageModalProps> = ({ imageUrl, showModal, setShowModal, wi
 
   return (
     showModal && (
-      <div className="fixed inset-0 z-10">
-        <div className="flex items-center justify-center h-screen">
-          <Image
-            src={imageUrl}
-            alt="Modal"
-            width={width}
-            height={height}
-            loader={customLoader}
-            onClick={handleClick}
-          />
-        </div>
+      <div className="absolute z-10 left-0 top-0 w-[100%] h-[100%] flex items-center justify-center">
+        <Image
+          src={imageUrl}
+          alt="Modal"
+          width={width}
+          height={height}
+          loader={customLoader}
+          onClick={handleClick}
+        />
       </div>
     )
   )

@@ -25,6 +25,7 @@ const Audio = ({ src, loop = true, effectAudioArea, clickedArea }) => {
 
   useEffect(() => {
     const audio = audioRef.current
+    audio.volume = 0.1
     audio.loop = loop
     audio.muted = muted
     audio.play()
@@ -52,6 +53,7 @@ const Audio = ({ src, loop = true, effectAudioArea, clickedArea }) => {
 
   useEffect(() => {
     const effectAudio = effectAudioRef.current
+    effectAudio.volume = 1
     effectAudio.play()
   }, [clickedArea])
 
@@ -65,7 +67,7 @@ const Audio = ({ src, loop = true, effectAudioArea, clickedArea }) => {
         {muted ? <SpeakerXMarkIcon className="w-6 h-6" /> : <SpeakerWaveIcon className="w-6 h-6" />}
       </button>
       <audio ref={audioRef} src={src} autoPlay />
-      <audio ref={effectAudioRef} src={EffectAudioUrl[effectAudioArea]} />
+      <audio ref={effectAudioRef} src={EffectAudioUrl[effectAudioArea]} muted />
     </>
   )
 }

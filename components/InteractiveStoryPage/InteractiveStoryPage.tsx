@@ -50,7 +50,7 @@ const InteractiveStoryPage = () => {
         ref={containerRef}
       >
         <div className="relative mt-[64px] md:mt-[110px]">
-          <div className="absolute z-[10] top-2 right-2 md:top-4 md:right-4">
+          <div className="absolute z-[20] top-2 right-2 md:top-4 md:right-4">
             <Audio src="/map_bgm.mp3" effectAudioArea={effectAudioArea} clickedArea={clickedArea} />
           </div>
           <ImageMapper
@@ -62,16 +62,16 @@ const InteractiveStoryPage = () => {
               width > height ? ((height - hearderSizes.height) / 2534) * 2420 : width - 32
             }
           />
+          {showModal && (
+            <ImageModal
+              imageUrl={imgUrl}
+              setShowModal={setShowModal}
+              showModal={showModal}
+              width={width > height ? (height / 4) * 3 : (width / 5) * 4}
+              height={width > height ? (height / 4) * 3 : (width / 5) * 4}
+            />
+          )}
         </div>
-        {showModal && (
-          <ImageModal
-            imageUrl={imgUrl}
-            setShowModal={setShowModal}
-            showModal={showModal}
-            width={width > height ? (height / 4) * 3 : (width / 5) * 4}
-            height={width > height ? (height / 4) * 3 : (width / 5) * 4}
-          />
-        )}
       </div>
       <div className="flex justify-center">
         <div
