@@ -45,7 +45,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <Link href="https://everything-corp-git-test-defient-team.vercel.app/quiz">
+        <Link href="/quiz">
           <div className="relative hover:scale-[1.025] transition duration-[100ms]">
             <ImageCard
               id="home_quiz"
@@ -82,7 +82,7 @@ const LandingPage = () => {
           </div>
         </Link>
 
-        <Link href="https://everything-corp-git-sameer-interactivemap-defient-team.vercel.app/mysteries">
+        <Link href="/mysteries">
           <div className="relative hover:scale-[1.025] transition duration-[100ms] mt-[25px] mb-[25px]">
             <ImageCard
               id="home_secret"
