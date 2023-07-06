@@ -23,9 +23,12 @@ const PointsToUrl = {
   13: "/Mysteries/Modals/soot2.png",
 }
 
+let clickedArea = false
+
 const InteractiveStoryPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [imgUrl, setImgUrl] = useState("")
+  const [effectAudioArea, setEffectAudioArea] = useState()
 
   const [containerRef, { width, height }] = useMeasure()
   const [headerRef, hearderSizes] = useMeasure()
@@ -33,6 +36,9 @@ const InteractiveStoryPage = () => {
   const handleClick = (area, index, e) => {
     e.preventDefault()
     setImgUrl(PointsToUrl[area.name])
+
+    setEffectAudioArea(area.name)
+    clickedArea = !clickedArea
     setShowModal(true)
   }
 
@@ -45,7 +51,7 @@ const InteractiveStoryPage = () => {
       >
         <div className="relative mt-[64px] md:mt-[110px]">
           <div className="absolute z-[10] top-2 right-2 md:top-4 md:right-4">
-            <Audio src="/map_bgm.mp3" />
+            <Audio src="/map_bgm.mp3" effectAudioArea={effectAudioArea} clickedArea={clickedArea} />
           </div>
           <ImageMapper
             src="/storytelling_ui.png"
