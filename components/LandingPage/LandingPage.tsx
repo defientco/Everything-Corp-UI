@@ -27,12 +27,23 @@ const LandingPage = () => {
   return (
     <Layout type="base">
       <div ref={containerRef} className="p-[32px] w-[100vw] xs:w-full pb-20">
-        <Media
-          id="home_video"
-          link="/Home/new_video.mp4"
-          type="video"
-          className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full"
-        />
+        <div className="relative">
+          <Media
+            id="home_video"
+            link="/Home/new_video.mp4"
+            type="video"
+            className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full
+            z-[1]"
+          />
+          <div className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none">
+            <Media
+              id="home_video_hacked"
+              link="/Home/video_hacked.png"
+              type="image"
+              containerClasses="w-[100%] h-[100%]"
+            />
+          </div>
+        </div>
 
         <Link href="/quiz">
           <div className="relative hover:scale-[1.025] transition duration-[100ms]">
