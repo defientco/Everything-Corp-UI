@@ -8,24 +8,27 @@ import Audio from "../Audio"
 import Footer from "../Footer"
 
 const PointsToUrl = {
-  1: "/Mysteries/Modals/color_red2.png",
+  1: "/Mysteries/Popup/redrelic.png",
   2: "/Mysteries/Modals/codes2.png",
   3: "/Mysteries/Modals/coins2.png",
-  4: "/Mysteries/Modals/color_and_sound2.png",
-  5: "/Mysteries/Modals/colors_of_jobs2.png",
+  4: "/Mysteries/Popup/frequently.png",
+  5: "/Mysteries/Popup/colorlist.png",
   6: "/Mysteries/Modals/decree2.png",
-  7: "/Mysteries/Modals/DNA2.png",
-  8: "/Mysteries/Modals/EVIL2.png",
-  9: "/Mysteries/Modals/fixers_pic2.png",
-  10: "/Mysteries/Modals/journal1.png",
-  11: "/Mysteries/Modals/quiz2.png",
-  12: "/Mysteries/Modals/RUN2.png",
-  13: "/Mysteries/Modals/soot2.png",
+  7: "/Mysteries/Popup/dna.png",
+  8: "/Mysteries/Popup/evil.png",
+  9: "/Mysteries/Popup/fixers.png",
+  10: "/Mysteries/Modals/journal.png",
+  11: "/Mysteries/Popup/quiz.png",
+  12: "/Mysteries/Popup/burn.png",
+  13: "/Mysteries/Popup/smog.png",
 }
+
+let clickedArea = false
 
 const InteractiveStoryPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [imgUrl, setImgUrl] = useState("")
+  const [effectAudioArea, setEffectAudioArea] = useState()
 
   const [containerRef, { width, height }] = useMeasure()
   const [headerRef, hearderSizes] = useMeasure()
@@ -33,6 +36,9 @@ const InteractiveStoryPage = () => {
   const handleClick = (area, index, e) => {
     e.preventDefault()
     setImgUrl(PointsToUrl[area.name])
+
+    setEffectAudioArea(area.name)
+    clickedArea = !clickedArea
     setShowModal(true)
   }
 
@@ -44,8 +50,8 @@ const InteractiveStoryPage = () => {
         ref={containerRef}
       >
         <div className="relative mt-[64px] md:mt-[110px]">
-          <div className="absolute z-[10] top-2 right-2 md:top-4 md:right-4">
-            <Audio src="/map_bgm.mp3" />
+          <div className="absolute z-[20] top-2 right-2 md:top-4 md:right-4">
+            <Audio src="/map_bgm.mp3" effectAudioArea={effectAudioArea} clickedArea={clickedArea} />
           </div>
           <ImageMapper
             src="/storytelling_ui.png"
@@ -56,16 +62,16 @@ const InteractiveStoryPage = () => {
               width > height ? ((height - hearderSizes.height) / 2534) * 2420 : width - 32
             }
           />
+          {showModal && (
+            <ImageModal
+              imageUrl={imgUrl}
+              setShowModal={setShowModal}
+              showModal={showModal}
+              width={width > height ? (height / 4) * 3 : (width / 5) * 4}
+              height={width > height ? (height / 4) * 3 : (width / 5) * 4}
+            />
+          )}
         </div>
-        {showModal && (
-          <ImageModal
-            imageUrl={imgUrl}
-            setShowModal={setShowModal}
-            showModal={showModal}
-            width={width > height ? (height / 4) * 3 : (width / 5) * 4}
-            height={width > height ? (height / 4) * 3 : (width / 5) * 4}
-          />
-        )}
       </div>
       <div className="flex justify-center">
         <div
