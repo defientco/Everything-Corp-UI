@@ -27,12 +27,23 @@ const LandingPage = () => {
   return (
     <Layout type="base">
       <div ref={containerRef} className="p-[32px] w-[100vw] xs:w-full pb-20">
-        <Media
-          id="home_video"
-          link="/Home/new_video.mp4"
-          type="video"
-          className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full"
-        />
+        <div className="relative">
+          <Media
+            id="home_video"
+            link="/Home/new_video.mp4"
+            type="video"
+            className="rounded-[10px] overflow-hidden mb-[20px] xs:mb-[30px] md:mb-[50px] w-full
+            z-[1]"
+          />
+          <div className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none">
+            <Media
+              id="home_video_hacked"
+              link="/Home/video_hacked.png"
+              type="image"
+              containerClasses="w-[100%] h-[100%]"
+            />
+          </div>
+        </div>
 
         <Link href="/quiz">
           <div className="relative hover:scale-[1.025] transition duration-[100ms]">
@@ -46,22 +57,71 @@ const LandingPage = () => {
               textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
             />
             {containerSize.width && (
-              <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
+              <>
+                <div className="absolute left-0 top-[0px] z-[10] w-[100%] pointer-events-none">
+                  <Media
+                    id="letter_img"
+                    link="/Home/letter.png"
+                    type="image"
+                    containerClasses="rounded-[10px] overflow-hidden"
+                    containerStyle={{
+                      height: `${(containerSize.width * 356) / 1065}px`,
+                    }}
+                  />
+                </div>
+                <div className="absolute left-0 top-[0px] z-[11] w-[100%] h-[100%] pointer-events-none">
+                  <Media
+                    id="quiz_hacked"
+                    link="/Home/quiz_hacked.png"
+                    type="image"
+                    containerClasses="rounded-[10px] overflow-hidden w-[100%] h-[100%]"
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        </Link>
+
+        <Link href="/mysteries">
+          <div className="relative hover:scale-[1.025] transition duration-[100ms] mt-[25px] mb-[25px]">
+            <ImageCard
+              id="home_secret"
+              link="/Home/secret.png"
+              containerClassName="rounded-[10px] overflow-hidden "
+              width={containerSize.width}
+              ratio={356 / 1065}
+              text="Secrets Unveiled"
+              textClassName="md:text-[34px] drop-shadow-[0px_35px_35px_rgb(0,0,0)]"
+            />
+            {containerSize.width && (
+              <div className="absolute left-0 top-[0px] z-[11] w-[100%] h-[100%] pointer-events-none">
                 <Media
-                  id="letter_img"
-                  link="/Home/letter.png"
+                  id="secret_hacked"
+                  link="/Home/secret_hacked.png"
                   type="image"
-                  containerClasses="rounded-[10px] overflow-hidden"
-                  containerStyle={{
-                    height: `${(containerSize.width * 356) / 1065}px`,
-                  }}
+                  containerClasses="rounded-[10px] overflow-hidden w-[100%] h-[100%]"
                 />
               </div>
             )}
           </div>
         </Link>
 
-        <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
+        <div className="grid grid-cols-3 gap-[5px] md:gap-[10px] relative">
+          <div
+            className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none"
+            style={{
+              paddingTop: `${(containerSize.width / 1065) * 48}px`,
+            }}
+          >
+            <Media
+              id="3_card_hacked"
+              link="/Home/3_card_hacked.png"
+              type="image"
+              containerClasses="w-[100%] h-[100%]"
+              width={containerSize.width}
+              height={(containerSize.width / 1065) * 268}
+            />
+          </div>
           <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={tinyRef}>
             <ImageCard
               id="home_restoration"
@@ -153,8 +213,9 @@ const LandingPage = () => {
             />
           </div>
         </div>
+
         <Link href="/evil">
-          <div className="hover:scale-[1.025] transition duration-[100ms] mt-[5px] md:mt-[10px]">
+          <div className="hover:scale-[1.025] transition duration-[100ms] mt-[5px] md:mt-[10px] relative">
             <ImageCard
               id="home_economic"
               link="/Home/economic.png"
@@ -170,9 +231,26 @@ const LandingPage = () => {
                 </>
               }
             />
+            <div className="absolute left-[0px] top-[0px] z-[1] w-[100%] h-[100%] pointer-events-none">
+              <Media
+                id="economic_hacked"
+                link="/Home/economic_hacked.png"
+                type="image"
+                containerClasses="rounded-[10px] overflow-hidden w-[100%] h-[100%]"
+              />
+            </div>
           </div>
         </Link>
-        <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px]">
+
+        <div className="grid grid-cols-2 gap-[5px] md:gap-[10px] mt-[5px] md:mt-[10px] relative">
+          <div className="absolute top-0 left-0 w-[100%] h-[100%] z-[2] pointer-events-none">
+            <Media
+              id="2_card_hacked"
+              link="/Home/2_card_hacked.png"
+              type="image"
+              containerClasses="w-[100%] h-[100%]"
+            />
+          </div>
           <div className="col-1 hover:scale-[1.025] transition duration-[100ms]" ref={mediumRef}>
             <Link href="/fixers">
               <div>
